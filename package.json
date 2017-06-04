@@ -44,6 +44,7 @@
     "jasmine-spec-reporter": "^4.1.0",
     "karma": "^1.7.0",
     "karma-chrome-launcher": "^2.1.1",
+    "karma-html-reporter": "^0.2.7",
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-phantomjs-launcher": "^1.0.4",
