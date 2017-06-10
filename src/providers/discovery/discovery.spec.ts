@@ -1,14 +1,27 @@
 import { async, TestBed } from '@angular/core/testing';
+import { 
+    HttpModule, 
+    Http, 
+    BaseRequestOptions, 
+    XHRBackend 
+} from '@angular/http';
+import { MockBackend } from '@angular/http/testing';
 
 import { DiscoveryProvider } from './discovery';
 import { TripCriteria } from '../../models/trip-criteria.model';
 
 describe('Discovery Provider', () => {
-    let discoveryProvider,
-        criteria;
+    let criteria;
 
     beforeEach(() => {
-        discoveryProvider = new DiscoveryProvider(null);
+        // discoveryProvider = new DiscoveryProvider(null);
+        TestBed.configureTestingModule({
+            imports: [HttpModule],
+            providers: [
+                DiscoveryProvider,
+                { provide: XHRBackend, useClass: MockBackend }
+            ]
+        });
     });
 
     beforeEach(() => {
@@ -30,8 +43,23 @@ describe('Discovery Provider', () => {
     });
 
     it('Should be able to load trips based on trip criteria', () => {
-        discoveryProvider.getTrips(criteria).success((trips) => {
-            expect(trips.length).toBe(2);
+        inject([DiscoveryProvider, XHRBackend], (discoveryProvider, mockBackend) => {
+            const mockResponse = {
+                data: [
+                    { id: 'trip_1' },
+                    { id: 'trip_2' }
+                ]
+            };
+            
+            mockBackend.connections.subscribe((connection) => {
+                connection.mockRespond(new Response(new ResponseOptions({
+                    body: JSON.stringify(mockResponse)
+                })));
+            });
+            
+            discoveryProvider.getTrips(criteria).subscribe((trips) => {
+                expect(trips.length).toBe(2);
+            });
         });
     });
 });
