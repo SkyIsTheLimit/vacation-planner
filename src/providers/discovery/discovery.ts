@@ -11,8 +11,18 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DiscoveryProvider {
 
-  constructor(public http: Http) {
+  constructor() {//public http: Http) {
     console.log('Hello DiscoveryProvider Provider');
+  }
+
+  loadRestaurants() {
+    return [{
+      id: 1,
+      name: 'Abc'
+    }, {
+      id: 2,
+      name: 'Xyz'
+    }];
   }
 
 }
