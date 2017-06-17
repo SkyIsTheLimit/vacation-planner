@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -10,8 +11,26 @@ import { UserprofilePage } from '../pages/userprofile/userprofile';
 import { TravelassistantPage } from '../pages/travelassistant/travelassistant';
 import { BookkeeperPage } from '../pages/bookkeeper/bookkeeper';
 import { TabsPage } from '../pages/tabs/tabs';
-import { HomePage } from '../pages/home/home';
-import { DiscoveryProvider } from '../providers/discovery/discovery';
+
+import {
+  DiscoverPage,
+  DispatchPage,
+  HomePage,
+  LoginPage
+} from '../pages';
+
+import { Facebook } from '@ionic-native/facebook';
+import { FacebookAuth } from '../providers/auth/facebook.auth';
+
+import {
+  DiscoveryProvider,
+  BookkeeperProvider,
+  CurrencyManagerProvider,
+  NotificationManagerProvider,
+  FinancePlannerProvider,
+  TravelCompanionProvider,
+  ExpenseLogProvider
+} from '../providers';
 
 @NgModule({
   declarations: [
@@ -22,8 +41,12 @@ import { DiscoveryProvider } from '../providers/discovery/discovery';
     BookkeeperPage,
     UserprofilePage,
     TabsPage
+    DiscoverPage,
+    DispatchPage,
+    LoginPage
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -36,12 +59,23 @@ import { DiscoveryProvider } from '../providers/discovery/discovery';
     BookkeeperPage,
     UserprofilePage,
     TabsPage
+    DiscoverPage,
+    DispatchPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DiscoveryProvider
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    Facebook,
+    FacebookAuth,
+    DiscoveryProvider,
+    NotificationManagerProvider,
+    BookkeeperProvider,
+    FinancePlannerProvider,
+    CurrencyManagerProvider,
+    ExpenseLogProvider,
+    TravelCompanionProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }
