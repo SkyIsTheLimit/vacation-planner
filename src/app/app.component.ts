@@ -3,12 +3,14 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { TabsPage } from '../pages/tabs/tabs';
 import { DispatchPage } from '../pages';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: any = DispatchPage;
+  rootPage: any = TabsPage;
 
   pages: Array<{ title: string, component: any }>;
 
@@ -17,7 +19,7 @@ export class MyApp {
 
     // Used for navigation and testing.
     this.pages = [
-      { title: 'Home', component: DispatchPage }
+      { title: 'Home', component: TabsPage }
     ]
   }
 
