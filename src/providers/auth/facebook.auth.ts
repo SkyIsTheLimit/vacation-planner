@@ -29,7 +29,12 @@ export class FacebookAuth {
   }
 
   isLoggedIn() {
-    return this.fb.getLoginStatus();
+    console.debug('[FACEBOOK Auth] Invoking login status on facebook API');
+    return this.fb.getLoginStatus()
+      .then((res: FacebookLoginResponse) => {
+        console.debug('Receieved response', res);
+        this.userId = res.authResponse.userID;
+      });
   }
 
   logout() {

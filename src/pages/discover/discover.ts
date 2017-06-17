@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController, ToastController } from 'ionic-angular';
 
+import { DispatchPage } from '../';
+
 import { DiscoveryProvider } from '../../providers/discovery/discovery';
 // import { FacebookAuth } from '../../providers/auth/facebook.auth';
 // import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
@@ -46,7 +48,7 @@ export class DiscoverPage {
   checkFacebookLoginStatus() {
     this.fb.isLoggedIn()
       .then(() => this.getProfile())
-      .catch(() => console.error('Not logged in'));
+      .catch(() => this.navCtrl.setRoot(DispatchPage));
   }
 
   logoutOfFacebook() {
@@ -56,8 +58,13 @@ export class DiscoverPage {
           isLoggedIn: false
         };
         console.log('Logged out');
+
+        this.navCtrl.setRoot(DispatchPage);
       })
-      .catch(() => console.error('Could not logout'));
+      .catch(() => {
+        console.error('Could not logout')
+        this.navCtrl.setRoot(DispatchPage);
+      });
   }
 
   getProfile() {
@@ -75,7 +82,7 @@ export class DiscoverPage {
     });
   }
 
-  loginToFacebook() {
+  loginWithFacebook() {
     this.fb.login()
       .then(() => this.getProfile())
       .catch(() => console.error('Not logged in'));

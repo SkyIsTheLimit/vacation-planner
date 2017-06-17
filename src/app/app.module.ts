@@ -6,27 +6,33 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { DiscoverPage } from '../pages/pages';
+import {
+  DiscoverPage,
+  DispatchPage,
+  HomePage,
+  LoginPage
+} from '../pages';
 
 import { Facebook } from '@ionic-native/facebook';
 import { FacebookAuth } from '../providers/auth/facebook.auth';
 
-import {  
-          DiscoveryProvider, 
-          BookkeeperProvider, 
-          CurrencyManagerProvider, 
-          NotificationManagerProvider, 
-          FinancePlannerProvider, 
-          TravelCompanionProvider, 
-          ExpenseLogProvider 
-        } from '../providers';
+import {
+  DiscoveryProvider,
+  BookkeeperProvider,
+  CurrencyManagerProvider,
+  NotificationManagerProvider,
+  FinancePlannerProvider,
+  TravelCompanionProvider,
+  ExpenseLogProvider
+} from '../providers';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    DiscoverPage
+    DiscoverPage,
+    DispatchPage,
+    LoginPage
   ],
   imports: [
     HttpModule,
@@ -37,7 +43,9 @@ import {
   entryComponents: [
     MyApp,
     HomePage,
-    DiscoverPage
+    DiscoverPage,
+    DispatchPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
