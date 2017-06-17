@@ -6,6 +6,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
+import { DiscoveryPage } from '../pages/discovery/discovery';
+import { UserprofilePage } from '../pages/userprofile/userprofile';
+import { TravelassistantPage } from '../pages/travelassistant/travelassistant';
+import { BookkeeperPage } from '../pages/bookkeeper/bookkeeper';
+import { TabsPage } from '../pages/tabs/tabs';
+
 import {
   DiscoverPage,
   DispatchPage,
@@ -30,6 +36,11 @@ import {
   declarations: [
     MyApp,
     HomePage,
+    DiscoveryPage,
+    TravelassistantPage,
+    BookkeeperPage,
+    UserprofilePage,
+    TabsPage
     DiscoverPage,
     DispatchPage,
     LoginPage
@@ -43,6 +54,11 @@ import {
   entryComponents: [
     MyApp,
     HomePage,
+    DiscoveryPage,
+    TravelassistantPage,
+    BookkeeperPage,
+    UserprofilePage,
+    TabsPage
     DiscoverPage,
     DispatchPage,
     LoginPage
