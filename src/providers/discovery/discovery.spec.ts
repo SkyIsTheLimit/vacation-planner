@@ -1,14 +1,28 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, async, inject } from '@angular/core/testing';
+import {
+    HttpModule,
+    Http,
+    Response,
+    ResponseOptions,
+    XHRBackend
+} from '@angular/http';
+import { MockBackend } from '@angular/http/testing';
 
 import { DiscoveryProvider } from './discovery';
 import { TripCriteria } from '../../models/trip-criteria.model';
 
 describe('Discovery Provider', () => {
-    let discoveryProvider,
-        criteria;
+    let criteria: TripCriteria;
 
     beforeEach(() => {
-        discoveryProvider = new DiscoveryProvider(null);
+        // discoveryProvider = new DiscoveryProvider(null);
+        TestBed.configureTestingModule({
+            imports: [HttpModule],
+            providers: [
+                DiscoveryProvider,
+                { provide: XHRBackend, useClass: MockBackend }
+            ]
+        });
     });
 
     beforeEach(() => {
@@ -25,13 +39,22 @@ describe('Discovery Provider', () => {
         };
     });
 
-    it('should be created', () => {
-        expect(discoveryProvider instanceof DiscoveryProvider).toBe(true);
-    });
+    it('Should be able to load trips based on trip criteria', inject([DiscoveryProvider, XHRBackend], (discoveryProvider, mockBackend) => {
+        const mockResponse = {
+            data: [
+                { id: 'trip_1' },
+                { id: 'trip_2' }
+            ]
+        };
 
-    it('Should be able to load trips based on trip criteria', () => {
-        discoveryProvider.getTrips(criteria).success((trips) => {
+        mockBackend.connections.subscribe((connection) => {
+            connection.mockRespond(new Response(new ResponseOptions({
+                body: JSON.stringify(mockResponse)
+            })));
+        });
+
+        discoveryProvider.getTrips(criteria).subscribe((trips) => {
             expect(trips.length).toBe(2);
         });
-    });
+    }));
 });
