@@ -7,20 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-var HomePage = (function () {
-    function HomePage(navCtrl) {
-        this.navCtrl = navCtrl;
+import { Injectable } from '@angular/core';
+var DiscoveryService = (function () {
+    function DiscoveryService() {
     }
-    return HomePage;
+    return DiscoveryService;
 }());
-HomePage = __decorate([
-    Component({
-        selector: 'page-home',
-        templateUrl: 'home.html'
-    }),
-    __metadata("design:paramtypes", [NavController])
-], HomePage);
-export { HomePage };
-//# sourceMappingURL=home.js.map
+DiscoveryService = __decorate([
+    Injectable(),
+    __metadata("design:paramtypes", [])
+], DiscoveryService);
+export { DiscoveryService };
+//# sourceMappingURL=discovery.service.js.map
