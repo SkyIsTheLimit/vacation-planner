@@ -5,13 +5,23 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
+import { DiscoveryPage } from '../pages/discovery/discovery';
+import { UserprofilePage } from '../pages/userprofile/userprofile';
+import { TravelassistantPage } from '../pages/travelassistant/travelassistant';
+import { BookkeeperPage } from '../pages/bookkeeper/bookkeeper';
+import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
 import { DiscoveryProvider } from '../providers/discovery/discovery';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    DiscoveryPage,
+    TravelassistantPage,
+    BookkeeperPage,
+    UserprofilePage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -20,7 +30,12 @@ import { DiscoveryProvider } from '../providers/discovery/discovery';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    DiscoveryPage,
+    TravelassistantPage,
+    BookkeeperPage,
+    UserprofilePage,
+    TabsPage
   ],
   providers: [
     StatusBar,
