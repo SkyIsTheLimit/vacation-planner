@@ -6,19 +6,44 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { DiscoveryProvider } from '../providers/discovery/discovery';
-import { NotificationManagerProvider } from '../providers/notification-manager/notification-manager';
-import { BookkeeperProvider } from '../providers/bookkeeper/bookkeeper';
-import { FinancePlannerProvider } from '../providers/finance-planner/finance-planner';
-import { CurrencyManagerProvider } from '../providers/currency-manager/currency-manager';
-import { ExpenseLogProvider } from '../providers/expense-log/expense-log';
-import { TravelCompanionProvider } from '../providers/travel-companion/travel-companion';
+import { DiscoveryPage } from '../pages/discovery/discovery';
+import { UserprofilePage } from '../pages/userprofile/userprofile';
+import { TravelassistantPage } from '../pages/travelassistant/travelassistant';
+import { BookkeeperPage } from '../pages/bookkeeper/bookkeeper';
+import { TabsPage } from '../pages/tabs/tabs';
+
+import {
+  DiscoverPage,
+  DispatchPage,
+  HomePage,
+  LoginPage
+} from '../pages';
+
+import { Facebook } from '@ionic-native/facebook';
+import { FacebookAuth } from '../providers/auth/facebook.auth';
+
+import {
+  DiscoveryProvider,
+  BookkeeperProvider,
+  CurrencyManagerProvider,
+  NotificationManagerProvider,
+  FinancePlannerProvider,
+  TravelCompanionProvider,
+  ExpenseLogProvider
+} from '../providers';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    DiscoveryPage,
+    TravelassistantPage,
+    BookkeeperPage,
+    UserprofilePage,
+    TabsPage,
+    DiscoverPage,
+    DispatchPage,
+    LoginPage
   ],
   imports: [
     HttpModule,
@@ -28,12 +53,22 @@ import { TravelCompanionProvider } from '../providers/travel-companion/travel-co
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    DiscoveryPage,
+    TravelassistantPage,
+    BookkeeperPage,
+    UserprofilePage,
+    TabsPage,
+    DiscoverPage,
+    DispatchPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    Facebook,
+    FacebookAuth,
     DiscoveryProvider,
     NotificationManagerProvider,
     BookkeeperProvider,
@@ -43,4 +78,4 @@ import { TravelCompanionProvider } from '../providers/travel-companion/travel-co
     TravelCompanionProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }
