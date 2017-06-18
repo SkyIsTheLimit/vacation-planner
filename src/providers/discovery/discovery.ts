@@ -20,4 +20,14 @@ export class DiscoveryProvider {
                     .map(res => res.json().data);
   }
 
+  loadRestaurants() {
+    return [{
+      id: 1,
+      name: 'Abc'
+    }, {
+      id: 2,
+      name: 'Xyz'
+    }];
+  }
+
 }
