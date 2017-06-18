@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { FacebookAuth } from '../../providers';
 
-import { DiscoverPage, LoginPage } from '../';
+import { LoginPage, TabsPage } from '../';
 
 /**
  * Generated class for the DispatchPage page.
@@ -55,17 +55,17 @@ export class DispatchPage {
 
   redirect() {
     if(this.page === "discovery") {
-      this.discoveryPage();
+      this.gotoTabsPage();
     } else {
-      this.loginPage();
+      this.gotoLoginPage();
     }
   }
 
-  loginPage() {
+  gotoLoginPage() {
     this.navCtrl.setRoot(LoginPage);
   }
 
-  discoveryPage() {
-    this.navCtrl.setRoot(DiscoverPage);
+  gotoTabsPage() {
+    this.navCtrl.setRoot(TabsPage);
   }
 }
