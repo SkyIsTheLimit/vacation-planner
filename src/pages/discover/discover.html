@@ -13,22 +13,24 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button (click)="loadRestaurants()">Get Restaurants</button>
+  <form (ngSubmit)="addDestination()">
+    <ion-item>
+      <ion-label color="primary" stacked>Add Destinations</ion-label>
+      <ion-input type="text" name="newDesination" [ngModel]="newDestination" placeholder="Enter desination city to add."></ion-input>
+    </ion-item>
 
-  <button ion-button round (click)="loginWithFacebook()">Login to Facebook</button>
-  <button ion-button clear (click)="logoutOfFacebook()">Logout</button>
+    <button fab round ion-button>
+        <ion-icon name="add"></ion-icon>
+      </button>
+  </form>
 
-  <p *ngIf="profile.isLoggedIn">
-    Logged in As
-    <img [src]="profile.picture" alt="User Image">
-    {{ profile.name }}
-  </p>
+  <ion-card>
+    <ion-card-header>
+      Destinations Selected
+    </ion-card-header>
 
-  <p *ngIf="!profile.isLoggedIn">
-    Not Logged In
-  </p>
-
-  <ion-list inset>
-    <button ion-item *ngFor="let restaurant of restaurants"> {{ restaurant.name }}</button>
-  </ion-list>
+    <ion-list>
+      <button ion-item *ngFor="let destination of destinations">{{ destination.name }}</button>
+    </ion-list>
+  </ion-card>
 </ion-content>
