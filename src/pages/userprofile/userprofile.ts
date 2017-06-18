@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NotificationPage } from '../notification/notification';
 
 /**
  * Generated class for the UserprofilePage page.
@@ -19,6 +20,10 @@ export class UserprofilePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserprofilePage');
+  }
+
+  openNotifications() {
+    this.navCtrl.push( NotificationPage );
   }
 
 }
