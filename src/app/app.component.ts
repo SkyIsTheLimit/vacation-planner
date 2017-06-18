@@ -10,7 +10,7 @@ import { DiscoverPage, DispatchPage } from '../pages';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: any = TabsPage;
+  rootPage: any = DispatchPage;
 
   pages: Array<{ title: string, component: any }>;
 
@@ -19,7 +19,7 @@ export class MyApp {
 
     // Used for navigation and testing.
     this.pages = [
-      { title: 'Home', component: TabsPage }
+      { title: 'Home', component: DispatchPage }
     ]
   }
 
