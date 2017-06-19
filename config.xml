@@ -3,7 +3,7 @@
     <name>Vacation Planner</name>
     <description>Helping you in planning vacations.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://169.254.225.64:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />
