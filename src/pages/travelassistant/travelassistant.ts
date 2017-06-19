@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { TravelCompanionProvider } from '../../providers';
+
+import { Restaurant } from '../../models/restaurant';
 /**
  * Generated class for the TravelassistantPage page.
  *
@@ -14,11 +17,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TravelassistantPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private tc: TravelCompanionProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TravelassistantPage');
+    this.loadNearbyPlaces();
+  }
+
+  loadNearbyPlaces() {
   }
 
 }
