@@ -14,5 +14,20 @@ export class DiscoveryProvider {
   constructor(public http: Http) {
     console.log('Hello DiscoveryProvider Provider');
   }
+  
+  getTrips() {
+    return this.http.get('http://api.mytrips.com/trips')
+                    .map(res => res.json().data);
+  }
+
+  loadRestaurants() {
+    return [{
+      id: 1,
+      name: 'Abc'
+    }, {
+      id: 2,
+      name: 'Xyz'
+    }];
+  }
 
 }
