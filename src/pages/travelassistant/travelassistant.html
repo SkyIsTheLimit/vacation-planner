@@ -6,13 +6,20 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>travelassistant</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Travel Companion</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <button ion-button round color="primary" (click)="loadNearbyPlaces()">Find Nearby</button>
 
+  <ion-list>
+    <ion-item *ngFor="let restaurant of restaurants">
+      <img (src)="restaurant.icon" alt="">
+      {{ restaurant.name }}
+    </ion-item>
+  </ion-list>
 </ion-content>

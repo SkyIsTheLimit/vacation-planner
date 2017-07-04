@@ -40,7 +40,7 @@ import {
     TravelassistantPage,
     BookkeeperPage,
     UserprofilePage,
-    TabsPage
+    TabsPage,
     DiscoverPage,
     DispatchPage,
     LoginPage
@@ -58,7 +58,7 @@ import {
     TravelassistantPage,
     BookkeeperPage,
     UserprofilePage,
-    TabsPage
+    TabsPage,
     DiscoverPage,
     DispatchPage,
     LoginPage
