@@ -29,6 +29,7 @@
         "@ionic-native/status-bar": "3.10.2",
         "@ionic/storage": "2.0.1",
         "cordova-android": "^6.2.2",
+        "cordova-ios": "^4.4.0",
         "cordova-plugin-console": "^1.0.5",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-facebook4": "^1.9.1",
@@ -82,7 +83,8 @@
             "ionic-plugin-keyboard": {}
         },
         "platforms": [
-            "android"
+            "android",
+            "ios"
         ]
     }
 }
