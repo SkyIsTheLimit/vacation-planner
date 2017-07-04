@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { FacebookAuth } from '../../providers';
 
-import { DiscoverPage, LoginPage } from '../';
+import { LoginPage, TabsPage } from '../';
 
 /**
  * Generated class for the DispatchPage page.
@@ -35,16 +35,17 @@ export class DispatchPage {
       .then(() => {
         console.debug('Recieved success login');
         this.page = "discovery";
-        this.getProfile();
+        this.getProfile().then(() => this.gotoTabsPage());
       })
       .catch((e) => {
         console.debug('Received error', e);
         this.page = "login";
+        this.gotoLoginPage();
       });
   }
 
   getProfile() {
-    this.fb.getProfile("id,name,picture").then((res) => {
+    return this.fb.getProfile("id,name,picture").then((res) => {
       this.profile = {
         id: res.id,
         name: res.name,
@@ -55,17 +56,17 @@ export class DispatchPage {
 
   redirect() {
     if(this.page === "discovery") {
-      this.discoveryPage();
+      this.gotoTabsPage();
     } else {
-      this.loginPage();
+      this.gotoLoginPage();
     }
   }
 
-  loginPage() {
+  gotoLoginPage() {
     this.navCtrl.setRoot(LoginPage);
   }
 
-  discoveryPage() {
-    this.navCtrl.setRoot(DiscoverPage);
+  gotoTabsPage() {
+    this.navCtrl.setRoot(TabsPage);
   }
 }

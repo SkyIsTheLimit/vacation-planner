@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { DispatchPage } from '../pages';
+import { DiscoverPage, DispatchPage } from '../pages';
 
 @Component({
   templateUrl: 'app.html'
@@ -19,7 +19,7 @@ export class MyApp {
 
     // Used for navigation and testing.
     this.pages = [
-      { title: 'Home', component: TabsPage }
+      { title: 'Home', component: DispatchPage }
     ]
   }
 

@@ -6,13 +6,67 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>discovery</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Discover you're next trip!</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button color="primary" round block (click)="find()">Find</button>
+      </ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Start Date</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="criteria.startDate"></ion-datetime>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>End Date</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="criteria.endDate"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-searchbar [(ngModel)]="newDestination.name" (search)="addDestination(newDestination, $event)" (ionCancel)="onCancel($event)"
+          placeholder="Search for a city..."></ion-searchbar>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            Destinations Selected
+          </ion-card-header>
+
+          <ion-list>
+            <ion-item-sliding *ngFor="let destination of criteria.destinations">
+              <ion-item>
+                <p *ngIf="!criteria.destinations.length">No destinations selected!</p>
+                <p *ngIf="criteria.destinations.length">{{ destination.name }}</p>
+              </ion-item>
+
+              <ion-item-options slide="left">
+                <button ion-button color="danger">
+                  <ion-icon name="trash"></ion-icon>
+                </button>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-list>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

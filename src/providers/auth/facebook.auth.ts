@@ -20,7 +20,10 @@ export class FacebookAuth {
   login() {
     console.debug('Logging in with facebook');
     return this.fb.login(['public_profile', 'user_friends', 'email'])
-      .then((res: FacebookLoginResponse) => this.userId = res.authResponse.userID);
+      .then((res: FacebookLoginResponse) => {
+        this.userId = res.authResponse.userID
+        return res;
+      });
   }
 
   getProfile(fields) {

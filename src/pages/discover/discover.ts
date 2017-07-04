@@ -5,9 +5,6 @@ import { AlertController, ToastController } from 'ionic-angular';
 import { DispatchPage } from '../';
 
 import { DiscoveryProvider } from '../../providers/discovery/discovery';
-// import { FacebookAuth } from '../../providers/auth/facebook.auth';
-// import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
-import { FacebookAuth } from '../../providers';
 
 /**
  * Generated class for the DiscoverPage page.
@@ -22,6 +19,9 @@ import { FacebookAuth } from '../../providers';
 })
 export class DiscoverPage {
   restaurants: Array<any>;
+  desinations: Array<any>;
+  newDestination: any;
+
   profile: any = {
     isLoggedIn: false
   };
@@ -30,61 +30,14 @@ export class DiscoverPage {
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
     public navParams: NavParams,
-    private discovery: DiscoveryProvider,
-    private fb: FacebookAuth) {
+    private discovery: DiscoveryProvider) {
+  }
+
+  addDestination() {
+    console.debug('Adding destination', this.newDestination);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DiscoverPage');
-
-    this.checkFacebookLoginStatus();
-  }
-
-  loadRestaurants() {
-    this.restaurants = this.discovery.loadRestaurants();
-    console.log('Loaded Restaurants', this.restaurants);
-  }
-
-  checkFacebookLoginStatus() {
-    this.fb.isLoggedIn()
-      .then(() => this.getProfile())
-      .catch(() => this.navCtrl.setRoot(DispatchPage));
-  }
-
-  logoutOfFacebook() {
-    this.fb.logout()
-      .then(() => {
-        this.profile = {
-          isLoggedIn: false
-        };
-        console.log('Logged out');
-
-        this.navCtrl.setRoot(DispatchPage);
-      })
-      .catch(() => {
-        console.error('Could not logout')
-        this.navCtrl.setRoot(DispatchPage);
-      });
-  }
-
-  getProfile() {
-    this.fb.getProfile('email,picture,name').then(res => {
-      console.log('Received profile', res);
-      this.profile = {
-        id: res.id,
-        email: res.email,
-        picture: res.picture.data.url,
-        name: res.name,
-        isLoggedIn: true
-      };
-    }).catch(e => {
-      console.error('Could not retrieve profile');
-    });
-  }
-
-  loginWithFacebook() {
-    this.fb.login()
-      .then(() => this.getProfile())
-      .catch(() => console.error('Not logged in'));
   }
 }
