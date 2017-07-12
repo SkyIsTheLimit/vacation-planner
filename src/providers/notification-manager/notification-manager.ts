@@ -12,7 +12,11 @@ import 'rxjs/add/operator/map';
 export class NotificationManagerProvider {
 
   constructor(public http: Http) {
-    console.log('Hello NotificationManagerProvider Provider');
+    //console.log('Hello NotificationManagerProvider Provider');
+  }
+
+  getNotifications() {
+    return this.http.get('http://localhost:8080/notification').map(res => res.json());
   }
 
 }

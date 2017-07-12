@@ -16,7 +16,8 @@ import {
   DiscoverPage,
   DispatchPage,
   HomePage,
-  LoginPage
+  LoginPage,
+  NotificationPage
 } from '../pages';
 
 import { Facebook } from '@ionic-native/facebook';
@@ -43,7 +44,8 @@ import {
     TabsPage,
     DiscoverPage,
     DispatchPage,
-    LoginPage
+    LoginPage,
+    NotificationPage
   ],
   imports: [
     HttpModule,
@@ -61,7 +63,8 @@ import {
     TabsPage,
     DiscoverPage,
     DispatchPage,
-    LoginPage
+    LoginPage,
+    NotificationPage
   ],
   providers: [
     StatusBar,
