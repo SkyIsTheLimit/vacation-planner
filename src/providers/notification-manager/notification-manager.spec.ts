@@ -30,4 +30,10 @@ describe('NotificationManager Provider', () => {
             expect(event.length).toBe(1);
         });
     });
+
+    /*it('Should be able to list all notifications', () => {
+        notificationManagerProvider.getNotifications().success((event) => {
+            expect(event.length).toBe(1);
+        });
+    });*/
 });
