@@ -45,7 +45,7 @@ export class LoginPage {
   }
 
   getProfile() {
-    this.fb.getProfile('email,picture,name').then(res => {
+    return this.fb.getProfile('email,picture,name').then(res => {
       console.log('Received profile', res);
       this.profile = {
         id: res.id,
@@ -54,14 +54,22 @@ export class LoginPage {
         name: res.name,
         isLoggedIn: true
       };
+
+      return this.profile;
     }).catch(e => {
       console.error('Could not retrieve profile');
     });
   }
 
+  addUserIfNecessary() {
+    return this.getProfile().then(profile => console.log('Adding profile to database', profile));
+  }
+
   loginWithFacebook() {
     this.fb.login()
-      .then(() => this.navCtrl.setRoot(DispatchPage))
+      .then(res => {
+        this.addUserIfNecessary().then(() => this.navCtrl.setRoot(DispatchPage));
+      })
       .catch(() => console.error('Not logged in'));
   }
 }

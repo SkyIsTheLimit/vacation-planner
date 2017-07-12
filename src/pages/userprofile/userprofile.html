@@ -6,8 +6,11 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>userprofile</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>
+      <ion-icon name="contact"></ion-icon>
+      User Account
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -19,4 +22,19 @@
       Notifications
     </button>
   </ion-list>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <ion-label>Logged in as {{ profile.name }}</ion-label>
+        <img [src]="profile.picture" />
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button block color="danger" clear (click)="logout()">Logout</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

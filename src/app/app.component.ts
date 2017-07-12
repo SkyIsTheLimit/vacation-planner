@@ -10,7 +10,7 @@ import { DiscoverPage, DispatchPage, NotificationPage } from '../pages';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: any = DispatchPage;
+  rootPage: any = TabsPage;
 
   pages: Array<{ title: string, component: any }>;
 
