@@ -11,6 +11,8 @@ import { UserprofilePage } from '../pages/userprofile/userprofile';
 import { TravelassistantPage } from '../pages/travelassistant/travelassistant';
 import { BookkeeperPage } from '../pages/bookkeeper/bookkeeper';
 import { TabsPage } from '../pages/tabs/tabs';
+import { TripsPage } from '../pages/trips/trips';
+import { NotificationsPage } from '../pages/notifications/notifications';
 
 import {
   DiscoverPage,
@@ -45,7 +47,8 @@ import {
     DiscoverPage,
     DispatchPage,
     LoginPage,
-    NotificationPage
+    TripsPage,
+    NotificationsPage
   ],
   imports: [
     HttpModule,
@@ -64,7 +67,8 @@ import {
     DiscoverPage,
     DispatchPage,
     LoginPage,
-    NotificationPage
+    TripsPage,
+    NotificationsPage
   ],
   providers: [
     StatusBar,
