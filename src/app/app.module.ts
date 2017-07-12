@@ -18,7 +18,8 @@ import {
   DiscoverPage,
   DispatchPage,
   HomePage,
-  LoginPage
+  LoginPage,
+  NotificationPage
 } from '../pages';
 
 import { Facebook } from '@ionic-native/facebook';
