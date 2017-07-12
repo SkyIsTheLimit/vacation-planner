@@ -35,16 +35,17 @@ export class DispatchPage {
       .then(() => {
         console.debug('Recieved success login');
         this.page = "discovery";
-        this.getProfile();
+        this.getProfile().then(() => this.gotoTabsPage());
       })
       .catch((e) => {
         console.debug('Received error', e);
         this.page = "login";
+        this.gotoLoginPage();
       });
   }
 
   getProfile() {
-    this.fb.getProfile("id,name,picture").then((res) => {
+    return this.fb.getProfile("id,name,picture").then((res) => {
       this.profile = {
         id: res.id,
         name: res.name,
