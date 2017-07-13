@@ -5,68 +5,55 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar color="primary">
-    <ion-title>Discover you're next trip!</ion-title>
-  </ion-navbar>
-
+    <ion-navbar>
+        <ion-title>Plan your next adventure!</ion-title>
+    </ion-navbar>
 </ion-header>
 
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <button ion-button color="primary" round block (click)="find()">Find</button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
+    <ion-list>
         <ion-item>
-          <ion-label stacked>Start Date</ion-label>
-          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="criteria.startDate"></ion-datetime>
+            <ion-label floating>Origin</ion-label>
+            <ion-input type="text" style="color: blue"></ion-input>
         </ion-item>
-      </ion-col>
 
-      <ion-col>
         <ion-item>
-          <ion-label stacked>End Date</ion-label>
-          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="criteria.endDate"></ion-datetime>
+            <ion-label floating>Destination</ion-label>
+            <ion-input type="text" style="color: blue"></ion-input>
         </ion-item>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <ion-searchbar [(ngModel)]="newDestination.name" (search)="addDestination(newDestination, $event)" (ionCancel)="onCancel($event)"
-          placeholder="Search for a city..."></ion-searchbar>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <ion-card>
-          <ion-card-header>
-            Destinations Selected
-          </ion-card-header>
-
-          <ion-list>
-            <ion-item-sliding *ngFor="let destination of criteria.destinations">
-              <ion-item>
-                <p *ngIf="!criteria.destinations.length">No destinations selected!</p>
-                <p *ngIf="criteria.destinations.length">{{ destination.name }}</p>
-              </ion-item>
-
-              <ion-item-options slide="left">
-                <button ion-button color="danger">
-                  <ion-icon name="trash"></ion-icon>
-                </button>
-              </ion-item-options>
-            </ion-item-sliding>
-          </ion-list>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+        <ion-item>
+            <ion-label>Start Date</ion-label>
+            <ion-datetime displayFormat="MMM DD YYYY" style="color: blue"></ion-datetime>
+            <!-- [(ngModel)]="event.month" -->
+        </ion-item>
+        <ion-item>
+            <ion-label>End Date</ion-label>
+            <ion-datetime displayFormat="MMM DD YYYY" style="color: blue"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label>Budget Range</ion-label>
+            <ion-range dualKnobs="true" [(ngModel)]="singleValue" min="1000" max="500000" step="100" pin="true">
+                <ion-label range-left>1000</ion-label>
+                <ion-label range-right>500000</ion-label>
+            </ion-range>
+        </ion-item>
+        <div style="text-align: center; font-size: 12px; color: blue">
+            <ion-label>{{singleValue.lower}} to {{singleValue.upper}}</ion-label>
+        </div>
+        <ion-label style="font-size: 16px; padding-left: 16px;">Hotel Preferences</ion-label>
+        <ion-item>
+            <ion-label>Number of Rooms</ion-label>
+                <ion-select [(ngModel)]="selectedRooms" interface="popover" style="color: blue">
+                    <ion-option *ngFor="let num of noOfRooms" value={{num}}>{{num}}</ion-option>
+                </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Number of Guests</ion-label>
+                <ion-select [(ngModel)]="selectedGuests" interface="popover" style="color: blue">
+                    <ion-option *ngFor="let num of noOfGuests" value={{num}}>{{num}}</ion-option>
+                </ion-select>
+        </ion-item>
+        <button ion-button round (click)="discoverTrip()">Surprise Me!</button>
+    </ion-list>
 </ion-content>
