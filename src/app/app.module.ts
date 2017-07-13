@@ -15,7 +15,6 @@ import { TripsPage } from '../pages/trips/trips';
 import { NotificationsPage } from '../pages/notifications/notifications';
 
 import {
-  DiscoverPage,
   DispatchPage,
   HomePage,
   LoginPage
@@ -43,7 +42,6 @@ import {
     BookkeeperPage,
     UserprofilePage,
     TabsPage,
-    DiscoverPage,
     DispatchPage,
     LoginPage,
     TripsPage,
@@ -63,7 +61,6 @@ import {
     BookkeeperPage,
     UserprofilePage,
     TabsPage,
-    DiscoverPage,
     DispatchPage,
     LoginPage,
     TripsPage,
