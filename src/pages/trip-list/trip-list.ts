@@ -2,24 +2,23 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the TripsPage page.
+ * Generated class for the TripListPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-trips',
-  templateUrl: 'trips.html',
+  selector: 'page-trip-list',
+  templateUrl: 'trip-list.html',
 })
-export class TripsPage {
-trips: any;
-	constructor(public navCtrl: NavController, public navParams: NavParams) {
-		this.trips = "booked";
-	}
+export class TripListPage {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TripsPage');
+    console.log('ionViewDidLoad TripListPage');
   }
 
 }
