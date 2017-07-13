@@ -5,8 +5,8 @@ import { DiscoveryPage } from '../discovery/discovery';
 import { UserprofilePage } from '../userprofile/userprofile';
 import { BookkeeperPage } from '../bookkeeper/bookkeeper';
 import { TravelassistantPage } from '../travelassistant/travelassistant';
-import { TripsPage } from '../trips/trips';
 import { NotificationsPage } from '../notifications/notifications';
+import { MyTripsPage } from '../my-trips/my-trips';
 /**
  * Generated class for the TabsPage page.
  *
@@ -21,7 +21,7 @@ import { NotificationsPage } from '../notifications/notifications';
 export class TabsPage {
   
   tab1Root = DiscoveryPage;
-  tab2Root = TripsPage;
+  tab2Root = MyTripsPage;
   tab3Root = NotificationsPage;
   tab4Root = UserprofilePage;
 
