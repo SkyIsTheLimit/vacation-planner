@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { DiscoverPage } from '../discover/discover';
 
 @Component({
   selector: 'page-home',
@@ -14,7 +13,6 @@ export class HomePage {
   }
 
   gotoDiscover() {
-    this.navCtrl.push(DiscoverPage);
   }
 
 }
