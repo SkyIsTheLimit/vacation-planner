@@ -11,14 +11,12 @@ import { UserprofilePage } from '../pages/userprofile/userprofile';
 import { TravelassistantPage } from '../pages/travelassistant/travelassistant';
 import { BookkeeperPage } from '../pages/bookkeeper/bookkeeper';
 import { TabsPage } from '../pages/tabs/tabs';
-import { TripsPage } from '../pages/trips/trips';
 import { NotificationsPage } from '../pages/notifications/notifications';
+import { MyTripsPage } from '../pages/my-trips/my-trips';
 
 import {
   DispatchPage,
-  HomePage,
   LoginPage,
-  NotificationPage
 } from '../pages';
 
 import { Facebook } from '@ionic-native/facebook';
@@ -37,7 +35,6 @@ import {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     DiscoveryPage,
     TravelassistantPage,
     BookkeeperPage,
@@ -45,8 +42,8 @@ import {
     TabsPage,
     DispatchPage,
     LoginPage,
-    TripsPage,
-    NotificationsPage
+    NotificationsPage,
+    MyTripsPage
   ],
   imports: [
     HttpModule,
@@ -56,7 +53,6 @@ import {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     DiscoveryPage,
     TravelassistantPage,
     BookkeeperPage,
@@ -64,8 +60,8 @@ import {
     TabsPage,
     DispatchPage,
     LoginPage,
-    TripsPage,
-    NotificationsPage
+    NotificationsPage,
+    MyTripsPage
   ],
   providers: [
     StatusBar,

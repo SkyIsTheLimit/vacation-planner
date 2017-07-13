@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NotificationPage } from '../notification/notification';
 
 import { FacebookAuth } from '../../providers';
 
@@ -52,7 +51,6 @@ export class UserprofilePage {
   }
   
   openNotifications() {
-    this.navCtrl.push( NotificationPage );
   }
 
   logout() {
