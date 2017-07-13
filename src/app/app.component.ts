@@ -4,7 +4,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
+<<<<<<< HEAD
 import { DispatchPage } from '../pages';
+=======
+import { DiscoverPage, DispatchPage, NotificationPage } from '../pages';
+>>>>>>> ced2c8af0fa1d2f964905552c07d3e31c2c3b0d4
 
 @Component({
   templateUrl: 'app.html'
