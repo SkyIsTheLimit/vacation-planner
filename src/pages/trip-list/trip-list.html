@@ -6,13 +6,23 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>trip-list</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Found {{ trips.length }} trips . . .</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-list>
+    <ion-item *ngFor="let trip of trips">
+      <ion-thumbnail item-start>
+        <img src="img/thumbnail-totoro.png">
+      </ion-thumbnail>
+      <h2>{{ trip.title }}</h2>
+      <p>Hayao Miyazaki • 1988</p>
+      <img src="../../assets/139884-travel/svg/airplane-1.svg" alt="" />
+      <button ion-button clear item-end (click)="viewDetail(trip)">View</button>
+    </ion-item>
+  </ion-list>
 </ion-content>
