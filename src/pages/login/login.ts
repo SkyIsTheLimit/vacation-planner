@@ -18,6 +18,7 @@ import { FacebookAuth } from '../../providers';
 })
 export class LoginPage {
   profile: any;
+  message: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FacebookAuth) {
   }
@@ -70,6 +71,9 @@ export class LoginPage {
       .then(res => {
         this.addUserIfNecessary().then(() => this.navCtrl.setRoot(DispatchPage));
       })
-      .catch(() => console.error('Not logged in'));
+      .catch((e) => {
+        this.message = JSON.stringify(e);
+        console.error('Not logged in')
+      });
   }
 }

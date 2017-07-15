@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 
 import { DiscoveryProvider } from '../../providers';
 
+import { TripsListPage } from '../trips-list/trips-list';
+
 /**
  * Generated class for the DiscoveryPage page.
  *
@@ -19,7 +21,8 @@ export class DiscoveryPage {
   criteria = {
     destinations: [],
   };
-  newDestination: any = {};
+  destinationSearch: any;
+  suggestions: Array<any> = [];
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DiscoveryPage');
@@ -31,10 +34,15 @@ export class DiscoveryPage {
     private discovery: DiscoveryProvider) {
   }
 
-  addDestination(newDestination, $event) {
-    console.debug('Adding destination', this.newDestination, $event);
-    this.criteria.destinations.push(newDestination);
-    this.newDestination = {};
+  addDestination(destination, $event) {
+    console.debug('Adding destination', destination, $event);
+    this.criteria.destinations.push(destination);
+    this.destinationSearch = '';
+    this.suggestions = [];
+  }
+
+  removeDestination(destination, $index) {
+    this.criteria.destinations.splice($index, 1);
   }
 
   find() {
@@ -45,5 +53,15 @@ export class DiscoveryPage {
       dismissOnPageChange: true,
       duration: 2000
     }).present();
+
+    this.navCtrl.push(TripsListPage);
+  }
+
+  fetchSuggestions() {
+    this.discovery.fetchSuggestions(this.destinationSearch)
+      .subscribe(suggestions => {
+        this.suggestions = suggestions.predictions;
+        console.info('Loaded suggestions', this.suggestions);
+      });
   }
 }

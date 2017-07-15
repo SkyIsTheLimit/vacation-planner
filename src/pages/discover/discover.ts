@@ -20,7 +20,7 @@ import { DiscoveryProvider } from '../../providers/discovery/discovery';
 export class DiscoverPage {
   restaurants: Array<any>;
   desinations: Array<any>;
-  newDestination: any;
+  destinationSearch: any;
 
   profile: any = {
     isLoggedIn: false
@@ -34,7 +34,7 @@ export class DiscoverPage {
   }
 
   addDestination() {
-    console.debug('Adding destination', this.newDestination);
+    console.debug('Adding destination', this.destinationSearch);
   }
 
   ionViewDidLoad() {
