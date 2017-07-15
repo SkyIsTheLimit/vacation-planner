@@ -49,6 +49,9 @@ export class UserprofilePage {
       };
     });
   }
+  
+  openNotifications() {
+  }
 
   logout() {
     this.fb.logout()
