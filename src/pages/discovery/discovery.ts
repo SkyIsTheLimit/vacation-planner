@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 
 import { DiscoveryProvider } from '../../providers';
 import { BookkeeperPage } from '../bookkeeper/bookkeeper';
+import { TripListPage } from '../trip-list/trip-list';
 /**
  * Generated class for the DiscoveryPage page.
  *
@@ -19,10 +20,12 @@ export class DiscoveryPage {
   singleValue: Object;
   noOfRooms: Array<number>;
   noOfGuests: Array<number>;
-  selectedRooms : any;
-  selectedGuests : any;
+  selectedRooms: any;
+  selectedGuests: any;
   criteria = {
     destinations: [],
+    startDate: {},
+    endDate: {}
   };
   destinationSearch: any;
   suggestions: Array<any> = [];
@@ -35,7 +38,7 @@ export class DiscoveryPage {
     private loadingCtrl: LoadingController,
     public navParams: NavParams,
     private discovery: DiscoveryProvider) {
-      this.singleValue = {
+    this.singleValue = {
       'lower': 100000,
       'upper': 350000
     };
@@ -45,10 +48,10 @@ export class DiscoveryPage {
     this.incrementToTen(this.noOfGuests);
   }
 
-  incrementToTen(variable){
+  incrementToTen(variable) {
     console.log("variable");
     console.log(variable);
-    for (var i = 1; i<=10; i++){
+    for (var i = 1; i <= 10; i++) {
       variable.push(i);
     }
   }
@@ -73,7 +76,7 @@ export class DiscoveryPage {
       duration: 2000
     }).present();
 
-    this.navCtrl.push(TripsListPage);
+    this.navCtrl.push(TripListPage);
   }
 
   fetchSuggestions() {
@@ -84,9 +87,9 @@ export class DiscoveryPage {
       });
   }
 
-  discoverTrip(){
-    this.navCtrl.push(BookkeeperPage, {
-      
+  discoverTrip() {
+    this.navCtrl.push(TripListPage, {
+      criteria: this.criteria
     });
   }
 }

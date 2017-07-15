@@ -13,6 +13,8 @@ import { BookkeeperPage } from '../pages/bookkeeper/bookkeeper';
 import { TabsPage } from '../pages/tabs/tabs';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { MyTripsPage } from '../pages/my-trips/my-trips';
+import { TripListPage } from '../pages/trip-list/trip-list';
+import { TripDetailPage } from '../pages/trip-detail/trip-detail';
 
 import {
   DispatchPage,
@@ -43,7 +45,9 @@ import {
     DispatchPage,
     LoginPage,
     NotificationsPage,
-    MyTripsPage
+    MyTripsPage,
+    TripListPage,
+    TripDetailPage
   ],
   imports: [
     HttpModule,
@@ -61,7 +65,9 @@ import {
     DispatchPage,
     LoginPage,
     NotificationsPage,
-    MyTripsPage
+    MyTripsPage,
+    TripListPage,
+    TripDetailPage
   ],
   providers: [
     StatusBar,

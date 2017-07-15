@@ -6,13 +6,70 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>trip-detail</ion-title>
+  <ion-navbar color="none">
+    <ion-title>{{ trip.title }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content>
+  <section>
+    <img src="https://static.pexels.com/photos/481178/pexels-photo-481178.jpeg" alt="">
+  </section>
 
-<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <ion-icon name="heart-outline"></ion-icon>
+      </ion-col>
+      <ion-col text-center>
+        <ion-icon name="logo-usd"></ion-icon>
+      </ion-col>
+      <ion-col text-center>
+        <ion-icon name="people"></ion-icon>
+      </ion-col>
+      <ion-col text-center>
+        <ion-icon name="book"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h2>Flight Info</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-datetime displayFormat="MMM DD YYYY" style="color: blue" [(ngModel)]="trip.startDate"></ion-datetime>
+      </ion-col>
+      <ion-col>
+        <ion-datetime displayFormat="MMM DD YYYY" style="color: blue" [(ngModel)]="trip.endDate"></ion-datetime>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h2>Hotel Info</h2>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <img src="" alt="" width="72" height="72" />
+
+      <div style="float: left; width: 70%;">
+        <h3 style="margin-top: 0; margin-bottom: 0">Hotel Name</h3>
+        <p style="margin-top: 0; margin-bottom: 0">Lorem ipsum dolor sit amet, consectetur.</p>
+      </div>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h2>Things to Do</h2>
+        <h3>Places to Visit</h3>
+        <h3>Places to Eat</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
