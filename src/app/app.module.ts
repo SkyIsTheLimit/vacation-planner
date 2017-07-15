@@ -19,7 +19,8 @@ import {
   DispatchPage,
   HomePage,
   LoginPage,
-  NotificationPage
+  NotificationPage,
+  TripsListPage
 } from '../pages';
 
 import { Facebook } from '@ionic-native/facebook';
@@ -48,7 +49,8 @@ import {
     DispatchPage,
     LoginPage,
     TripsPage,
-    NotificationsPage
+    NotificationsPage,
+    TripsListPage
   ],
   imports: [
     HttpModule,
@@ -68,7 +70,8 @@ import {
     DispatchPage,
     LoginPage,
     TripsPage,
-    NotificationsPage
+    NotificationsPage,
+    TripsListPage
   ],
   providers: [
     StatusBar,

@@ -19,6 +19,7 @@ import { LoginPage, TabsPage } from '../';
 export class DispatchPage {
   page: any;
   profile: any;
+  destinationSearch: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FacebookAuth) {
   }

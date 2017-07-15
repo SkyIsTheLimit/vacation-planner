@@ -39,8 +39,12 @@
 
     <ion-row>
       <ion-col>
-        <ion-searchbar [(ngModel)]="newDestination.name" (search)="addDestination(newDestination, $event)" (ionCancel)="onCancel($event)"
-          placeholder="Search for a city..."></ion-searchbar>
+        <ion-searchbar [(ngModel)]="destinationSearch" (ngModelChange)="fetchSuggestions()" (search)="addDestination(newDestination, $event)"
+          (ionCancel)="onCancel($event)" placeholder="Search for a city..."></ion-searchbar>
+
+        <ion-list>
+          <button ion-item *ngFor="let suggestion of suggestions" (click)="addDestination(suggestion, $event)">{{ suggestion.description }}</button>
+        </ion-list>
       </ion-col>
     </ion-row>
 
@@ -52,14 +56,17 @@
           </ion-card-header>
 
           <ion-list>
+            <ion-item>
+              <p>{{ (destinations ? destinations.length : 0) }} destinations selected.</p>
+            </ion-item>
             <ion-item-sliding *ngFor="let destination of criteria.destinations">
               <ion-item>
-                <p *ngIf="!criteria.destinations.length">No destinations selected!</p>
-                <p *ngIf="criteria.destinations.length">{{ destination.name }}</p>
+                <p *ngIf="criteria.destinations.length === 0">No destinations selected!</p>
+                <p *ngIf="criteria.destinations.length !== 0">{{ destination.description }}</p>
               </ion-item>
 
               <ion-item-options slide="left">
-                <button ion-button color="danger">
+                <button ion-button color="danger" (click)="removeDestination(destination, $index)">
                   <ion-icon name="trash"></ion-icon>
                 </button>
               </ion-item-options>
