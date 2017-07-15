@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { DiscoverPage } from './discover';
+import { TripListPage } from './trip-list';
 
 @NgModule({
   declarations: [
-    DiscoverPage,
+    TripListPage,
   ],
   imports: [
-    IonicPageModule.forChild(DiscoverPage),
+    IonicPageModule.forChild(TripListPage),
   ],
   exports: [
-    DiscoverPage
+    TripListPage
   ]
 })
-export class DiscoverPageModule {}
+export class TripListPageModule {}
