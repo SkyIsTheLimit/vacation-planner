@@ -22,7 +22,7 @@ import {
 } from '../pages';
 
 import { Facebook } from '@ionic-native/facebook';
-import { FacebookAuth } from '../providers/auth/facebook.auth';
+import { FacebookAuth, Authentication } from '../providers';
 
 import {
   DiscoveryProvider,
@@ -75,6 +75,7 @@ import {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Facebook,
     FacebookAuth,
+    Authentication,
     DiscoveryProvider,
     NotificationManagerProvider,
     BookkeeperProvider,

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { FacebookAuth } from '../../providers';
+import { FacebookAuth, Authentication } from '../../providers';
 
 import { LoginPage, TabsPage } from '../';
 
@@ -21,13 +21,26 @@ export class DispatchPage {
   profile: any;
   destinationSearch: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FacebookAuth) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FacebookAuth, public authentication: Authentication) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DispatchPage');
 
-    this.checkFacebookLogin();
+    // this.checkFacebookLogin();
+    this.checkLogin();
+  }
+
+  checkLogin() {
+    this.authentication.getLoggedInUser().then((user) => {
+      console.debug('Recieved success login');
+      this.page = "discovery";
+      this.gotoTabsPage();
+    }).catch((e) => {
+      console.debug('Received error', e);
+      this.page = "login";
+      this.gotoLoginPage();
+    });
   }
 
   checkFacebookLogin() {
@@ -56,7 +69,7 @@ export class DispatchPage {
   }
 
   redirect() {
-    if(this.page === "discovery") {
+    if (this.page === "discovery") {
       this.gotoTabsPage();
     } else {
       this.gotoLoginPage();

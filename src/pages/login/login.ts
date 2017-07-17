@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { DispatchPage } from '../';
 
-import { FacebookAuth } from '../../providers';
+import { FacebookAuth, Authentication } from '../../providers';
 
 /**
  * Generated class for the LoginPage page.
@@ -20,7 +20,7 @@ export class LoginPage {
   profile: any;
   message: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FacebookAuth) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FacebookAuth, public authentication: Authentication) {
   }
 
   ionViewDidLoad() {
@@ -32,6 +32,14 @@ export class LoginPage {
     this.fb.isLoggedIn()
       .then(() => this.getProfile())
       .catch(() => console.error('Not logged in'));
+  }
+
+  login(email) {
+    this.authentication.login(email).then((user) => {
+      this.navCtrl.setRoot(DispatchPage);
+    }).catch(() => {
+      this.message = 'Invalid username or password';
+    });
   }
 
   logoutOfFacebook() {
