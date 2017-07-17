@@ -6,3 +6,4 @@ export * from './finance-planner/finance-planner';
 export * from './notification-manager/notification-manager';
 export * from './travel-companion/travel-companion';
 export * from './authentication';
+export * from './trip-manager/trip-manager';

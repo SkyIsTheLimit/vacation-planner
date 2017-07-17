@@ -37,6 +37,10 @@ export class Authentication {
         return this.provider.getLoggedInUser();
     }
 
+    signup(email) {
+        return this.provider.signup(email);
+    }
+
     login(email) {
         return this.provider.login(email);
     }

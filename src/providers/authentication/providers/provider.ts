@@ -8,4 +8,6 @@ export interface AuthenticationProvider {
     login(email: string): Promise<User>;
 
     logout(): Promise<Boolean>;
+
+    signup(email: string): Promise<User>;
 }

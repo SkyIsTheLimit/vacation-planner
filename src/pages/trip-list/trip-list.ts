@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 
 import { TripDetailPage } from '../trip-detail/trip-detail';
 
@@ -18,7 +18,7 @@ export class TripListPage {
   trips: Array<any>;
   criteria: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public app: App) {
     this.trips = [{
       title: 'Trip 1',
       startDate: new Date().getTime(),
@@ -42,7 +42,7 @@ export class TripListPage {
   }
 
   viewDetail(trip) {
-    this.navCtrl.push(TripDetailPage, {
+    this.app.getRootNav().push(TripDetailPage, {
       trip: trip
     });
   }

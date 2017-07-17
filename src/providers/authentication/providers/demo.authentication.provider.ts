@@ -19,7 +19,7 @@ export class DemoAuthenticationProvider implements AuthenticationProvider {
 
     getLoggedInUser(): Promise<User> {
         return new Promise<User>((resolve, reject) => {
-            if(this.loggedInStatus) {
+            if (this.loggedInStatus) {
                 resolve(this.demoUser);
             } else {
                 reject();
@@ -41,5 +41,9 @@ export class DemoAuthenticationProvider implements AuthenticationProvider {
 
             resolve(this.loggedInStatus);
         });
+    }
+
+    signup(email) {
+        return this.login(email);
     }
 }

@@ -3,7 +3,10 @@ import { IonicPage, NavController, NavParams, App, ViewController } from 'ionic-
 
 import { FacebookAuth, Authentication } from '../../providers';
 
-import { DispatchPage } from '../';
+import {
+  DispatchPage,
+  PreferencesPage
+} from '../';
 
 /**
  * Generated class for the UserprofilePage page.
@@ -29,6 +32,10 @@ export class UserprofilePage {
     this.checkFacebookLogin();
 
     this.checkForLogin();
+  }
+
+  gotoPreferences() {
+    this.app.getRootNav().push(PreferencesPage);
   }
 
   checkForLogin() {
@@ -70,14 +77,11 @@ export class UserprofilePage {
     });
   }
 
-  openNotifications() {
-  }
-
   logout() {
     this.authentication.logout().then(() => {
       this.fb.logout()
-        .then(() => this.navCtrl.setRoot(DispatchPage))
-        .catch(() => this.navCtrl.setRoot(DispatchPage));
+        .then(() => this.app.getRootNav().setRoot(DispatchPage))
+        .catch(() => this.app.getRootNav().setRoot(DispatchPage));
     });
   }
 }

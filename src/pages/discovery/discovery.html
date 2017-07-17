@@ -6,7 +6,10 @@
 -->
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Plan your next adventure!</ion-title>
+    <ion-title>
+      <ion-icon name="search"></ion-icon>
+      Plan your next adventure!
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -23,12 +26,12 @@
     </ion-item>
 
     <ion-item>
-        <ion-label>Start Date</ion-label>
-        <ion-datetime displayFormat="MMM DD YYYY" style="color: blue" [(ngModel)]="criteria.startDate"></ion-datetime>
+      <ion-label>Start Date</ion-label>
+      <ion-datetime displayFormat="MMM DD YYYY" style="color: blue" [(ngModel)]="criteria.startDate"></ion-datetime>
     </ion-item>
     <ion-item>
-        <ion-label>End Date</ion-label>
-        <ion-datetime displayFormat="MMM DD YYYY" style="color: blue" [(ngModel)]="criteria.endDate"></ion-datetime>
+      <ion-label>End Date</ion-label>
+      <ion-datetime displayFormat="MMM DD YYYY" style="color: blue" [(ngModel)]="criteria.endDate"></ion-datetime>
       <!-- [(ngModel)]="event.month" -->
     </ion-item>
 
