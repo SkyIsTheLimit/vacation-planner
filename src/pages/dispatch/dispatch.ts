@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { FacebookAuth, Authentication } from '../../providers';
 
@@ -20,8 +20,14 @@ export class DispatchPage {
   page: any;
   profile: any;
   destinationSearch: any;
+  loader: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FacebookAuth, public authentication: Authentication) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, private fb: FacebookAuth, public authentication: Authentication) {
+    this.loader = this.loadingCtrl.create({
+      content: 'Please wait . . .'
+    });
+
+    this.loader.present();
   }
 
   ionViewDidLoad() {
@@ -35,10 +41,12 @@ export class DispatchPage {
     this.authentication.getLoggedInUser().then((user) => {
       console.debug('Recieved success login');
       this.page = "discovery";
+      this.loader.dismiss();
       this.gotoTabsPage();
     }).catch((e) => {
       console.debug('Received error', e);
       this.page = "login";
+      this.loader.dismiss();
       this.gotoLoginPage();
     });
   }

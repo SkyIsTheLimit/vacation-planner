@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { DispatchPage } from '../';
+import { DispatchPage, SignupPage } from '../../pages';
 
 import { FacebookAuth, Authentication } from '../../providers';
 
@@ -40,6 +40,10 @@ export class LoginPage {
     }).catch(() => {
       this.message = 'Invalid username or password';
     });
+  }
+
+  signup() {
+    this.navCtrl.push(SignupPage)
   }
 
   logoutOfFacebook() {

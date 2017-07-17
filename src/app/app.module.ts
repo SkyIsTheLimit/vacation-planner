@@ -6,15 +6,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { DiscoveryPage } from '../pages/discovery/discovery';
-import { UserprofilePage } from '../pages/userprofile/userprofile';
-import { TravelassistantPage } from '../pages/travelassistant/travelassistant';
-import { BookkeeperPage } from '../pages/bookkeeper/bookkeeper';
-import { TabsPage } from '../pages/tabs/tabs';
-import { NotificationsPage } from '../pages/notifications/notifications';
-import { MyTripsPage } from '../pages/my-trips/my-trips';
-import { TripListPage } from '../pages/trip-list/trip-list';
-import { TripDetailPage } from '../pages/trip-detail/trip-detail';
+
+import {
+  DiscoveryPage,
+  UserprofilePage,
+  TravelassistantPage,
+  BookkeeperPage,
+  TabsPage,
+  NotificationsPage,
+  MyTripsPage,
+  TripListPage,
+  TripDetailPage,
+  SignupPage,
+  PreferencesPage
+} from '../pages';
 
 import {
   DispatchPage,
@@ -33,6 +38,7 @@ import {
   TravelCompanionProvider,
   ExpenseLogProvider
 } from '../providers';
+import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
 
 @NgModule({
   declarations: [
@@ -47,7 +53,9 @@ import {
     NotificationsPage,
     MyTripsPage,
     TripListPage,
-    TripDetailPage
+    TripDetailPage,
+    SignupPage,
+    PreferencesPage
   ],
   imports: [
     HttpModule,
@@ -67,7 +75,9 @@ import {
     NotificationsPage,
     MyTripsPage,
     TripListPage,
-    TripDetailPage
+    TripDetailPage,
+    SignupPage,
+    PreferencesPage
   ],
   providers: [
     StatusBar,
@@ -82,7 +92,8 @@ import {
     FinancePlannerProvider,
     CurrencyManagerProvider,
     ExpenseLogProvider,
-    TravelCompanionProvider
+    TravelCompanionProvider,
+    TripManagerProvider
   ]
 })
 export class AppModule { }

@@ -17,32 +17,23 @@
 
 
 <ion-content padding>
-  <ion-list>
-    <button menuClose ion-item color="inputcolor" full strong (click)="openNotifications()">
-      Notifications
-    </button>
-  </ion-list>
-
   <ion-grid>
     <ion-row>
       <ion-col text-center>
-        <ion-label>Logged in as {{ profile.name }}</ion-label>
-        <img [src]="profile.picture" />
+        <ion-label>Logged in as {{ user.name }}</ion-label>
+        <p>( {{ user.email }} )</p>
+        <button ion-button block clear (click)="gotoPreferences()">
+          <ion-icon name="settings"></ion-icon>&nbsp;&nbsp;
+          Preferences
+        </button>
+        <img [src]="profile.picture" *ngIf="profile.picture" />
+        <ion-icon name="person" style="font-size: 3em"></ion-icon>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <button ion-button block color="danger" clear (click)="logout()">Logout</button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <h4>Demo Provider Authentication</h4>
-        <p>{{ user.name }}</p>
-        <p>{{ user.username }}</p>
-        <p>{{ user.email }}</p>
+        <button ion-button block clear color="danger" (click)="logout()">Logout</button>
       </ion-col>
     </ion-row>
   </ion-grid>
