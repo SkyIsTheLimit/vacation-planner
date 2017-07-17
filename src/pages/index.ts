@@ -11,3 +11,4 @@ export * from './trip-detail/trip-detail';
 export * from './trip-list/trip-list';
 export * from './userprofile/userprofile';
 export * from './preferences/preferences';
+export * from './about/about';
