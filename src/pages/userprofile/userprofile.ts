@@ -5,7 +5,8 @@ import { FacebookAuth, Authentication } from '../../providers';
 
 import {
   DispatchPage,
-  PreferencesPage
+  PreferencesPage,
+  AboutPage
 } from '../';
 
 /**
@@ -36,6 +37,10 @@ export class UserprofilePage {
 
   gotoPreferences() {
     this.app.getRootNav().push(PreferencesPage);
+  }
+
+  gotoAbout() {
+    this.navCtrl.push(AboutPage);
   }
 
   checkForLogin() {

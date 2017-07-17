@@ -18,7 +18,8 @@ import {
   TripListPage,
   TripDetailPage,
   SignupPage,
-  PreferencesPage
+  PreferencesPage,
+  AboutPage
 } from '../pages';
 
 import {
@@ -55,7 +56,8 @@ import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
     TripListPage,
     TripDetailPage,
     SignupPage,
-    PreferencesPage
+    PreferencesPage,
+    AboutPage
   ],
   imports: [
     HttpModule,
@@ -77,7 +79,8 @@ import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
     TripListPage,
     TripDetailPage,
     SignupPage,
-    PreferencesPage
+    PreferencesPage,
+    AboutPage
   ],
   providers: [
     StatusBar,
