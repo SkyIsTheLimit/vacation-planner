@@ -7,6 +7,7 @@ export * from './notifications/notifications';
 export * from './signup/signup';
 export * from './tabs/tabs';
 export * from './travelassistant/travelassistant';
+export * from './travelcompanion/travelcompanion';
 export * from './trip-detail/trip-detail';
 export * from './trip-list/trip-list';
 export * from './userprofile/userprofile';

@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { TripManagerProvider } from '../../providers';
 
+import { TravelcompanionPage } from '../../pages';
+
 /**
  * Generated class for the TripDetailPage page.
  *
@@ -36,6 +38,11 @@ export class TripDetailPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TripDetailPage');
+  }
+
+  moveToTravelCompanion() {
+    console.info('Tabs', this.navCtrl);
+    this.navCtrl.push(TravelcompanionPage);
   }
 
   addToMyTrips() {
