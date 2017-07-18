@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar color="none">
+  <ion-navbar color="primary">
     <ion-title>{{ trip.title }}</ion-title>
   </ion-navbar>
 
@@ -37,6 +37,7 @@
     <ion-row>
       <ion-col>
         <h2>Flight Info</h2>
+        <button ion-button (click)="moveToTravelCompanion()">Travel Companion</button>
       </ion-col>
     </ion-row>
 
