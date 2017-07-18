@@ -21,7 +21,9 @@ export class DiscoveryProvider {
   }
 
   fetchSuggestions(input) {
-    var api = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyA0XvKwTnb3YkJjQqoY0iQA3ybkhLZJmro&&input=' + input;
+    // let apiKey = 'AIzaSyA0XvKwTnb3YkJjQqoY0iQA3ybkhLZJmro';
+    let apiKey = 'AIzaSyA0-prLuFz47IBMGsHiMwKrHxLJqjI65aQ';
+    let api = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?key=' + apiKey + '&&input=' + input;
 
     return this.http.get(api)
       .map(res => res.json());

@@ -9,7 +9,7 @@ export class DemoAuthenticationProvider implements AuthenticationProvider {
         email: 'foo@baz.com',
         linkedProviders: []
     };
-    loggedInStatus = false;
+    loggedInStatus = true;
 
     isLoggedIn(): Promise<Boolean> {
         return new Promise<Boolean>(() => {
