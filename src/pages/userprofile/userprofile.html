@@ -27,7 +27,7 @@
           Preferences
         </button>
         <img [src]="profile.picture" *ngIf="profile.picture" />
-        <ion-icon name="person" style="font-size: 3em"></ion-icon>
+        <ion-icon name="person" style="font-size: 3em" *ngIf="!profile.picture"></ion-icon>
       </ion-col>
     </ion-row>
 

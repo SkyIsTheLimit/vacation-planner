@@ -8,24 +8,24 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 
 import {
+  DispatchPage,
   DiscoveryPage,
   UserprofilePage,
   TravelassistantPage,
   TravelcompanionPage,
   BookkeeperPage,
   TabsPage,
+  LoginPage,
   NotificationsPage,
   MyTripsPage,
   TripListPage,
   TripDetailPage,
   SignupPage,
   PreferencesPage,
-  AboutPage
-} from '../pages';
-
-import {
-  DispatchPage,
-  LoginPage,
+  AboutPage,
+  SearchCriteriaPage,
+  LocationPreferenceListPage,
+  OriginPickerPage
 } from '../pages';
 
 import { Facebook } from '@ionic-native/facebook';
@@ -59,7 +59,10 @@ import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
     TripDetailPage,
     SignupPage,
     PreferencesPage,
-    AboutPage
+    AboutPage,
+    SearchCriteriaPage,
+    LocationPreferenceListPage,
+    OriginPickerPage
   ],
   imports: [
     HttpModule,
@@ -83,7 +86,10 @@ import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
     TripDetailPage,
     SignupPage,
     PreferencesPage,
-    AboutPage
+    AboutPage,
+    SearchCriteriaPage,
+    LocationPreferenceListPage,
+    OriginPickerPage
   ],
   providers: [
     StatusBar,
