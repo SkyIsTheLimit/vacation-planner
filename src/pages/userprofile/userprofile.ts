@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App, ViewController } from 'ionic-angular';
 
-import { FacebookAuth } from '../../providers';
+import { FacebookAuth, Authentication } from '../../providers';
 
-import { DispatchPage } from '../';
+import {
+  DispatchPage,
+  PreferencesPage,
+  AboutPage
+} from '../';
 
 /**
  * Generated class for the UserprofilePage page.
@@ -18,14 +22,42 @@ import { DispatchPage } from '../';
 })
 export class UserprofilePage {
   profile: any = {};
+  user: any = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FacebookAuth) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FacebookAuth, public authentication: Authentication, public app: App, public viewCtrl: ViewController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserprofilePage');
 
     this.checkFacebookLogin();
+
+    this.checkForLogin();
+  }
+
+  gotoPreferences() {
+    this.app.getRootNav().push(PreferencesPage);
+  }
+
+  gotoAbout() {
+    this.navCtrl.push(AboutPage);
+  }
+
+  checkForLogin() {
+    this.authentication.getLoggedInUser().then((user) => {
+      this.user = user;
+      console.debug('Reveived Demo User', this.user);
+    }).catch(() => {
+      this.authentication.logout().then(() => {
+        console.debug('No User receieved', 'logging out');
+        // this.viewCtrl.dismiss();
+        this.app.getRootNav().push(DispatchPage);
+
+        // this.navCtrl.popToRoot();
+        // this.navCtrl.pop();
+        // this.navCtrl.setRoot(DispatchPage);
+      })
+    });
   }
 
   checkFacebookLogin() {
@@ -49,13 +81,12 @@ export class UserprofilePage {
       };
     });
   }
-  
-  openNotifications() {
-  }
 
   logout() {
-    this.fb.logout()
-      .then(() => this.navCtrl.setRoot(DispatchPage))
-      .catch(() => this.navCtrl.setRoot(DispatchPage));
+    this.authentication.logout().then(() => {
+      this.fb.logout()
+        .then(() => this.app.getRootNav().setRoot(DispatchPage))
+        .catch(() => this.app.getRootNav().setRoot(DispatchPage));
+    });
   }
 }

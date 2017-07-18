@@ -6,11 +6,14 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>My Trips</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>
+      <ion-icon name="train"></ion-icon>
+      My Trips
+    </ion-title>
     <!-- <ion-icon name="person"></ion-icon> -->
   </ion-navbar>
-   <ion-toolbar no-border-top>
+  <ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="trips">
       <ion-segment-button value="booked">
         Booked
@@ -28,23 +31,45 @@
 
 
 <ion-content padding>
-	<div [ngSwitch]="trips">
-		<div *ngSwitchCase="'booked'">
-			<!-- <ion-item> -->
-				You haven't booked any trips.<br>
-				Explore some trips we have to offer in the Discovery page.
-			<!-- </ion-item> -->
-		</div>
-		<div *ngSwitchCase="'saved'">
-			<!-- <ion-item> -->
-				You haven't saved any trips.
-			<!-- </ion-item> -->
-		</div>
-		<div *ngSwitchCase="'recentlyViewed'">
-			<!-- <ion-item> -->
-				You haven't viewed any trips yet.<br>
-				Go to the Discovery page to find a trip that matches your needs.
-			<!-- </ion-item> -->
-		</div>
-	</div>
+  <div [ngSwitch]="trips">
+    <div *ngSwitchCase="'booked'">
+      <!-- <ion-item> -->
+      <p *ngIf="myTrips.length === 0">
+        You haven't booked any trips.<br> Explore some trips we have to offer in the Discovery page.
+      </p>
+
+      <div *ngIf="myTrips.length !== 0">
+        <div *ngFor="let trip of myTrips">
+          <h4 (click)="viewDetail(trip)">{{ trip.title }}</h4>
+        </div>
+      </div>
+      <!-- </ion-item> -->
+    </div>
+    <div *ngSwitchCase="'saved'">
+      <!-- <ion-item> -->
+      <p *ngIf="bookmarkedTrips.length === 0">
+        You haven't saved any trips.
+      </p>
+
+      <div *ngIf="bookmarkedTrips.length !== 0">
+        <div *ngFor="let trip of bookmarkedTrips">
+          <h4 (click)="viewDetail(trip)">{{ trip.title }}</h4>
+        </div>
+      </div>
+      <!-- </ion-item> -->
+    </div>
+    <div *ngSwitchCase="'recentlyViewed'">
+      <!-- <ion-item> -->
+      <p *ngIf="recentlyViewedTrips.length === 0">
+        You haven't viewed any trips yet.<br> Go to the Discovery page to find a trip that matches your needs.
+      </p>
+
+      <div *ngIf="recentlyViewedTrips.length !== 0">
+        <div *ngFor="let trip of recentlyViewedTrips">
+          <h4 (click)="viewDetail(trip)">{{ trip.title }}</h4>
+        </div>
+      </div>
+      <!-- </ion-item> -->
+    </div>
+  </div>
 </ion-content>

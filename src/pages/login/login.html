@@ -6,13 +6,38 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>login</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Login</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <button ion-button large round (click)="loginWithFacebook()">Login with Facebook</button>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <div padding>
+        <button ion-button block round large (click)="login()">Sign In</button>
+        <button ion-button block clear (click)="signup()">Sign Up</button>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <div>
+    <h3 text-center>OR</h3>
+    <img src="https://scontent.fmaa1-1.fna.fbcdn.net/v/t39.2365-6/17639236_1785253958471956_282550797298827264_n.png?oh=ffe8429a1f7d465af26210ae1e399cf0&oe=59C43EEA"
+      alt="" (click)="loginWithFacebook()">
+  </div>
+
+  <p>{{message}}</p>
 </ion-content>

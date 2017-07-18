@@ -11,7 +11,7 @@ import { DispatchPage } from '../pages';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: any = TabsPage;
+  rootPage: any = DispatchPage;
 
   pages: Array<{ title: string, component: any }>;
 

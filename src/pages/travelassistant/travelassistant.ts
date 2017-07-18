@@ -24,6 +24,7 @@ export class TravelassistantPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TravelassistantPage');
+    this.loadNearbyPlaces();
   }
 
   loadNearbyPlaces() {
@@ -31,8 +32,8 @@ export class TravelassistantPage {
       type: "restaurant",
       keyword: "",
       filter: "",
-      location: "12,77",
-      radius: "10000"
+      location: "",
+      radius: "2000"
     };
 
     this.tc.searchNearByRestaurants(criteria).subscribe(res => this.restaurants = res.results);
