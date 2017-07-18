@@ -14,10 +14,17 @@ export class DiscoveryProvider {
   constructor(public http: Http) {
     console.log('Hello DiscoveryProvider Provider');
   }
-  
+
   getTrips() {
     return this.http.get('http://api.mytrips.com/trips')
-                    .map(res => res.json().data);
+      .map(res => res.json().data);
+  }
+
+  fetchSuggestions(input) {
+    var api = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyA0XvKwTnb3YkJjQqoY0iQA3ybkhLZJmro&&input=' + input;
+
+    return this.http.get(api)
+      .map(res => res.json());
   }
 
   loadRestaurants() {

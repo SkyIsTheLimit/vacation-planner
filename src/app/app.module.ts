@@ -6,13 +6,22 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { DiscoveryPage } from '../pages/discovery/discovery';
-import { UserprofilePage } from '../pages/userprofile/userprofile';
-import { TravelassistantPage } from '../pages/travelassistant/travelassistant';
-import { BookkeeperPage } from '../pages/bookkeeper/bookkeeper';
-import { TabsPage } from '../pages/tabs/tabs';
-import { NotificationsPage } from '../pages/notifications/notifications';
-import { MyTripsPage } from '../pages/my-trips/my-trips';
+
+import {
+  DiscoveryPage,
+  UserprofilePage,
+  TravelassistantPage,
+  TravelcompanionPage,
+  BookkeeperPage,
+  TabsPage,
+  NotificationsPage,
+  MyTripsPage,
+  TripListPage,
+  TripDetailPage,
+  SignupPage,
+  PreferencesPage,
+  AboutPage
+} from '../pages';
 
 import {
   DispatchPage,
@@ -20,7 +29,7 @@ import {
 } from '../pages';
 
 import { Facebook } from '@ionic-native/facebook';
-import { FacebookAuth } from '../providers/auth/facebook.auth';
+import { FacebookAuth, Authentication } from '../providers';
 
 import {
   DiscoveryProvider,
@@ -31,19 +40,26 @@ import {
   TravelCompanionProvider,
   ExpenseLogProvider
 } from '../providers';
+import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
 
 @NgModule({
   declarations: [
     MyApp,
     DiscoveryPage,
     TravelassistantPage,
+    TravelcompanionPage,
     BookkeeperPage,
     UserprofilePage,
     TabsPage,
     DispatchPage,
     LoginPage,
     NotificationsPage,
-    MyTripsPage
+    MyTripsPage,
+    TripListPage,
+    TripDetailPage,
+    SignupPage,
+    PreferencesPage,
+    AboutPage
   ],
   imports: [
     HttpModule,
@@ -55,13 +71,19 @@ import {
     MyApp,
     DiscoveryPage,
     TravelassistantPage,
+    TravelcompanionPage,
     BookkeeperPage,
     UserprofilePage,
     TabsPage,
     DispatchPage,
     LoginPage,
     NotificationsPage,
-    MyTripsPage
+    MyTripsPage,
+    TripListPage,
+    TripDetailPage,
+    SignupPage,
+    PreferencesPage,
+    AboutPage
   ],
   providers: [
     StatusBar,
@@ -69,13 +91,15 @@ import {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Facebook,
     FacebookAuth,
+    Authentication,
     DiscoveryProvider,
     NotificationManagerProvider,
     BookkeeperProvider,
     FinancePlannerProvider,
     CurrencyManagerProvider,
     ExpenseLogProvider,
-    TravelCompanionProvider
+    TravelCompanionProvider,
+    TripManagerProvider
   ]
 })
 export class AppModule { }

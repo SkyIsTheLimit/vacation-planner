@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { DispatchPage } from '../';
+import { DispatchPage, SignupPage } from '../../pages';
 
-import { FacebookAuth } from '../../providers';
+import { FacebookAuth, Authentication } from '../../providers';
 
 /**
  * Generated class for the LoginPage page.
@@ -18,8 +18,9 @@ import { FacebookAuth } from '../../providers';
 })
 export class LoginPage {
   profile: any;
+  message: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FacebookAuth) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FacebookAuth, public authentication: Authentication) {
   }
 
   ionViewDidLoad() {
@@ -31,6 +32,18 @@ export class LoginPage {
     this.fb.isLoggedIn()
       .then(() => this.getProfile())
       .catch(() => console.error('Not logged in'));
+  }
+
+  login(email) {
+    this.authentication.login(email).then((user) => {
+      this.navCtrl.setRoot(DispatchPage);
+    }).catch(() => {
+      this.message = 'Invalid username or password';
+    });
+  }
+
+  signup() {
+    this.navCtrl.push(SignupPage)
   }
 
   logoutOfFacebook() {
@@ -70,6 +83,9 @@ export class LoginPage {
       .then(res => {
         this.addUserIfNecessary().then(() => this.navCtrl.setRoot(DispatchPage));
       })
-      .catch(() => console.error('Not logged in'));
+      .catch((e) => {
+        this.message = JSON.stringify(e);
+        console.error('Not logged in')
+      });
   }
 }

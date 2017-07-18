@@ -6,6 +6,7 @@ import { UserprofilePage } from '../userprofile/userprofile';
 import { BookkeeperPage } from '../bookkeeper/bookkeeper';
 import { TravelassistantPage } from '../travelassistant/travelassistant';
 import { NotificationsPage } from '../notifications/notifications';
+import { TravelcompanionPage } from '../../pages/travelcompanion/travelcompanion';
 import { MyTripsPage } from '../my-trips/my-trips';
 /**
  * Generated class for the TabsPage page.
@@ -19,10 +20,11 @@ import { MyTripsPage } from '../my-trips/my-trips';
   templateUrl: 'tabs.html',
 })
 export class TabsPage {
-  
+
   tab1Root = DiscoveryPage;
   tab2Root = MyTripsPage;
-  tab3Root = NotificationsPage;
+  // tab3Root = NotificationsPage;
+  tab3Root = TravelcompanionPage;
   tab4Root = UserprofilePage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {

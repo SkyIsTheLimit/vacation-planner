@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 
 import { DiscoveryProvider } from '../../providers';
 import { BookkeeperPage } from '../bookkeeper/bookkeeper';
+import { TripListPage } from '../trip-list/trip-list';
 /**
  * Generated class for the DiscoveryPage page.
  *
@@ -19,12 +20,15 @@ export class DiscoveryPage {
   singleValue: Object;
   noOfRooms: Array<number>;
   noOfGuests: Array<number>;
-  selectedRooms : any;
-  selectedGuests : any;
+  selectedRooms: any;
+  selectedGuests: any;
   criteria = {
     destinations: [],
+    startDate: {},
+    endDate: {}
   };
-  newDestination: any = {};
+  destinationSearch: any;
+  suggestions: Array<any> = [];
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DiscoveryPage');
@@ -34,7 +38,7 @@ export class DiscoveryPage {
     private loadingCtrl: LoadingController,
     public navParams: NavParams,
     private discovery: DiscoveryProvider) {
-      this.singleValue = {
+    this.singleValue = {
       'lower': 100000,
       'upper': 350000
     };
@@ -44,18 +48,23 @@ export class DiscoveryPage {
     this.incrementToTen(this.noOfGuests);
   }
 
-  incrementToTen(variable){
+  incrementToTen(variable) {
     console.log("variable");
     console.log(variable);
-    for (var i = 1; i<=10; i++){
+    for (var i = 1; i <= 10; i++) {
       variable.push(i);
     }
   }
 
-  addDestination(newDestination, $event) {
-    console.debug('Adding destination', this.newDestination, $event);
-    this.criteria.destinations.push(newDestination);
-    this.newDestination = {};
+  addDestination(destination, $event) {
+    console.debug('Adding destination', destination, $event);
+    this.criteria.destinations.push(destination);
+    this.destinationSearch = '';
+    this.suggestions = [];
+  }
+
+  removeDestination(destination, $index) {
+    this.criteria.destinations.splice($index, 1);
   }
 
   find() {
@@ -66,11 +75,21 @@ export class DiscoveryPage {
       dismissOnPageChange: true,
       duration: 2000
     }).present();
+
+    this.navCtrl.push(TripListPage);
   }
 
-  discoverTrip(){
-    this.navCtrl.push(BookkeeperPage, {
-      
+  fetchSuggestions() {
+    this.discovery.fetchSuggestions(this.destinationSearch)
+      .subscribe(suggestions => {
+        this.suggestions = suggestions.predictions;
+        console.info('Loaded suggestions', this.suggestions);
+      });
+  }
+
+  discoverTrip() {
+    this.navCtrl.push(TripListPage, {
+      criteria: this.criteria
     });
   }
 }
