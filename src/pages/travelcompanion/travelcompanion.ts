@@ -5,6 +5,7 @@ import { TravelCompanionProvider } from '../../providers';
 
 import { Restaurant } from '../../models/restaurant';
 import { TravelassistantPage } from '../travelassistant/travelassistant';
+import { CompanionCriteria } from '../../models/companion-criteria.model';
 /**
  * Generated class for the TravelassistantPage page.
  *
@@ -25,8 +26,22 @@ export class TravelcompanionPage {
     console.log('ionViewDidLoad TravelassistantPage');
   }
 
-  loadNearbyPlaces() {
-    this.navCtrl.push(TravelassistantPage);
+  loadNearbyPlaces(resulttype) {
+   //  this.navParams.data = restype;
+   let criteria: CompanionCriteria = {
+      type: resulttype,
+      keyword: "",
+      filter: "",
+      location: "",
+      radius: "2000"
+    };
+    if(resulttype=='airport')
+    {
+      criteria.radius = "30000";
+    }
+
+   console.log("result type"  + resulttype);
+    this.navCtrl.push(TravelassistantPage,criteria); 
   }
 
 }
