@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { DiscoveryPage } from '../discovery/discovery';
-import { UserprofilePage } from '../userprofile/userprofile';
-import { BookkeeperPage } from '../bookkeeper/bookkeeper';
-import { TravelassistantPage } from '../travelassistant/travelassistant';
-import { NotificationsPage } from '../notifications/notifications';
-import { TravelcompanionPage } from '../../pages/travelcompanion/travelcompanion';
-import { MyTripsPage } from '../my-trips/my-trips';
+import {
+  DiscoveryPage,
+  UserProfilePage,
+  BookkeeperPage,
+  TravelassistantPage,
+  NotificationsPage,
+  TravelcompanionPage,
+  MyTripsPage
+} from '../../pages';
 /**
  * Generated class for the TabsPage page.
  *
@@ -25,7 +27,7 @@ export class TabsPage {
   tab2Root = MyTripsPage;
   // tab3Root = NotificationsPage;
   tab3Root = TravelcompanionPage;
-  tab4Root = UserprofilePage;
+  tab4Root = UserProfilePage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

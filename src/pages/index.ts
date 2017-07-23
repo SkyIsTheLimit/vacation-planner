@@ -11,7 +11,7 @@ export * from './travelcompanion/travelcompanion';
 export * from './trip-detail/trip-detail';
 export * from './search-criteria/search-criteria';
 export * from './trip-list/trip-list';
-export * from './userprofile/userprofile';
+export * from './user-profile/user-profile';
 export * from './preferences/preferences';
 export * from './about/about';
 export * from './location-preference-list/location-preference-list';
