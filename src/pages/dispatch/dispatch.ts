@@ -1,9 +1,16 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
 
-import { FacebookAuth, Authentication } from '../../providers';
+import {
+  OAuthProvider,
+  AuthenticationProvider,
+  UserManagerProvider
+} from '../../providers';
 
-import { LoginPage, TabsPage } from '../';
+import {
+  LoginPage,
+  TabsPage
+} from '../../pages';
 
 /**
  * Generated class for the DispatchPage page.
@@ -17,78 +24,34 @@ import { LoginPage, TabsPage } from '../';
   templateUrl: 'dispatch.html',
 })
 export class DispatchPage {
-  page: any;
-  profile: any;
-  destinationSearch: any;
-  loader: any;
+  loader: Loading;
+  authenticationProvider: AuthenticationProvider;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, private fb: FacebookAuth, public authentication: Authentication) {
-    this.loader = this.loadingCtrl.create({
-      content: 'Please wait . . .'
-    });
-
-    this.loader.present();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public userManager: UserManagerProvider) {
+    this.authenticationProvider = this.userManager.getAuthenticationProvider();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DispatchPage');
 
-    // this.checkFacebookLogin();
-    this.checkLogin();
+    this.loader = this.loadingCtrl.create({
+      content: 'Please wait . . .'
+    });
+
+    this.loader.present();
+
+    this.checkLoginWithProvider();
   }
 
-  checkLogin() {
-    this.authentication.getLoggedInUser().then((user) => {
-      console.debug('Recieved success login');
-      this.page = "discovery";
+  checkLoginWithProvider() {
+    this.authenticationProvider.getAuthenticatedUser().then((user) => {
       this.loader.dismiss();
-      this.gotoTabsPage();
+
+      this.navCtrl.setRoot(TabsPage);
     }).catch((e) => {
-      console.debug('Received error', e);
-      this.page = "login";
       this.loader.dismiss();
-      this.gotoLoginPage();
+
+      this.navCtrl.setRoot(LoginPage);
     });
-  }
-
-  checkFacebookLogin() {
-    console.debug('[Dispatch Page]: Trying to login');
-    this.fb.isLoggedIn()
-      .then(() => {
-        console.debug('Recieved success login');
-        this.page = "discovery";
-        this.getProfile().then(() => this.gotoTabsPage());
-      })
-      .catch((e) => {
-        console.debug('Received error', e);
-        this.page = "login";
-        this.gotoLoginPage();
-      });
-  }
-
-  getProfile() {
-    return this.fb.getProfile("id,name,picture").then((res) => {
-      this.profile = {
-        id: res.id,
-        name: res.name,
-        picture: res.picture.data.url
-      };
-    });
-  }
-
-  redirect() {
-    if (this.page === "discovery") {
-      this.gotoTabsPage();
-    } else {
-      this.gotoLoginPage();
-    }
-  }
-
-  gotoLoginPage() {
-    this.navCtrl.setRoot(LoginPage);
-  }
-
-  gotoTabsPage() {
-    this.navCtrl.setRoot(TabsPage);
   }
 }

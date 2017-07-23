@@ -10,7 +10,7 @@ import { MyApp } from './app.component';
 import {
   DispatchPage,
   DiscoveryPage,
-  UserprofilePage,
+  UserProfilePage,
   TravelassistantPage,
   TravelcompanionPage,
   BookkeeperPage,
@@ -29,7 +29,6 @@ import {
 } from '../pages';
 
 import { Facebook } from '@ionic-native/facebook';
-import { FacebookAuth, Authentication } from '../providers';
 
 import {
   DiscoveryProvider,
@@ -38,9 +37,12 @@ import {
   NotificationManagerProvider,
   FinancePlannerProvider,
   TravelCompanionProvider,
-  ExpenseLogProvider
+  ExpenseLogProvider,
+  TripManagerProvider,
+  UserManagerProvider,
+  DemoAuthenticationProvider,
+  FacebookOAuthProvider
 } from '../providers';
-import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,7 @@ import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
     TravelassistantPage,
     TravelcompanionPage,
     BookkeeperPage,
-    UserprofilePage,
+    UserProfilePage,
     TabsPage,
     DispatchPage,
     LoginPage,
@@ -76,7 +78,7 @@ import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
     TravelassistantPage,
     TravelcompanionPage,
     BookkeeperPage,
-    UserprofilePage,
+    UserProfilePage,
     TabsPage,
     DispatchPage,
     LoginPage,
@@ -96,8 +98,6 @@ import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Facebook,
-    FacebookAuth,
-    Authentication,
     DiscoveryProvider,
     NotificationManagerProvider,
     BookkeeperProvider,
@@ -105,7 +105,10 @@ import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
     CurrencyManagerProvider,
     ExpenseLogProvider,
     TravelCompanionProvider,
-    TripManagerProvider
+    TripManagerProvider,
+    UserManagerProvider,
+    DemoAuthenticationProvider,
+    FacebookOAuthProvider
   ]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 <!--
-  Generated template for the UserprofilePage page.
+  Generated template for the UserProfilePage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -26,14 +26,14 @@
           <ion-icon name="settings"></ion-icon>&nbsp;&nbsp;
           Preferences
         </button>
-        <img [src]="profile.picture" *ngIf="profile.picture" />
-        <ion-icon name="person" style="font-size: 3em" *ngIf="!profile.picture"></ion-icon>
+        <img [src]="user.picture" *ngIf="user.picture" />
+        <ion-icon name="person" style="font-size: 3em" *ngIf="!user.picture"></ion-icon>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <button ion-button block clear color="danger" (click)="logout()">Logout</button>
+        <button ion-button block clear color="danger" (click)="logoutWithProvider()">Logout</button>
       </ion-col>
     </ion-row>
   </ion-grid>
