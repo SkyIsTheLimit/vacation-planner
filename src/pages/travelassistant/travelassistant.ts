@@ -24,18 +24,13 @@ export class TravelassistantPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TravelassistantPage');
-    this.loadNearbyPlaces();
+    this.loadNearbyPlaces(this.navParams.data);
   }
 
-  loadNearbyPlaces() {
-    let criteria: CompanionCriteria = {
-      type: "restaurant",
-      keyword: "",
-      filter: "",
-      location: "",
-      radius: "2000"
-    };
-
+  loadNearbyPlaces(criteria) {
+    //this.navParams.get("resulttype");
+   // let criteria: criteria;
+   console.log("name:" + criteria.type);
     this.tc.searchNearByRestaurants(criteria).subscribe(res => this.restaurants = res.results);
   }
 

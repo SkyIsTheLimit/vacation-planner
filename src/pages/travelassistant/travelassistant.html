@@ -17,10 +17,10 @@
  <!-- <button ion-button round color="primary" (click)="loadNearbyPlaces()">Find Nearby</button>-->
 
   <ion-list>
-    <ion-item *ngFor="let restaurant of restaurants">
-      <ion-icon name="restaurant"></ion-icon>
-      <ion-title>{{ restaurant.name }}</ion-title>  
-      <ion-title>{{restaurant.rating}}  </ion-title>
+    <ion-item *ngFor="let restaurant of restaurants" border="primary">
+     <!-- <ion-icon name="restaurant"></ion-icon>-->
+      <ion-title color="secondary" align="left">{{ restaurant.name }}</ion-title>  
+      <ion-title align="right">{{restaurant.rating}}  </ion-title>
     </ion-item>
   </ion-list>
 </ion-content>
