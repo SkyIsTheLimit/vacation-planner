@@ -43,22 +43,21 @@
 </ion-content>-->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Travel 
-      Companion</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Travel Companion</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-	<div class="heading" style="text-align: center; padding-top: 50px;">
-		<div style="font-size: 40px; font-weight: bolder;">
-			Search Near By Places
-		</div>
-		<!--<h6>Pick at least 3 interests</h6>-->
-	</div>
-	<!--div class="activitesList">
+  <div class="heading" style="text-align: center; padding-top: 50px;">
+    <div style="font-size: 30px; font-weight: bolder;">
+      Search Near By Places
+    </div>
+    <!--<h6>Pick at least 3 interests</h6>-->
+  </div>
+  <!--div class="activitesList">
 		<div style="text-align: center;">
 			<div class="circularElement" style="display: inline-block; text-align: center;">
 				<button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;">
@@ -80,85 +79,85 @@
 			</div>
 		</div>
 	</div-->
-	<ion-row style="padding-top: 15px;">
-		<ion-col>
-			<div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
-				<button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;" #Button (click) = "loadNearbyPlaces()">
+  <ion-row style="padding-top: 15px;">
+    <ion-col>
+      <div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
+        <button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;" #Button (click)="loadNearbyPlaces('restaurant')">
 					<ion-icon name="restaurant"></ion-icon>
 				</button>
-				<div>Restaurants</div>
-			</div>
-		</ion-col>
-		<ion-col>
-			<div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
-				<button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;" (click) = "loadNearbyPlaces()">
+        <div>Restaurants</div>
+      </div>
+    </ion-col>
+    <ion-col>
+      <div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
+        <button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;" (click)="loadNearbyPlaces('atm')">
 					<ion-icon name="card"></ion-icon>
 				</button>
-				<div>ATMs</div>
-			</div>
-		</ion-col>
-		<ion-col>
-			<div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
-				<button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;" (click) = "itemSelected()">
+        <div>ATMs</div>
+      </div>
+    </ion-col>
+    <ion-col>
+      <div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
+        <button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;" (click)="loadNearbyPlaces('gas_station')">
 					<ion-icon name="beaker"></ion-icon>
 				</button>
-				<div>Gas Stations</div>
-			</div>
-		</ion-col>
-	</ion-row>
-	<ion-row style="padding-top: 15px;">
-		<ion-col>
-			<div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
-				<button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;">
-					<ion-icon name="star"></ion-icon>
+        <div>Gas Stations</div>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row style="padding-top: 15px;">
+    <ion-col>
+      <div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
+        <button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;" (click)="loadNearbyPlaces('shopping_mall')">
+					<ion-icon name="cart"></ion-icon>
 				</button>
-				<div>Food & Wine</div>
-			</div>
-		</ion-col>
-		<ion-col>
-			<div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
-				<button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;">
-					<ion-icon name="star"></ion-icon>
+        <div>Shopping Mall</div>
+      </div>
+    </ion-col>
+    <ion-col>
+      <div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
+        <button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;" (click)="loadNearbyPlaces('night_club')">
+					<ion-icon name="pint"></ion-icon>
 				</button>
-				<div>Nature</div>
-			</div>
-		</ion-col>
-		<ion-col>
-			<div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
-				<button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;">
-					<ion-icon name="star"></ion-icon>
+        <div>Night Club</div>
+      </div>
+    </ion-col>
+    <ion-col>
+      <div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
+        <button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;" (click)="loadNearbyPlaces('parking')">
+					<ion-icon name="car"></ion-icon>
 				</button>
-				<div>Events</div>
-			</div>
-		</ion-col>
-	</ion-row>
-	<ion-row style="padding-top: 15px;">
-		<ion-col>
-			<div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
-				<button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;">
-					<ion-icon name="star"></ion-icon>
+        <div>Parking</div>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row style="padding-top: 15px;">
+    <ion-col>
+      <div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
+        <button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;" (click)="loadNearbyPlaces('art_gallery')">
+					<ion-icon name="images"></ion-icon>
 				</button>
-				<div>Night Life</div>
-			</div>
-		</ion-col>
-		<ion-col>
-			<div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
-				<button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;">
-					<ion-icon name="star"></ion-icon>
+        <div>Arts & Museum</div>
+      </div>
+    </ion-col>
+    <ion-col>
+      <div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
+        <button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;" (click)="loadNearbyPlaces('hospital')">
+					<ion-icon name="medkit"></ion-icon>
 				</button>
-				<div>Shopping</div>
-			</div>
-		</ion-col>
-		<ion-col>
-			<div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
-				<button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;">
-					<ion-icon name="star"></ion-icon>
+        <div>Hospitals</div>
+      </div>
+    </ion-col>
+    <ion-col>
+      <div class="circularElement" style="display: inline-block; text-align: center; width: 100%">
+        <button ion-button circular-button outline icon-only style="border-radius: 100%; height: 56px;" (click)="loadNearbyPlaces('airport')">
+					<ion-icon name="plane"></ion-icon>
 				</button>
-				<div>Attractions</div>
-			</div>
-		</ion-col>
-	</ion-row>
-	<div class="footer" style="text-align: center; padding-top: 20px;">
-		<h6 style="color: darkblue;">Continue</h6>
-	</div>
+        <div>Airports</div>
+      </div>
+    </ion-col>
+  </ion-row>
+ <!-- <div class="footer" style="text-align: center; padding-top: 20px;">
+    <h6 style="color: darkblue;">Continue</h6>
+  </div>-->
 </ion-content>

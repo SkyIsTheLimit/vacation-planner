@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-import { AuthenticationProvider } from './providers/provider';
-import { DemoAuthenticationProvider } from './providers/demo.authentication.provider';
+import { AuthenticationProvider, DemoAuthenticationProvider } from './providers';
 
 /*
   Generated class for the FacebookAuthProvider provider.
@@ -14,13 +13,12 @@ import { DemoAuthenticationProvider } from './providers/demo.authentication.prov
 export class Authentication {
     provider: AuthenticationProvider;
 
-    constructor() {
+    constructor(public authenticationProvider: DemoAuthenticationProvider) {
         console.info('Initializing authentication provider.');
-        this.provider = this.getAuthenticationProvider();
     }
 
     getAuthenticationProvider() {
-        return new DemoAuthenticationProvider();
+        return this.authenticationProvider;
     }
 
     /**
@@ -34,7 +32,7 @@ export class Authentication {
      * Function to retrieve the logged in user.
      */
     getLoggedInUser() {
-        return this.provider.getLoggedInUser();
+        return this.provider.getAuthenticatedUser();
     }
 
     signup(email) {

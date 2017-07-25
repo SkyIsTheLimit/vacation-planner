@@ -8,27 +8,27 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 
 import {
+  DispatchPage,
   DiscoveryPage,
-  UserprofilePage,
+  UserProfilePage,
   TravelassistantPage,
+  TravelcompanionPage,
   BookkeeperPage,
   TabsPage,
+  LoginPage,
   NotificationsPage,
   MyTripsPage,
   TripListPage,
   TripDetailPage,
   SignupPage,
   PreferencesPage,
-  AboutPage
-} from '../pages';
-
-import {
-  DispatchPage,
-  LoginPage,
+  AboutPage,
+  SearchCriteriaPage,
+  LocationPreferenceListPage,
+  OriginPickerPage
 } from '../pages';
 
 import { Facebook } from '@ionic-native/facebook';
-import { FacebookAuth, Authentication } from '../providers';
 
 import {
   DiscoveryProvider,
@@ -37,17 +37,21 @@ import {
   NotificationManagerProvider,
   FinancePlannerProvider,
   TravelCompanionProvider,
-  ExpenseLogProvider
+  ExpenseLogProvider,
+  TripManagerProvider,
+  UserManagerProvider,
+  DemoAuthenticationProvider,
+  FacebookOAuthProvider
 } from '../providers';
-import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
 
 @NgModule({
   declarations: [
     MyApp,
     DiscoveryPage,
     TravelassistantPage,
+    TravelcompanionPage,
     BookkeeperPage,
-    UserprofilePage,
+    UserProfilePage,
     TabsPage,
     DispatchPage,
     LoginPage,
@@ -57,7 +61,10 @@ import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
     TripDetailPage,
     SignupPage,
     PreferencesPage,
-    AboutPage
+    AboutPage,
+    SearchCriteriaPage,
+    LocationPreferenceListPage,
+    OriginPickerPage
   ],
   imports: [
     HttpModule,
@@ -69,8 +76,9 @@ import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
     MyApp,
     DiscoveryPage,
     TravelassistantPage,
+    TravelcompanionPage,
     BookkeeperPage,
-    UserprofilePage,
+    UserProfilePage,
     TabsPage,
     DispatchPage,
     LoginPage,
@@ -80,15 +88,16 @@ import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
     TripDetailPage,
     SignupPage,
     PreferencesPage,
-    AboutPage
+    AboutPage,
+    SearchCriteriaPage,
+    LocationPreferenceListPage,
+    OriginPickerPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Facebook,
-    FacebookAuth,
-    Authentication,
     DiscoveryProvider,
     NotificationManagerProvider,
     BookkeeperProvider,
@@ -96,7 +105,10 @@ import { TripManagerProvider } from '../providers/trip-manager/trip-manager';
     CurrencyManagerProvider,
     ExpenseLogProvider,
     TravelCompanionProvider,
-    TripManagerProvider
+    TripManagerProvider,
+    UserManagerProvider,
+    DemoAuthenticationProvider,
+    FacebookOAuthProvider
   ]
 })
 export class AppModule { }

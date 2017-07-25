@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Authentication } from '../../providers';
+
+import {
+  // Authentication,
+  AuthenticationProvider,
+  UserManagerProvider
+} from '../../providers';
 
 import {
   DispatchPage,
@@ -20,19 +25,32 @@ import {
   templateUrl: 'signup.html',
 })
 export class SignupPage {
+  authenticationProvider: AuthenticationProvider;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authentication: Authentication) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    // public authentication: Authentication,
+    public userManager: UserManagerProvider) {
+    this.authenticationProvider = this.userManager.getAuthenticationProvider();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }
 
-  signup() {
-    this.authentication.signup('').then((user) => {
+  // signup() {
+  //   this.authentication.signup('').then((user) => {
+  //     this.navCtrl.push(PreferencesPage);
+  //   }).catch(() => {
+  //     this.navCtrl.push(DispatchPage);
+  //   })
+  // }
+
+  signupWithProvider(credentials) {
+    this.authenticationProvider.signup(credentials).then(function () {
       this.navCtrl.push(PreferencesPage);
     }).catch(() => {
       this.navCtrl.push(DispatchPage);
-    })
+    });
   }
 }

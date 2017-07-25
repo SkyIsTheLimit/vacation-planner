@@ -1,15 +1,25 @@
-import { AuthenticationProvider } from './provider';
-import { User } from '../user';
+import { Injectable } from '@angular/core';
 
+import { AuthenticationProvider } from './authentication-provider';
+import { OAuthProvider } from './o-auth-provider';
+import { FacebookOAuthProvider } from './facebook-oauth-provider';
+import { User, OAuthProfile } from '../../../models';
+
+@Injectable()
 export class DemoAuthenticationProvider implements AuthenticationProvider {
-    demoUser = {
+    demoUser: User = {
         id: 1,
         username: 'foo',
         name: 'Test User',
         email: 'foo@baz.com',
-        linkedProviders: []
+        picture: '',
+        linkedAccounts: []
     };
     loggedInStatus = false;
+
+    constructor(public facebook: FacebookOAuthProvider) {
+        console.debug('Initialized Demo Authentication Provider');
+    }
 
     isLoggedIn(): Promise<Boolean> {
         return new Promise<Boolean>(() => {
@@ -17,7 +27,7 @@ export class DemoAuthenticationProvider implements AuthenticationProvider {
         });
     }
 
-    getLoggedInUser(): Promise<User> {
+    getAuthenticatedUser(): Promise<User> {
         return new Promise<User>((resolve, reject) => {
             if (this.loggedInStatus) {
                 resolve(this.demoUser);
@@ -25,6 +35,10 @@ export class DemoAuthenticationProvider implements AuthenticationProvider {
                 reject();
             }
         });
+    }
+
+    getLinkedProviders(): Array<OAuthProvider> {
+        return [this.facebook];
     }
 
     login(email) {

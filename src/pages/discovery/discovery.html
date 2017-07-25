@@ -13,56 +13,54 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
+<ion-content padding>
+  <ion-list radio-group [(ngModel)]="category">
     <ion-item>
-      <ion-label floating>Origin</ion-label>
-      <ion-input type="text" style="color: blue"></ion-input>
+      <ion-label>
+        <ion-avatar item-start style="float: left">
+          <img src="assets/139884-travel/svg/sand-bucket.svg">
+        </ion-avatar>
+        <h2>Beach</h2>
+        <h3>A beach destination helps you relax in a sunny weather!</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing....</p>
+      </ion-label>
+
+      <ion-radio checked="false" value="beach" item-end></ion-radio>
     </ion-item>
 
     <ion-item>
-      <ion-label floating>Destination</ion-label>
-      <ion-input type="text" style="color: blue"></ion-input>
+      <ion-label>
+        <ion-avatar item-start style="float: left">
+          <img src="assets/139884-travel/svg/cocktail.svg">
+        </ion-avatar>
+        <h2>Tropical</h2>
+        <h3>A tropical destination helps you relax in a sunny weather!</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing....</p>
+      </ion-label>
+
+      <ion-radio checked="false" value="tropical" item-end></ion-radio>
     </ion-item>
 
     <ion-item>
-      <ion-label>Start Date</ion-label>
-      <ion-datetime displayFormat="MMM DD YYYY" style="color: blue" [(ngModel)]="criteria.startDate"></ion-datetime>
+      <ion-label>
+        <ion-avatar item-start style="float: left">
+          <img src="assets/139884-travel/svg/luggage-1.svg">
+        </ion-avatar>
+        <h2>Urban</h2>
+        <h3>Relax in an urban lifestyle!</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing.....</p>
+      </ion-label>
+
+      <ion-radio checked="false" value="urban" item-end></ion-radio>
     </ion-item>
-    <ion-item>
-      <ion-label>End Date</ion-label>
-      <ion-datetime displayFormat="MMM DD YYYY" style="color: blue" [(ngModel)]="criteria.endDate"></ion-datetime>
-      <!-- [(ngModel)]="event.month" -->
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Budget Range</ion-label>
-      <ion-range dualKnobs="true" [(ngModel)]="singleValue" min="1000" max="500000" step="100" pin="true">
-        <ion-label range-left>1000</ion-label>
-        <ion-label range-right>500000</ion-label>
-      </ion-range>
-    </ion-item>
-
-    <div style="text-align: center; font-size: 12px; color: blue">
-      <ion-label>{{singleValue.lower}} to {{singleValue.upper}}</ion-label>
-    </div>
-
-    <ion-label style="font-size: 16px; padding-left: 16px;">Hotel Preferences</ion-label>
-
-    <ion-item>
-      <ion-label>Number of Rooms</ion-label>
-      <ion-select [(ngModel)]="selectedRooms" interface="popover" style="color: blue">
-        <ion-option *ngFor="let num of noOfRooms" value={{num}}>{{num}}</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Number of Guests</ion-label>
-      <ion-select [(ngModel)]="selectedGuests" interface="popover" style="color: blue">
-        <ion-option *ngFor="let num of noOfGuests" value={{num}}>{{num}}</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <button ion-button round (click)="discoverTrip()">Surprise Me!</button>
   </ion-list>
+
+  <div>
+    <button ion-button round block large color="secondary" (click)="next()" [disabled]="!category">
+      Next &nbsp;&nbsp;
+      <ion-icon name="arrow-forward"></ion-icon>
+    </button>
+
+    <button ion-button clear round block color="link" (click)="skipDiscovery()">Skip</button>
+  </div>
 </ion-content>
