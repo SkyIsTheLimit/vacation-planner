@@ -16,6 +16,12 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
+      <ion-label floating>Destination</ion-label>
+      <ion-input [(ngModel)]="destination.name" color="link" [disabled]="true"></ion-input>
+      <a href="#" item-end (click)="goBack()">Change Destination</a>
+    </ion-item>
+
+    <ion-item>
       <ion-label floating>Choose Origin</ion-label>
       <ion-input [(ngModel)]="criteria.origin" (ngModelChange)="fetchSuggestions(criteria.origin)" color="link"></ion-input>
     </ion-item>

@@ -41,7 +41,8 @@ import {
   TripManagerProvider,
   UserManagerProvider,
   DemoAuthenticationProvider,
-  FacebookOAuthProvider
+  FacebookOAuthProvider,
+  DataManagerProvider
 } from '../providers';
 
 @NgModule({
@@ -108,7 +109,8 @@ import {
     TripManagerProvider,
     UserManagerProvider,
     DemoAuthenticationProvider,
-    FacebookOAuthProvider
+    FacebookOAuthProvider,
+    DataManagerProvider
   ]
 })
 export class AppModule { }

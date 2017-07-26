@@ -3,6 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { OriginPickerPage } from '../../pages';
 
+import {
+  Location,
+  LocationCategory
+} from '../../models';
+
 /**
  * Generated class for the LocationPreferenceListPage page.
  *
@@ -15,7 +20,11 @@ import { OriginPickerPage } from '../../pages';
   templateUrl: 'location-preference-list.html',
 })
 export class LocationPreferenceListPage {
-  category: any = {};
+  category: LocationCategory = {
+    name: '',
+    locations: []
+  };
+  destination: Location;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.category = this.navParams.get('category');
@@ -26,6 +35,8 @@ export class LocationPreferenceListPage {
   }
 
   next() {
-    this.navCtrl.push(OriginPickerPage);
+    this.navCtrl.push(OriginPickerPage, {
+      destination: this.destination
+    });
   }
 }

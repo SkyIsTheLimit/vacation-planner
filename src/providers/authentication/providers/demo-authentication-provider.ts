@@ -15,7 +15,7 @@ export class DemoAuthenticationProvider implements AuthenticationProvider {
         picture: '',
         linkedAccounts: []
     };
-    loggedInStatus = false;
+    loggedInStatus = true;
 
     constructor(public facebook: FacebookOAuthProvider) {
         console.debug('Initialized Demo Authentication Provider');

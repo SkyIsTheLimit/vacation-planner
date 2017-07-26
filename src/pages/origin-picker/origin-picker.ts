@@ -5,6 +5,8 @@ import { DiscoveryProvider } from '../../providers';
 
 import { TripListPage } from '../../pages';
 
+import { Location } from '../../models';
+
 /**
  * Generated class for the OriginPickerPage page.
  *
@@ -21,12 +23,15 @@ export class OriginPickerPage {
   origin: any;
   isOriginSet: Boolean = false;
   criteria: any = {};
+  destination: Location;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public discovery: DiscoveryProvider) {
     this.criteria.budget = {
       lower: 100000,
       upper: 350000
     };
+
+    this.destination = this.navParams.get('destination');
   }
 
   ionViewDidLoad() {
@@ -51,6 +56,10 @@ export class OriginPickerPage {
     this.navCtrl.push(TripListPage, {
       criteria: this.criteria
     });
+  }
+
+  goBack() {
+    this.navCtrl.pop();
   }
 
 }
