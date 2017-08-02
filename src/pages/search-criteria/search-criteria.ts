@@ -18,17 +18,25 @@ import { TripListPage } from '../trip-list/trip-list';
 })
 export class SearchCriteriaPage {
   restaurants: Array<any>;
-  singleValue: Object;
   noOfRooms: Array<number>;
   noOfGuests: Array<number>;
-  selectedRooms: any;
-  selectedGuests: any;
+  budgetLimit: {};
   criteria = {
     origin: {},
     destination: [],
     startDate: {},
-    endDate: {}
+    endDate: {},
+    budgetLimit: 100000,
+    hotelInformation: {
+      numberOfGuests: {},
+      numberOfRooms: {},
+      ratings: []
+    }
   };
+  starRating: Array<boolean>;
+  five: boolean = false;
+  spinner: any;
+  spinnerThis: any;
   destinationSearch: any;
   originSuggestions: Array<any> = [];
   destinationSuggestions: Array<any> = [];
@@ -43,14 +51,15 @@ export class SearchCriteriaPage {
     private loadingCtrl: LoadingController,
     public navParams: NavParams,
     private discovery: DiscoveryProvider) {
-    this.singleValue = {
-      'lower': 100000,
-      'upper': 350000
-    };
-    this.noOfRooms = [];
-    this.noOfGuests = [];
-    this.incrementToTen(this.noOfRooms);
-    this.incrementToTen(this.noOfGuests);
+      this.starRating= [false, false, false, false, false];
+      this.budgetLimit = {
+        'lower': 100000,
+        'upper': 350000
+      };
+      this.noOfRooms = [];
+      this.noOfGuests = [];
+      this.incrementToTen(this.noOfRooms);
+      this.incrementToTen(this.noOfGuests);
   }
 
   incrementToTen(variable) {
@@ -87,13 +96,14 @@ export class SearchCriteriaPage {
   find() {
     console.debug('Searching for trips', this.criteria);
 
-    this.loadingCtrl.create({
+    this.spinner = this.loadingCtrl.create({
       content: 'Loading Trips',
       dismissOnPageChange: true,
       duration: 2000
     }).present();
+    this.spinnerThis = this;
 
-    this.navCtrl.push(TripListPage);
+    // this.navCtrl.push(TripListPage);
   }
 
   fetchSuggestions(query, type) {
@@ -104,9 +114,57 @@ export class SearchCriteriaPage {
       });
   }
 
+  /**
+   * Method called when the user wants to perform the search for the entered criteria
+   * This internally will trigger an API request to fetch relevant flights and hotels 
+   * and display them
+   */
   discoverTrip() {
+    this.find();
+    // this.criteria.budgetLimit = this.budgetLimit.upper;
+    this.criteria.startDate = new Date(""+this.criteria.startDate).getTime();
+    this.criteria.endDate = new Date(""+this.criteria.endDate).getTime();
+    // setTimeout(() => {
+    //   console.log("timeout over >>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    //   this.spinner.dismiss();
+    // }, 5000);
     this.navCtrl.push(TripListPage, {
-      criteria: this.criteria
+      criteria: this.criteria,
+      spinner: this.spinner,
+      spinnerThis: this.spinnerThis
     });
+  }
+
+  /**
+   * Function called when the user clicks on a star rating as part of trip search criteria
+   * the star rating limits the hotel searches to only the selected star ratings
+   */
+  addSelectedRating(rating, ratingString){
+    let index = this.criteria.hotelInformation.ratings.indexOf(rating);
+    if(index >= 0){
+      //already exists, need to remove
+      this.starRating[rating-1] = false;
+      this.criteria.hotelInformation.ratings.splice(index, 1);
+    } else{
+      //does not exist, need to add
+      this.criteria.hotelInformation.ratings.push(rating);
+      this.starRating[rating-1] = true;
+    }
+    console.log(this.starRating);
+  }
+
+  /**
+   * button called when user selects a star rating button
+   */
+  isButtonSelected(rating){
+    let index = this.criteria.hotelInformation.ratings.indexOf(rating);
+    if(index >= 0) {
+      console.log("returning true for "+ rating +" "+ index);
+      return true;
+    }
+  }
+
+  toggle(){
+    this.five = !this.five;
   }
 }
