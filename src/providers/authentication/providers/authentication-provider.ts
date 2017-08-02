@@ -8,4 +8,5 @@ export interface AuthenticationProvider {
     getAuthenticatedUser(): Promise<User>;
     isLoggedIn(): Promise<Boolean>;
     getLinkedProviders(): Array<OAuthProvider>;
+    link(OAuthProfile): Promise<User>;
 }

@@ -1,14 +1,19 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-
-import { DiscoveryProvider } from '../../providers';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import {
-  BookkeeperPage,
-  TripListPage,
+  // DiscoveryProvider,
+  DataManagerProvider
+} from '../../providers';
+
+import {
+  // BookkeeperPage,
+  // TripListPage,
   SearchCriteriaPage,
   LocationPreferenceListPage
 } from '../../pages';
+
+import { LocationCategory } from '../../models';
 /**
  * Generated class for the DiscoveryPage page.
  *
@@ -21,16 +26,25 @@ import {
   templateUrl: 'discovery.html',
 })
 export class DiscoveryPage {
-  category: any;
+  category: LocationCategory;
+  categories: Array<LocationCategory>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private dataManager: DataManagerProvider) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad DiscoveryPage');
+
+    console.log('Loading Data');
+    this.dataManager.getLocationCategories().then(categories => {
+      console.log('Received categories', categories);
+      this.categories = categories;
+    });
   }
 
   next() {
     this.navCtrl.push(LocationPreferenceListPage, {
-      category: {
-        name: this.category
-      }
+      category: this.category
     });
   }
 
