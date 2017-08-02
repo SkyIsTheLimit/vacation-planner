@@ -18,21 +18,21 @@
     <ion-item>
       <ion-label floating>Origin</ion-label>
       <!-- <ion-input type="text" style="color: blue"></ion-input> -->
-      <ion-input [(ngModel)]="criteria.origin" (ngModelChange)="fetchSuggestions(criteria.origin, 'origin')" color="link"></ion-input>
+      <ion-input [(ngModel)]="selectedOrigin" (ngModelChange)="fetchSuggestions(selectedOrigin, 'origin')" color="link"></ion-input>
     </ion-item>
 
     <ion-list>
-      <button ion-item *ngFor="let suggestion of originSuggestions" (click)="addDestination(suggestion, 'origin', $event)">{{ suggestion.description }}</button>
+      <button ion-item *ngFor="let suggestion of originSuggestions" (click)="setOrigin(suggestion, 'origin', $event)">{{ suggestion.city }} ({{ suggestion.code }}) - {{ suggestion.airportname }}</button>
     </ion-list>
 
     <ion-item>
       <ion-label floating>Destination</ion-label>
       <!-- <ion-input type="text" style="color: blue"></ion-input> -->
-      <ion-input [(ngModel)]="criteria.destination" (ngModelChange)="fetchSuggestions(criteria.destination, 'destination')" color="link"></ion-input>
+      <ion-input [(ngModel)]="selectedDestination" (ngModelChange)="fetchSuggestions(selectedDestination, 'destination')" color="link"></ion-input>
     </ion-item>
 
     <ion-list>
-      <button ion-item *ngFor="let suggestion of destinationSuggestions" (click)="addDestination(suggestion, 'destination', $event)">{{ suggestion.description }}</button>
+      <button ion-item *ngFor="let suggestion of destinationSuggestions" (click)="setDestination(suggestion, 'destination', $event)">{{ suggestion.city }} ({{ suggestion.code }}) - {{ suggestion.airportname }}</button>
     </ion-list>
 
     <ion-item>

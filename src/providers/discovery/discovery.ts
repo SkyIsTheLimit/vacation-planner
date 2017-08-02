@@ -32,22 +32,23 @@ export class DiscoveryProvider {
       .map(res => res.json());
   }
 
-  fetchSuggestions(input) {
+  fetchSuggestions(input, n) {
     return new Promise<any>((resolve, reject) => {
       if (!this.airports) {
         this.apiManager.loadAirports().subscribe(airports => {
           this.airports = airports;
+          console.info('Airports', this.airports);
           resolve({
             predictions: airports.filter(function (airport) {
-              return airport.airportname.indexOf(input) !== -1;
-            })
+              return airport.city.indexOf(input) !== -1;
+            }).splice(0, n)
           });
         }, error => reject(error));
       } else {
         resolve({
           predictions: this.airports.filter(function (airport) {
-            return airport.airportname.indexOf(input) !== -1;
-          })
+            return airport.city.indexOf(input) !== -1;
+          }).splice(0, n)
         });
       }
     });

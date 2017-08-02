@@ -28,7 +28,7 @@
     </ion-item>
 
     <ion-list>
-      <button ion-item *ngFor="let suggestion of suggestions" (click)="setOrigin(suggestion)">{{ suggestion.airportname }}</button>
+      <button ion-item *ngFor="let suggestion of suggestions" (click)="setOrigin(suggestion)">{{ suggestion.city }} ({{ suggestion.code }}) - {{ suggestion.airportname }}</button>
     </ion-list>
 
     <ion-item>
