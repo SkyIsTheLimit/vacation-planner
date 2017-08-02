@@ -23,7 +23,8 @@
 
     <ion-item>
       <ion-label floating>Choose Origin</ion-label>
-      <ion-input [(ngModel)]="criteria.origin" (ngModelChange)="fetchSuggestions(criteria.origin)" color="link">{{ criteria.origin.airportname }} ({{ criteria.origin.code }})</ion-input>
+      <!-- <ion-input [(ngModel)]="criteria.origin" (ngModelChange)="fetchSuggestions(criteria.origin)" color="link">{{ criteria.origin.airportname }} ({{ criteria.origin.code }})</ion-input> -->
+      <ion-input [(ngModel)]="selectedOrigin" (ngModelChange)="fetchSuggestions(selectedOrigin)" color="link"></ion-input>
     </ion-item>
 
     <ion-list>
@@ -46,6 +47,22 @@
         <ion-label range-left>1000</ion-label>
         <ion-label range-right>500000</ion-label>
       </ion-range>
+    </ion-item>
+
+    <ion-label style="font-size: 16px; padding-left: 16px;">Hotel Preferences</ion-label>
+
+    <ion-item>
+      <ion-label>Number of Rooms</ion-label>
+      <ion-select [(ngModel)]="selectedRooms" interface="popover" style="color: blue">
+        <ion-option *ngFor="let num of noOfRooms" value={{num}}>{{num}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Number of Guests</ion-label>
+      <ion-select [(ngModel)]="selectedGuests" interface="popover" style="color: blue">
+        <ion-option *ngFor="let num of noOfGuests" value={{num}}>{{num}}</ion-option>
+      </ion-select>
     </ion-item>
   </ion-list>
 

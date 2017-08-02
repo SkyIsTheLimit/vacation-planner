@@ -12,6 +12,7 @@ import { ApiManagerProvider } from '../api-manager/api-manager';
 */
 @Injectable()
 export class DiscoveryProvider {
+  airports: Array<any>;
 
   constructor(public http: Http, public apiManager: ApiManagerProvider) {
     console.log('Hello DiscoveryProvider Provider');
@@ -33,13 +34,22 @@ export class DiscoveryProvider {
 
   fetchSuggestions(input) {
     return new Promise<any>((resolve, reject) => {
-      this.apiManager.loadAirports().subscribe(airports => {
+      if (!this.airports) {
+        this.apiManager.loadAirports().subscribe(airports => {
+          this.airports = airports;
+          resolve({
+            predictions: airports.filter(function (airport) {
+              return airport.airportname.indexOf(input) !== -1;
+            })
+          });
+        }, error => reject(error));
+      } else {
         resolve({
-          predictions: airports.filter(function (airport) {
+          predictions: this.airports.filter(function (airport) {
             return airport.airportname.indexOf(input) !== -1;
           })
         });
-      }, error => reject(error));
+      }
     });
   }
 

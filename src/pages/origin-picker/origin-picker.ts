@@ -26,6 +26,7 @@ export class OriginPickerPage {
     origin: {}
   };
   destination: Location;
+  selectedOrigin = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public discovery: DiscoveryProvider) {
     this.criteria.budget = {
@@ -50,7 +51,8 @@ export class OriginPickerPage {
   }
 
   setOrigin(origin) {
-    this.criteria.origin = origin.description;
+    this.selectedOrigin = origin.city + '(' + origin.code + ')';
+    this.criteria.origin = origin;
     this.isOriginSet = true;
     this.suggestions = [];
   }

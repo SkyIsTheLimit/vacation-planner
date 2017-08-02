@@ -34,8 +34,10 @@
     </ion-item> -->
   </ion-list>
 
-  <button ion-button round large block color="secondary" [disabled]="!destination" (click)="next()">
+  <div class="fixed-options">
+    <button ion-button round large block color="secondary" [disabled]="!destination" (click)="next()">
     Next &nbsp;&nbsp;
     <ion-icon name="arrow-forward"></ion-icon>
   </button>
+  </div>
 </ion-content>
