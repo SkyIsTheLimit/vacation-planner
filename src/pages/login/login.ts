@@ -3,13 +3,15 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 
 import {
   DispatchPage,
-  SignupPage
+  SignupPage,
+  PreferencesPage
 } from '../../pages';
 
 import {
   AuthenticationProvider,
   OAuthProvider,
-  UserManagerProvider
+  UserManagerProvider,
+  ApiManagerProvider
 } from '../../providers';
 
 import {
@@ -31,10 +33,16 @@ export class LoginPage {
   authenticationProvider: AuthenticationProvider;
   oauthProviders: Array<OAuthProvider>;
   oauthProfile: OAuthProfile;
+  credentials = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toast: ToastController, public userManager: UserManagerProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toast: ToastController, public userManager: UserManagerProvider, public apiManager: ApiManagerProvider) {
     this.authenticationProvider = this.userManager.getAuthenticationProvider();
     this.oauthProviders = this.authenticationProvider.getLinkedProviders();
+
+    this.apiManager.loadAirports()
+      .subscribe((data) => {
+        console.info('Received Airport Codes', data);
+      });
   }
 
   ionViewDidLoad() {
@@ -69,19 +77,40 @@ export class LoginPage {
 
       // Nobody is logged in currently.
       return this.userManager.getUserFromOAuth(profile.id, profile.type)
-    }).then(user => {
-      return this.authenticationProvider.login({
-        username: user.username,
-        password: ''
-      });
-    }).then(loggedInUser => {
-      loggedInUser.linkedAccounts = loggedInUser.linkedAccounts || [];
-      loggedInUser.linkedAccounts.push(this.oauthProfile);
-      loggedInUser.picture = this.oauthProfile.picture.data.url;
+        .then(user => {
+          return this.authenticationProvider.login({
+            username: user.username,
+            password: user.password
+          });
+        }).then(loggedInUser => {
+          loggedInUser.linkedAccount = this.oauthProfile;
+          loggedInUser.picture = this.oauthProfile.picture.data.url;
 
-      // [TODO] The account linkage will have to be saved too.
+          // [TODO] The account linkage will have to be saved too.
 
-      this.navCtrl.push(DispatchPage);
+          this.navCtrl.push(DispatchPage);
+        }).catch(error => {
+          let user = {
+            username: profile.id,
+            password: profile.id,
+            name: profile.name,
+            email: profile.email,
+            // linkedAccount: profile,
+            picture: profile.picture
+          };
+
+          this.authenticationProvider.signup(user).then(user => {
+            if (profile.picture.data) {
+              profile.picture = profile.picture.data.url;
+            }
+
+            return this.userManager.createOAuthProfile(profile);
+          }).then(profile => {
+            return this.authenticationProvider.link(profile).then(user => {
+              this.navCtrl.push(PreferencesPage);
+            });
+          });
+        });
     }).catch(reason => {
       this.toast.create({
         message: 'Something went wrong: ' + reason,

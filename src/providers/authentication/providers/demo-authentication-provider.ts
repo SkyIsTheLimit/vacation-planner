@@ -11,11 +11,12 @@ export class DemoAuthenticationProvider implements AuthenticationProvider {
         id: 1,
         username: 'foo',
         name: 'Test User',
+        password: '',
         email: 'foo@baz.com',
         picture: '',
-        linkedAccounts: []
+        linkedAccount: null
     };
-    loggedInStatus = false;
+    loggedInStatus = true;
 
     constructor(public facebook: FacebookOAuthProvider) {
         console.debug('Initialized Demo Authentication Provider');
@@ -59,5 +60,9 @@ export class DemoAuthenticationProvider implements AuthenticationProvider {
 
     signup(email) {
         return this.login(email);
+    }
+
+    link(profile) {
+        return null;
     }
 }

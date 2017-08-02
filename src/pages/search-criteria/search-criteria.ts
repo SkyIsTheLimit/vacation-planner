@@ -103,7 +103,7 @@ export class SearchCriteriaPage {
 
   fetchSuggestions(query, type) {
     this.discovery.fetchSuggestions(query)
-      .subscribe(suggestions => {
+      .then(suggestions => {
         this[type + 'Suggestions'] = suggestions.predictions;
         console.info('Loaded suggestions', this[type + 'Suggestions']);
       });

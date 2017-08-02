@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { Facebook } from '@ionic-native/facebook';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -31,8 +32,6 @@ import {
   HotelDetailModalPage
 } from '../pages';
 
-import { Facebook } from '@ionic-native/facebook';
-
 import {
   DiscoveryProvider,
   BookkeeperProvider,
@@ -44,8 +43,11 @@ import {
   TripManagerProvider,
   UserManagerProvider,
   DemoAuthenticationProvider,
+  FlightManagerProvider,
+  RestAuthenticationProvider,
   FacebookOAuthProvider,
-  FlightManagerProvider
+  DataManagerProvider,
+  ApiManagerProvider
 } from '../providers';
 
 @NgModule({
@@ -118,8 +120,11 @@ import {
     TripManagerProvider,
     UserManagerProvider,
     DemoAuthenticationProvider,
-    FacebookOAuthProvider,
     FlightManagerProvider
+    RestAuthenticationProvider,
+    FacebookOAuthProvider,
+    DataManagerProvider,
+    ApiManagerProvider
   ]
 })
 export class AppModule { }
