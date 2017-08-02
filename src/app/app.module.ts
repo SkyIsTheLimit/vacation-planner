@@ -26,7 +26,10 @@ import {
   AboutPage,
   SearchCriteriaPage,
   LocationPreferenceListPage,
-  OriginPickerPage
+  OriginPickerPage,
+  FlightDetailModalPage,
+  HotelListPage,
+  HotelDetailModalPage
 } from '../pages';
 
 import {
@@ -40,6 +43,7 @@ import {
   TripManagerProvider,
   UserManagerProvider,
   DemoAuthenticationProvider,
+  FlightManagerProvider,
   RestAuthenticationProvider,
   FacebookOAuthProvider,
   DataManagerProvider,
@@ -66,7 +70,10 @@ import {
     AboutPage,
     SearchCriteriaPage,
     LocationPreferenceListPage,
-    OriginPickerPage
+    OriginPickerPage,
+    FlightDetailModalPage,
+    HotelListPage,
+    HotelDetailModalPage
   ],
   imports: [
     HttpModule,
@@ -93,7 +100,10 @@ import {
     AboutPage,
     SearchCriteriaPage,
     LocationPreferenceListPage,
-    OriginPickerPage
+    OriginPickerPage,
+    FlightDetailModalPage,
+    HotelListPage,
+    HotelDetailModalPage
   ],
   providers: [
     StatusBar,
@@ -110,6 +120,7 @@ import {
     TripManagerProvider,
     UserManagerProvider,
     DemoAuthenticationProvider,
+    FlightManagerProvider
     RestAuthenticationProvider,
     FacebookOAuthProvider,
     DataManagerProvider,

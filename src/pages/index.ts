@@ -16,3 +16,6 @@ export * from './preferences/preferences';
 export * from './about/about';
 export * from './location-preference-list/location-preference-list';
 export * from './origin-picker/origin-picker';
+export * from './flight-detail-modal/flight-detail-modal';
+export * from './hotel-list/hotel-list';
+export * from './hotel-detail-modal/hotel-detail-modal';

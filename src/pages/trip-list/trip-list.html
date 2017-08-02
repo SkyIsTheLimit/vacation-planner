@@ -14,14 +14,40 @@
 
 
 <ion-content padding>
+  <ion-card style="display: inline;">
+    <ion-card-header>
+      Showing {{trips.list.length}} matching flight results.
+    </ion-card-header>
+
   <ion-list>
-    <ion-item *ngFor="let trip of trips" (click)="viewDetail(trip)">
-      <ion-thumbnail item-start>
-        <img width="24" src="assets/139884-travel/svg/airplane-1.svg" alt="" />
-      </ion-thumbnail>
-      <h2>{{ trip.title }}</h2>
-       <p>Lorem ipsum dolor sit.</p> 
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-  </ion-list>
+    <div ion-item *ngFor="let trip of trips.list">
+     <ion-avatar item-start (click)="viewFlightDetails(trip)">
+        <img src="assets/139884-travel/svg/airplane-1.svg">
+      </ion-avatar>
+      <div style="display: flex;">
+        <div style="flex: 1" (click)="viewFlightDetails(trip)">
+          <div class="flightTimings" style="display: flex;">
+            <div class="originDeparture" style="padding-right:20px">
+              <div>{{trip.originDeparture.time.hours}}:{{trip.originDeparture.time.mins}}</div>
+              <div style="font-size: 8px; color: #575757">{{trip.originDeparture.date.date}} {{trip.originDeparture.date.month}}, {{trip.originDeparture.date.day}}</div>
+            </div>
+            <div class="destinationArrival" style="padding-left:20px; text-align: right">
+              <div>{{trip.destinationArrival.time.hours}}:{{trip.destinationArrival.time.mins}}</div>
+              <div style="font-size: 8px;  color: #575757">{{trip.destinationArrival.date.date}} {{trip.destinationArrival.date.month}}, {{trip.destinationArrival.date.day}}</div>
+            </div>
+          </div>
+          <div style="font-size: 10px; color: #575757">
+            {{trip.totalDuration}} minutes |
+            <label *ngIf="trip.phase.length == 1">non-stop</label>
+            <label *ngIf="trip.phase.length > 1"> {{trip.phase.length -1}} stops</label>
+          </div>
+        </div>
+        <div style="flex:1; text-align:right; color: darkblue;" (click)="viewFlightDetails(trip)">{{trip.totalPrice}}</div>
+        <ion-icon name='arrow-forward' style="padding-left: 5px;" (click)="viewHotelsList(trip, $event)"></ion-icon>
+      </div>
+      
+    </div>
+   </ion-list>
+
+  </ion-card>
 </ion-content>
