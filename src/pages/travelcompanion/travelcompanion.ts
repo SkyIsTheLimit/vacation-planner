@@ -33,7 +33,7 @@ export class TravelcompanionPage {
       keyword: "",
       filter: "",
       location: "",
-      radius: "2000"
+      radius: "10000"
     };
     if(resulttype=='airport')
     {

@@ -26,25 +26,35 @@
           <ion-icon name="settings"></ion-icon>&nbsp;&nbsp;
           Preferences
         </button>
-        <img [src]="user.picture" *ngIf="user.picture" />
+        <img [src]="user.picture" *ngIf="user && user.picture" />
         <ion-icon name="person" style="font-size: 3em" *ngIf="!user.picture"></ion-icon>
       </ion-col>
     </ion-row>
 
-    <ion-row *ngFor="let account of user.linkedAccounts">
+    <ion-row *ngIf="!user.linkedAccount">
+      <ion-col>
+        <p>No Linked Accounts</p>
+
+        <div *ngFor="let provider of oAuthProviders">
+          <img [src]="provider.getLoginButtonUrl()" [alt]="'Login with ' + provider.getName()" (click)="loginWithOAuthProvider(provider)">
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="user.linkedAccount">
       <ion-col>
         <ion-list text-center>
           <ion-item>
             <h2>Linked Accounts</h2>
           </ion-item>
-          <ion-item *ngFor="let account of user.linkedAccounts">
+          <ion-item>
             <ion-label>
               <ion-avatar item-start style="float: left">
-                <img [src]="account.picture.data.url">
+                <img [src]="user.linkedAccount.picture" *ngIf="user && user.linkedAccount && user.linkedAccount.picture">
               </ion-avatar>
-              <h2 color="primary">{{ account.name }}</h2>
-              <h3 color="secondary">{{ account.email }}</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing....</p>
+              <h2 color="primary">{{ user.linkedAccount.name }}</h2>
+              <h3 color="secondary">{{ user.linkedAccount.email }}</h3>
+              <p>Linked to Facebook</p>
             </ion-label>
           </ion-item>
         </ion-list>

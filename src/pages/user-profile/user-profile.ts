@@ -8,6 +8,10 @@ import {
   UserManagerProvider
 } from '../../providers';
 
+import { User } from '../../models';
+
+import { OAuthProvider } from '../../providers/authentication/providers/o-auth-provider';
+
 import {
   DispatchPage,
   PreferencesPage,
@@ -28,6 +32,7 @@ import {
 export class UserProfilePage {
   user: any = {};
   authenticationProvider: AuthenticationProvider;
+  oAuthProviders: Array<OAuthProvider> = [];
 
   constructor(
     public navCtrl: NavController,
@@ -37,6 +42,7 @@ export class UserProfilePage {
     public userManager: UserManagerProvider,
     public toast: ToastController) {
     this.authenticationProvider = this.userManager.getAuthenticationProvider();
+    this.oAuthProviders = this.authenticationProvider.getLinkedProviders();
   }
 
   ionViewDidLoad() {
@@ -66,52 +72,26 @@ export class UserProfilePage {
     });
   }
 
-  // checkForLogin() {
-  //   this.authentication.getLoggedInUser().then((user) => {
-  //     this.user = user;
-  //     console.debug('Reveived Demo User', this.user);
-  //   }).catch(() => {
-  //     this.authentication.logout().then(() => {
-  //       console.debug('No User receieved', 'logging out');
-  //       // this.viewCtrl.dismiss();
-  //       this.app.getRootNav().push(DispatchPage);
-
-  //       // this.navCtrl.popToRoot();
-  //       // this.navCtrl.pop();
-  //       // this.navCtrl.setRoot(DispatchPage);
-  //     })
-  //   });
-  // }
-
-  // checkFacebookLogin() {
-  //   console.debug('[User Profile Page]: Trying to login');
-  //   this.fb.isLoggedIn()
-  //     .then(() => {
-  //       console.debug('Recieved success login');
-  //       this.getProfile();
-  //     })
-  //     .catch((e) => {
-  //       console.debug('Received error', e);
-  //     });
-  // }
-
-  // getProfile() {
-  //   this.fb.getProfile("id,name,picture").then((res) => {
-  //     this.profile = {
-  //       id: res.id,
-  //       name: res.name,
-  //       picture: res.picture.data.url
-  //     };
-  //   });
-  // }
-
-  // logout() {
-  //   this.authentication.logout().then(() => {
-  //     this.fb.logout()
-  //       .then(() => this.app.getRootNav().setRoot(DispatchPage))
-  //       .catch(() => this.app.getRootNav().setRoot(DispatchPage));
-  //   });
-  // }
+  loginWithOAuthProvider(provider: OAuthProvider) {
+    provider.login()
+      .then(profile => {
+        return provider.getAuthenticatedUser({
+          fields: 'name,email,picture'
+        });
+      })
+      .then(profile => {
+        return this.authenticationProvider.link(profile);
+      })
+      .then(user => {
+        console.info('Received updated user', user);
+        this.user = user;
+      }).catch(reason => {
+        this.toast.create({
+          message: reason,
+          duration: 5000
+        }).present();
+      })
+  }
 
   logoutWithProvider() {
     this.authenticationProvider.logout()

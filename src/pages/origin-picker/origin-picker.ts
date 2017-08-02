@@ -22,7 +22,9 @@ export class OriginPickerPage {
   suggestions: any;
   origin: any;
   isOriginSet: Boolean = false;
-  criteria: any = {};
+  criteria: any = {
+    origin: {}
+  };
   destination: Location;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public discovery: DiscoveryProvider) {
@@ -39,8 +41,9 @@ export class OriginPickerPage {
   }
 
   fetchSuggestions(query) {
+    console.info('Fetching Suggestions', query);
     this.discovery.fetchSuggestions(query)
-      .subscribe(suggestions => {
+      .then(suggestions => {
         this.suggestions = suggestions.predictions;
         console.info('Loaded suggestions', this.suggestions);
       });
