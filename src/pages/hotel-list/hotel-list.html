@@ -1,0 +1,46 @@
+<!--
+  Generated template for the HotelListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Hotel List</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-card style="display: inline;">
+    <ion-card-header>
+      Showing (number) matching hotel results
+    </ion-card-header>
+
+  <ion-list>
+    <div ion-item>
+     <ion-avatar item-start (click)="viewHotelDetails('')">
+        <img src="assets/139884-travel/svg/hotel.svg">
+      </ion-avatar>
+      <div style="display: flex; text-align: right">
+        <div style="flex: 1" (click)="viewHotelDetails('')">
+          <div>Hotel Name</div>
+          <div style="font-size: 10px; color: #575757">
+            <div>Per Night Tarriff</div>
+            <div>Rating</div>
+            <div>Total Rooms Left</div>
+            <!--<label *ngIf="trip.phase.length == 1">non-stop</label>-->
+            <!--<label *ngIf="trip.phase.length > 1"> {{trip.phase.length -1}} stops</label>-->
+          </div>
+        </div>
+        <!--<div style="flex:1; text-align:right; color: darkblue;" (click)="viewFlightDetails(trip)">{{trip.totalPrice}}</div>-->
+        <ion-icon name='arrow-forward' style="padding-left: 5px;" (click)="viewTripDetails()"></ion-icon>
+      </div>
+      
+    </div>
+   </ion-list>
+
+  </ion-card>
+</ion-content>

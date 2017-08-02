@@ -18,7 +18,7 @@
     <ion-item>
       <ion-label floating>Origin</ion-label>
       <!-- <ion-input type="text" style="color: blue"></ion-input> -->
-      <ion-input [(ngModel)]="criteria.origin" (ngModelChange)="fetchSuggestions(criteria.origin, 'origin')" color="link"></ion-input>
+      <ion-input [(ngModel)]="criteria.origin.city" (ngModelChange)="fetchSuggestions(criteria.origin.city, 'origin')" color="link"></ion-input>
     </ion-item>
 
     <ion-list>
@@ -28,7 +28,7 @@
     <ion-item>
       <ion-label floating>Destination</ion-label>
       <!-- <ion-input type="text" style="color: blue"></ion-input> -->
-      <ion-input [(ngModel)]="criteria.destination" (ngModelChange)="fetchSuggestions(criteria.destination, 'destination')" color="link"></ion-input>
+      <ion-input [(ngModel)]="criteria.destination.city" (ngModelChange)="fetchSuggestions(criteria.destination.city, 'destination')" color="link"></ion-input>
     </ion-item>
 
     <ion-list>
@@ -47,28 +47,57 @@
 
     <ion-item>
       <ion-label>Budget Range</ion-label>
-      <ion-range dualKnobs="true" [(ngModel)]="singleValue" min="1000" max="500000" step="100" pin="true">
+      <ion-range dualKnobs="true" [(ngModel)]="budgetLimit" min="5000" max="500000" step="100" pin="true">
         <ion-label range-left>1000</ion-label>
         <ion-label range-right>500000</ion-label>
       </ion-range>
     </ion-item>
 
     <div style="text-align: center; font-size: 12px; color: blue">
-      <ion-label>{{singleValue.lower}} to {{singleValue.upper}}</ion-label>
+      <ion-label>{{budgetLimit.lower}} to {{budgetLimit.upper}}</ion-label>
     </div>
 
     <ion-label style="font-size: 16px; padding-left: 16px;">Hotel Preferences</ion-label>
-
+    <ion-item>Star Rating
+      <div style="display: flex; padding-top: 20px;">
+        <button [ngClass]="{'activated': this.starRating[0], 'star-rating-button': this.starRating[0]}" ion-button outline color="link" 
+          style="flex: 1; height: 25px; margin-left: 10px; margin-right: 10px;" (click)="addSelectedRating(1, one)">
+          <label style="font-size: 1.2em">1</label>
+          <ion-icon name="star"></ion-icon>
+        </button>
+        <button [ngClass]="{'activated': this.starRating[1], 'star-rating-button': !this.starRating[1]}" ion-button outline color="link" 
+          style="flex: 1; height: 25px; margin-left: 10px; margin-right: 10px;" (click)="addSelectedRating(2, two)">
+          <label style="font-size: 1.2em">2</label>
+          <ion-icon name="star"></ion-icon>
+        </button>
+        <button [ngClass]="{'activated': this.starRating[2], 'star-rating-button': !this.starRating[2]}" ion-button outline color="link" 
+          style="flex: 1; height: 25px; margin-left: 10px; margin-right: 10px;" (click)="addSelectedRating(3, three)">
+          <label style="font-size: 1.2em">3</label>
+          <ion-icon name="star"></ion-icon>
+        </button>
+        <button class="star-rating-button" [ngClass]="{'activated': this.starRating[3], 'star-rating-button': !this.starRating[3]}" ion-button outline color="link" 
+          style="flex: 1; height: 25px; margin-left: 10px; margin-right: 10px;" (click)="addSelectedRating(4, four)">
+          <label style="font-size: 1.2em">4</label>
+          <ion-icon name="star"></ion-icon>
+        </button>
+        <button [ngClass]= "{'activated' : five}" ion-button outline color="link" 
+          style="flex: 1; height: 25px; margin-left: 10px; margin-right: 10px;" (click)="toggle()">
+          <label style="font-size: 1.2em">5</label>
+          <ion-icon name="star"></ion-icon>
+        </button>
+        {{five}}
+      </div>
+    </ion-item>
     <ion-item>
       <ion-label>Number of Rooms</ion-label>
-      <ion-select [(ngModel)]="selectedRooms" interface="popover" style="color: blue">
+      <ion-select [(ngModel)]="criteria.hotelInformation.numberOfRooms" interface="popover" style="color: blue">
         <ion-option *ngFor="let num of noOfRooms" value={{num}}>{{num}}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Number of Guests</ion-label>
-      <ion-select [(ngModel)]="selectedGuests" interface="popover" style="color: blue">
+      <ion-select [(ngModel)]="criteria.hotelInformation.numberOfGuests" interface="popover" style="color: blue">
         <ion-option *ngFor="let num of noOfGuests" value={{num}}>{{num}}</ion-option>
       </ion-select>
     </ion-item>

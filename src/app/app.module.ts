@@ -25,7 +25,10 @@ import {
   AboutPage,
   SearchCriteriaPage,
   LocationPreferenceListPage,
-  OriginPickerPage
+  OriginPickerPage,
+  FlightDetailModalPage,
+  HotelListPage,
+  HotelDetailModalPage
 } from '../pages';
 
 import { Facebook } from '@ionic-native/facebook';
@@ -41,7 +44,8 @@ import {
   TripManagerProvider,
   UserManagerProvider,
   DemoAuthenticationProvider,
-  FacebookOAuthProvider
+  FacebookOAuthProvider,
+  FlightManagerProvider
 } from '../providers';
 
 @NgModule({
@@ -64,7 +68,10 @@ import {
     AboutPage,
     SearchCriteriaPage,
     LocationPreferenceListPage,
-    OriginPickerPage
+    OriginPickerPage,
+    FlightDetailModalPage,
+    HotelListPage,
+    HotelDetailModalPage
   ],
   imports: [
     HttpModule,
@@ -91,7 +98,10 @@ import {
     AboutPage,
     SearchCriteriaPage,
     LocationPreferenceListPage,
-    OriginPickerPage
+    OriginPickerPage,
+    FlightDetailModalPage,
+    HotelListPage,
+    HotelDetailModalPage
   ],
   providers: [
     StatusBar,
@@ -108,7 +118,8 @@ import {
     TripManagerProvider,
     UserManagerProvider,
     DemoAuthenticationProvider,
-    FacebookOAuthProvider
+    FacebookOAuthProvider,
+    FlightManagerProvider
   ]
 })
 export class AppModule { }
