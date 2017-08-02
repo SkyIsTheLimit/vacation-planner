@@ -15,6 +15,7 @@ export class TravelCompanionProvider {
   constructor(public http: Http) {
     let that = this;
     console.log('Hello TravelCompanionProvider Provider');
+
     navigator.geolocation.getCurrentPosition(function(position) {
             
             var pos = {
@@ -34,8 +35,8 @@ export class TravelCompanionProvider {
     console.log("radius: " + criteria.radius);
     console.log("type: " + criteria.type);
     console.log("location:" + this.location);
-    var endpoint = 'http://localhost:8080/NearBy?'
-      + 'location=' + this.location +
+    var endpoint = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
+      + 'location=' + criteria.location +
       '&radius=' + criteria.radius +
       '&type=' + criteria.type +
       '&keyword=' + criteria.keyword +
@@ -45,5 +46,24 @@ export class TravelCompanionProvider {
     // .then((json : Object) => this.res = json.toString());
     // console.log(this.res);
     // return this.res;
+  }
+  getLocationCoordsForCity(criteria:CompanionCriteria)
+  {
+    var endpoint = 'https://maps.googleapis.com/maps/api/geocode/json?'+
+         'address=' + criteria.location + 
+     /* + 'location=' + this.location +
+      '&radius=' + criteria.radius +
+      '&type=' + criteria.type +
+      '&keyword=' + criteria.keyword +*/
+      '&key=AIzaSyAfmZS0HL2gy02bHOco0sDhmG7dpMBaflA';
+        return this.http.get(endpoint).map(response => response.json())
+  }
+  getdistanceForCoords(criteria:CompanionCriteria )
+  {
+    var endpoint = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&'+
+         'origins=' + criteria.location + "|" + criteria.radius +
+      '&destinations=' + criteria.radius + "|" + criteria.location
+      '&key=AIzaSyAfmZS0HL2gy02bHOco0sDhmG7dpMBaflA';
+        return this.http.get(endpoint).map(response => response.json())
   }
 }
