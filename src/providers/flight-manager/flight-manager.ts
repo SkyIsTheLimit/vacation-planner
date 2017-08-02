@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
 import tripsList from './flight-json';
+import hotelsList from './hotel-json';
 import 'rxjs/add/operator/map';
 
 /*
@@ -62,6 +63,14 @@ export class FlightManagerProvider {
       console.log("Looks like something has gone wrong");
       console.log(err);
     });
+  };
+
+
+  /**
+   * Manage hotels returned from hotel-json.ts
+   */
+  manageReturnedHotels(){
+    return hotelsList;
   }
 
   /**

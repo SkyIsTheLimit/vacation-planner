@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App, ModalController,  } from 'ionic-angular';
 
 import { HotelDetailModalPage } from '../hotel-detail-modal/hotel-detail-modal';
+import { FlightManagerProvider } from '../../providers/flight-manager/flight-manager';
 import { TripDetailPage } from '../trip-detail/trip-detail';
 /**
  * Generated class for the HotelListPage page.
@@ -16,10 +17,12 @@ import { TripDetailPage } from '../trip-detail/trip-detail';
 })
 export class HotelListPage {
 hotels: any;
+hotelsMasterList : any;
 flights: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public app: App, public modalCtrl: ModalController) {
+    public app: App, public modalCtrl: ModalController, public fm: FlightManagerProvider) {
     this.flights = this.navParams.get('flight');
+    this.hotels = fm.manageReturnedHotels();
   }
 
   ionViewDidLoad() {
@@ -37,6 +40,17 @@ flights: any;
  */
   viewTripDetails(){
      this.app.getRootNav().push(TripDetailPage);
+  }
+  /**
+   * Method called when the user pulls from the bottom of the screen at the end of the visible list
+   */
+  fetchMoreHotels(dvent){
+    console.log("querying for more hotels");
+    //check if there are more hotels available
+    var hotels = this.fm.manageReturnedHotels();
+    this.hotels = this.hotels.concat(hotels);
+    //if yes, display more
+    //else, do nothing
   }
 
 }
