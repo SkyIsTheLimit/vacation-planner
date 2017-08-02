@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Select Locations for {{ category.name }}</ion-title>
+    <ion-title>Select Destination for {{ category.name }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,7 +15,12 @@
 
 <ion-content padding>
   <ion-list radio-group [(ngModel)]="destination">
-    <ion-item>
+    <ion-item *ngFor="let location of category.locations">
+      <ion-label>{{ location.name }}</ion-label>
+      <ion-radio [value]="location" checked></ion-radio>
+    </ion-item>
+
+    <!-- <ion-item>
       <ion-label>Florida</ion-label>
       <ion-radio value="florida" checked></ion-radio>
     </ion-item>
@@ -26,7 +31,7 @@
     <ion-item>
       <ion-label>Goa</ion-label>
       <ion-radio value="goa" [disabled]="isDisabled"></ion-radio>
-    </ion-item>
+    </ion-item> -->
   </ion-list>
 
   <button ion-button round large block color="secondary" [disabled]="!destination" (click)="next()">

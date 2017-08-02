@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App, ModalController, LoadingController } from 'ionic-angular';
 
 import { TripDetailPage } from '../trip-detail/trip-detail';
+import { FlightDetailModalPage } from '../flight-detail-modal/flight-detail-modal';
+import { FlightManagerProvider } from '../../providers/flight-manager/flight-manager';
+import { HotelListPage } from '../hotel-list/hotel-list';
 
 /**
  * Generated class for the TripListPage page.
@@ -15,36 +18,37 @@ import { TripDetailPage } from '../trip-detail/trip-detail';
   templateUrl: 'trip-list.html',
 })
 export class TripListPage {
-  trips: Array<any>;
+  // trips: Array<any>;
+  trips: any;
   criteria: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public app: App) {
-    this.trips = [{
-      title: 'Trip 1',
-      startDate: new Date().getTime(),
-      endDate: new Date().getTime()
-    }, {
-      title: 'Another Trip',
-      startDate: new Date().getTime(),
-      endDate: new Date().getTime()
-    }];
-
-    this.criteria = this.navParams.get('criteria');
-
-    this.trips.forEach(trip => {
-      trip.startDate = this.criteria.startDate;
-      trip.endDate = this.criteria.endDate;
-    });
+  constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, 
+    public fm: FlightManagerProvider, public modalCtrl: ModalController, public loadingCtrl: LoadingController) {
+      this.criteria = this.navParams.get("criteria");
+      console.log("search criteria in trip list");
+      console.log(this.criteria);
+      // fm.fetchMatchingFlights(this.criteria);
+    this.trips = fm.manageReturnedTrips();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TripListPage');
+    // console.log('ionViewDidLoad TripListPage');
   }
 
-  viewDetail(trip) {
-    this.app.getRootNav().push(TripDetailPage, {
+  viewHotelsList(trip) {
+    this.app.getRootNav().push(HotelListPage, {
       trip: trip
     });
+    // console.log(event.target.tagName);== IMG/ DIV
   }
 
+  viewFlightDetails(flight){
+    let flightDetailsModal = this.modalCtrl.create(FlightDetailModalPage, {
+      flight: flight
+    });
+    flightDetailsModal.present();
+    // this.app.getRootNav().push(FlightDetailModalPage, {
+    //   flight: flight
+    // });
+  }
 }

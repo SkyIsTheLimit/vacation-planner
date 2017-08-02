@@ -1,0 +1,72 @@
+<!--
+  Generated template for the UserProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>
+      <ion-icon name="contact"></ion-icon>
+      User Account
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <ion-label>Logged in as {{ user.name }}</ion-label>
+        <p>( {{ user.email }} )</p>
+        <button ion-button block clear (click)="gotoPreferences()">
+          <ion-icon name="settings"></ion-icon>&nbsp;&nbsp;
+          Preferences
+        </button>
+        <img [src]="user.picture" *ngIf="user && user.picture" />
+        <ion-icon name="person" style="font-size: 3em" *ngIf="!user.picture"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="!user.linkedAccount">
+      <ion-col>
+        <p>No Linked Accounts</p>
+
+        <div *ngFor="let provider of oAuthProviders">
+          <img [src]="provider.getLoginButtonUrl()" [alt]="'Login with ' + provider.getName()" (click)="loginWithOAuthProvider(provider)">
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="user.linkedAccount">
+      <ion-col>
+        <ion-list text-center>
+          <ion-item>
+            <h2>Linked Accounts</h2>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-avatar item-start style="float: left">
+                <img [src]="user.linkedAccount.picture" *ngIf="user && user.linkedAccount && user.linkedAccount.picture">
+              </ion-avatar>
+              <h2 color="primary">{{ user.linkedAccount.name }}</h2>
+              <h3 color="secondary">{{ user.linkedAccount.email }}</h3>
+              <p>Linked to Facebook</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button block clear color="danger" (click)="logoutWithProvider()">Logout</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <button ion-button block clear (click)="gotoAbout()">About Vacation Planner</button>
+</ion-content>
