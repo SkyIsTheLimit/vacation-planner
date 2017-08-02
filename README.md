@@ -1,7 +1,7 @@
 # Vacation Planner 
 [![Build Status](https://travis-ci.org/SkyIsTheLimit/vacation-planner.png)](https://travis-ci.org/SkyIsTheLimit/vacation-planner)
 
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+This is a starter template for [Ionic](http://ionicframework.com/docs/) projects. hello
 
 ## How to use this template
 
