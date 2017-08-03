@@ -15,14 +15,14 @@
 
 <ion-content padding>
 <ion-card style="display: inline;">
-    <ion-card-header>
+    <ion-card-header *ngIf="hotels.length">
       Showing (number) matching hotel results
     </ion-card-header>
 
-  <ion-list>
+  <ion-list *ngIf="hotels.length">
     <div ion-item *ngFor= "let hotel of hotels">
      <ion-avatar item-start (click)="viewHotelDetails(hotel)">
-        <img src="assets/139884-travel/svg/hotel.svg">
+        <img src={{hotel.tbig}}>
       </ion-avatar>
       <div style="display: flex; text-align: left">
         <div style="flex: 1" (click)="viewHotelDetails(hotel)">
@@ -49,6 +49,7 @@
     <!--<ion-infinite-scroll (ionInfinite)="fetchMoreHotels($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>-->
+    <div *ngIf="hotels.length == 0">Loading matching hotels. Wait a moment ...</div>
     <div style="color: blue; font-size: 12px;" (click)="setHotelList()" *ngIf="startIndex< hotelsMasterList.length">
       <label>Load More ...</label>
     </div>

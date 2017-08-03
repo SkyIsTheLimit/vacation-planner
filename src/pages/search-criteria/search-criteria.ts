@@ -24,8 +24,16 @@ export class SearchCriteriaPage {
   noOfGuests: Array<number>;
   budgetLimit: {};
   criteria = {
-    origin: {},
-    destination: {},
+    'origin': {
+      airportCode: "",
+      city: "",
+      country: ""
+    },
+    'destination': {
+      airportCode: "",
+      city: "",
+      country: ""
+    },
     startDate: {},
     endDate: {},
     budgetLimit: 100000,
@@ -82,13 +90,18 @@ export class SearchCriteriaPage {
   }
 
   setOrigin(origin) {
-    this.criteria.origin = origin;
+    this.criteria.origin.city = origin.city;
+    this.criteria.origin.airportCode = origin.code;
+    this.criteria.origin.country = origin.country;
     this.selectedOrigin = origin.city + '(' + origin.code + ') - ' + origin.airportname;
     this.originSuggestions = [];
   }
 
   setDestination(destination) {
-    this.criteria.destination = destination;
+    this.criteria.destination.city = destination.city;
+    this.criteria.destination.airportCode = destination.code;
+    this.criteria.destination.country = destination.country;
+    // this.criteria.destination = destination;
     this.selectedDestination = destination.city + '(' + destination.code + ') - ' + destination.airportname;
     this.destinationSuggestions = [];
   }

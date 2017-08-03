@@ -7,7 +7,7 @@ import { DiscoveryProvider } from '../../providers';
 import { Restaurant } from '../../models/restaurant';
 import { TravelassistantPage } from '../travelassistant/travelassistant';
 import { CompanionCriteria } from '../../models/companion-criteria.model';
-import { GoogleMap, GoogleMapsEvent, GoogleMaps, LatLng } from '@ionic-native/google-maps';
+// import { GoogleMap, GoogleMapsEvent, GoogleMaps, LatLng } from '@ionic-native/google-maps';
 /**
  * Generated class for the TravelassistantPage page.
  *
@@ -23,6 +23,39 @@ export class TravelcompanionPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tc: TravelCompanionProvider, private discovery: DiscoveryProvider, public platform: Platform) {
 }
+// map: GoogleMap;
+loadMap(){
+ 
+        // let location = new LatLng(-34.9290,138.6010);
+ 
+       /* this.map = new GoogleMap('map', {
+          'backgroundColor': 'white',
+          'controls': {
+            'compass': true,
+            'myLocationButton': true,
+            'indoorPicker': true,
+            'zoom': true
+          },
+          'gestures': {
+            'scroll': true,
+            'tilt': true,
+            'rotate': true,
+            'zoom': true
+          },
+          'camera': {
+            'latLng': location,
+            'tilt': 30,
+            'zoom': 15,
+            'bearing': 50
+          }
+        });*/
+      //   this.map = new GoogleMap('map');
+      //  // this.map.setVisible(true);
+      //   this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
+      //       console.log('Map is ready!');
+      //   });
+ 
+    }
   ionViewDidLoad() {
     console.log('ionViewDidLoad TravelassistantPage');
   }
@@ -37,6 +70,11 @@ originSuggestions: Array<any> = [];
 location: string = "";
 coordinates: Array<any> = [];
 fetchSuggestions(query, type) {
+    // this.discovery.fetchSuggestions(query)
+    //   .subscribe(suggestions => {
+    //     this[type + 'Suggestions'] = suggestions.predictions;
+    //     console.info('Loaded suggestions', this[type + 'Suggestions']);
+    //   });
     this.discovery.fetchSuggestions2(query)
       .subscribe(suggestions => {
         this[type + 'Suggestions'] = suggestions.predictions;
