@@ -16,18 +16,40 @@ import { TripDetailPage } from '../trip-detail/trip-detail';
   templateUrl: 'hotel-list.html',
 })
 export class HotelListPage {
-hotels: any;
+hotels: Array<object> = [];
 hotelsMasterList : any;
 flights: any;
+batchSize: number = 10;
+startIndex: number = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public app: App, public modalCtrl: ModalController, public fm: FlightManagerProvider) {
     this.flights = this.navParams.get('flight');
-    this.hotels = fm.manageReturnedHotels();
+    this.hotelsMasterList = fm.manageReturnedHotels();
+    this.setHotelList();
   }
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad HotelListPage');
   }
+  /**
+   * Method called as an extension of the constructor
+   * This method picks the first few matching hotels and pushes them to the UI linked array.
+   */
+  setHotelList(){
+    let initialValue = this.startIndex;
+    if(this.batchSize < (this.hotelsMasterList.length - this.startIndex)){
+      for(this.startIndex; this.startIndex < (this.batchSize + initialValue); this.startIndex++){
+        this.hotels.push(this.hotelsMasterList[this.startIndex]);
+      }
+    } else {
+      for(this.startIndex; this.startIndex < this.hotelsMasterList.length; this.startIndex++){
+        this.hotels.push(this.hotelsMasterList[this.startIndex]);
+      }
+    }
+    //set the start index for the next iteration
+    this.startIndex ++;
+  };
+
   viewHotelDetails(hotel){
     let flightDetailsModal = this.modalCtrl.create(HotelDetailModalPage, {
       hotel: hotel
@@ -41,16 +63,4 @@ flights: any;
   viewTripDetails(){
      this.app.getRootNav().push(TripDetailPage);
   }
-  /**
-   * Method called when the user pulls from the bottom of the screen at the end of the visible list
-   */
-  fetchMoreHotels(dvent){
-    console.log("querying for more hotels");
-    //check if there are more hotels available
-    var hotels = this.fm.manageReturnedHotels();
-    this.hotels = this.hotels.concat(hotels);
-    //if yes, display more
-    //else, do nothing
-  }
-
 }
