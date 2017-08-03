@@ -13,7 +13,7 @@ import {
   LocationPreferenceListPage
 } from '../../pages';
 
-import { LocationCategory } from '../../models';
+import { LocationCategory, Airport } from '../../models';
 /**
  * Generated class for the DiscoveryPage page.
  *
@@ -27,7 +27,7 @@ import { LocationCategory } from '../../models';
 })
 export class DiscoveryPage {
   category: LocationCategory;
-  categories: Array<LocationCategory>;
+  categories: Array<Airport>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private dataManager: DataManagerProvider) {
   }

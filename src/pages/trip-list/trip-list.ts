@@ -19,7 +19,9 @@ import { HotelListPage } from '../hotel-list/hotel-list';
 })
 export class TripListPage {
   // trips: Array<any>;
-  trips: any = [];
+  trips: any = {
+    list: []
+  };
   criteria: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public app: App,
@@ -30,8 +32,18 @@ export class TripListPage {
     // fm.fetchMatchingFlights(this.criteria);
     // this.trips = fm.manageReturnedTrips();
 
+    let spinner = this.loadingCtrl.create({
+      content: 'Loading Trips',
+      dismissOnPageChange: true,
+      duration: 2000
+    });
+
+    spinner.present();
+
     fm.manageReturnedTrips().then(trips => {
       this.trips = trips;
+
+      spinner.dismiss();
     });
   }
 

@@ -3,3 +3,4 @@ export * from './o-auth-profile';
 export * from './user';
 export * from './location';
 export * from './location-category';
+export * from './airport';

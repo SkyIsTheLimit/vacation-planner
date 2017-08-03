@@ -15,8 +15,8 @@
 
 <ion-content padding>
   <ion-list radio-group [(ngModel)]="destination">
-    <ion-item *ngFor="let location of category.locations">
-      <ion-label>{{ location.name }}</ion-label>
+    <ion-item *ngFor="let location of category.destinations">
+      <ion-label>{{ location.city }}</ion-label>
       <ion-radio [value]="location" checked></ion-radio>
     </ion-item>
 
