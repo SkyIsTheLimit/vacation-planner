@@ -8,6 +8,7 @@ export * from './signup/signup';
 export * from './tabs/tabs';
 export * from './travelassistant/travelassistant';
 export * from './travelcompanion/travelcompanion';
+export * from './travelcompaniondetail/travelcompaniondetail';
 export * from './trip-detail/trip-detail';
 export * from './search-criteria/search-criteria';
 export * from './trip-list/trip-list';
