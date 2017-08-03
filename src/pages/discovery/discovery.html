@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list radio-group [(ngModel)]="category">
+  <ion-list radio-group [(ngModel)]="category" style="margin-bottom: 80px">
     <ion-item *ngFor="let category of categories">
       <ion-label>
         <ion-avatar item-start style="float: left">
@@ -69,7 +69,7 @@
     </ion-item>
   </ion-list>
 
-  <div>
+  <div class="fixed-options">
     <button ion-button round block large color="secondary" (click)="next()" [disabled]="!category">
       Next &nbsp;&nbsp;
       <ion-icon name="arrow-forward"></ion-icon>

@@ -22,14 +22,14 @@ export class FlightManagerProvider {
   months: any = [];
   request = {
     'origin': {
-      airportCode: "BLR",
-      city: "Bangalore",
-      country : "India"
+      airportCode: "",
+      city: "",
+      country: ""
     },
     'destination': {
-      airportCode: "SIN",
-      city: "Singapore",
-      country : "Singapore"
+      airportCode: "",
+      city: "",
+      country: ""
     },
     'hotelInformation': {
       numberOfGuests: 2,
@@ -41,7 +41,7 @@ export class FlightManagerProvider {
     startDate: 1501785000000,
     endDate: 1502130600000,
   };
-// searchCriteria: any;
+  // searchCriteria: any;
   constructor(public http: Http) {
     // this.manageReturnedTrips();
     this.days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
@@ -52,7 +52,7 @@ export class FlightManagerProvider {
    * Method that queries the backend to fetch matching flights
    */
   fetchMatchingFlights(searchCriteria){
-    // this.prepareRequestObject(searchCriteria);
+    this.prepareRequestObject(searchCriteria);
     return this.http.post('http://ec2-34-200-248-144.compute-1.amazonaws.com:8080/flights', this.request);
     // .map(res => res.json());
     // return finalList;
@@ -63,7 +63,7 @@ export class FlightManagerProvider {
    * Manage hotels returned from hotel-json.ts
    */
   manageReturnedHotels(searchCriteria){
-    // this.prepareRequestObject(searchCriteria);
+    this.prepareRequestObject(searchCriteria);
     return this.http.post('http://ec2-34-200-248-144.compute-1.amazonaws.com:8080/hotels', this.request)
     // return hotelsList;
   }
@@ -71,7 +71,7 @@ export class FlightManagerProvider {
   /**
    * Method used to create a request object to query for flight details
    */
-  prepareRequestObject(searchCriteria){
+  prepareRequestObject(searchCriteria) {
     this.request.origin.airportCode = searchCriteria.origin.airportCode
     this.request.origin.city = searchCriteria.origin.city;
     this.request.origin.country = searchCriteria.origin.country;
@@ -84,7 +84,7 @@ export class FlightManagerProvider {
     this.request.hotelInformation.numberOfRooms = searchCriteria.hotelInformation.numberOfRooms;
     this.request.hotelInformation.ratings = searchCriteria.hotelInformation.ratings;
 
-    this.request.budgetLimit = searchCriteria.budgetLimit.upper;
+    this.request.budgetLimit = searchCriteria.budgetLimit;
     this.request.currency = "INR";
     this.request.startDate = searchCriteria.startDate;
     this.request.endDate = searchCriteria.endDate;
@@ -158,28 +158,28 @@ export class FlightManagerProvider {
     this.carriers = this.generateReferenceObject(tripsList.data.carrier);
   }
 
-  generateReferenceObject(data){
+  generateReferenceObject(data) {
     //generate an object to hold data
-    var obj : any = {};
-    for(var i = 0; i < data.length; i++){
+    var obj: any = {};
+    for (var i = 0; i < data.length; i++) {
       obj[data[i].code] = data[i].name;
     }
     return obj;
   }
 
-  getAirportInformation(airportCode){
+  getAirportInformation(airportCode) {
     return this.airports[airportCode];
   }
-  getCarrierInformation(carrierCode){
+  getCarrierInformation(carrierCode) {
     return this.carriers[carrierCode];
   }
-  getCityInformation(cityCode){
+  getCityInformation(cityCode) {
     return this.cities[cityCode];
   }
 
-  getTimeandDate(dateTime){
+  getTimeandDate(dateTime) {
     var d = new Date(dateTime);
-    var obj : any = {};
+    var obj: any = {};
     obj.date = {};
     obj.time = {};
 

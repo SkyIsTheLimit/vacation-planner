@@ -26,6 +26,7 @@ export class OriginPickerPage {
     origin: {}
   };
   destination: Location;
+  selectedOrigin = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public discovery: DiscoveryProvider) {
     this.criteria.budget = {
@@ -42,7 +43,7 @@ export class OriginPickerPage {
 
   fetchSuggestions(query) {
     console.info('Fetching Suggestions', query);
-    this.discovery.fetchSuggestions(query)
+    this.discovery.fetchSuggestions(query, 5)
       .then(suggestions => {
         this.suggestions = suggestions.predictions;
         console.info('Loaded suggestions', this.suggestions);
@@ -50,7 +51,8 @@ export class OriginPickerPage {
   }
 
   setOrigin(origin) {
-    this.criteria.origin = origin.description;
+    this.selectedOrigin = origin.city + '(' + origin.code + ') - ' + origin.airportname;
+    this.criteria.origin = origin;
     this.isOriginSet = true;
     this.suggestions = [];
   }

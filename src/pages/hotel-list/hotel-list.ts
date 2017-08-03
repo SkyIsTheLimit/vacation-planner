@@ -27,12 +27,13 @@ startIndex: number = 0;
     console.log(this.flights);
     // this.hotelsMasterList =
      fm.manageReturnedHotels(this.navParams.get('criteria'))
+     .map(res =>res.json())
      .subscribe(data => {
       console.log("Here is your response");
       console.log(data);
       // var hotelList = [];
       // hotelList = 
-      this.hotelsMasterList = JSON.parse(data._body);
+      this.hotelsMasterList = data;
       this.setHotelList();
       // finalObj.data = JSON.parse(data);
       // this.tripList = data;

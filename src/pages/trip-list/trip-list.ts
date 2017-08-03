@@ -29,6 +29,7 @@ export class TripListPage {
       console.log("search criteria in trip list");
       console.log(this.criteria);
       fm.fetchMatchingFlights(this.criteria)
+        .map(res =>res.json())
         .subscribe(data => {
         var tripsList = {
           data:{},
@@ -37,11 +38,15 @@ export class TripListPage {
         var finalList;
         console.log("Here is your response");
         console.log(data);
-        var tripList = JSON.parse(data._body);
-        tripsList.data = JSON.parse(tripList.data);
-        tripsList.tripOption = JSON.parse(tripList.tripOptions);
-        this.tripsMasterList = fm.manageReturnedTrips(tripsList);
-        this.setFlightsList();
+        // if(data.tripOptions){
+          // var tripList = JSON.parse(data.data);
+          tripsList.data = JSON.parse(data.data);
+          tripsList.tripOption = JSON.parse(data.tripOptions);
+          this.tripsMasterList = fm.manageReturnedTrips(tripsList);
+          this.setFlightsList();
+        // } else{
+        //   this.tripsMasterList  = [];
+        // }
       }, (err) => {
         console.log("Looks like something has gone wrong");
         console.log(err);
@@ -62,7 +67,7 @@ export class TripListPage {
     // console.log(event.target.tagName);== IMG/ DIV
   }
 
-  viewFlightDetails(flight){
+  viewFlightDetails(flight) {
     let flightDetailsModal = this.modalCtrl.create(FlightDetailModalPage, {
       flight: flight
     });
