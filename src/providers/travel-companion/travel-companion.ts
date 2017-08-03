@@ -72,6 +72,7 @@ export class TravelCompanionProvider {
     console.log("place id:" + criteria);
     var endpoint = 'https://maps.googleapis.com/maps/api/place/details/json?' + 
     'placeid=' + criteria + '&key=AIzaSyC4x3E86QCk1dW2iVA5GHmRH9mNKtZx-1g';
+    endpoint = 'http://localhost:8080/nearbydetail?placeid=ChIJN4S8aYtZwokRuFd8K1VkO94&key=AIzaSyC4x3E86QCk1dW2iVA5GHmRH9mNKtZx-1g';
      let res = this.http.get(endpoint);
     let res1 = "";
      console.log("endpoint:" + endpoint);
@@ -80,7 +81,12 @@ export class TravelCompanionProvider {
      console.log("json result:"  + this.resjson.length);
       console.log(JSON.stringify(res));
      console.log(JSON.stringify(res1));
-     return JSON.stringify(res1);
-    //return this.http.get(endpoint).map(response => response.json());
+      JSON.stringify(res1);
+    return this.http.get(endpoint).map(response => response.json());
   }
+
+  fetchSuggestions(input) {
+    var api = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyA0XvKwTnb3YkJjQqoY0iQA3ybkhLZJmro&&input=' + input;
+     return this.http.get(api).map(res => res.json());
+    }
 }

@@ -18,14 +18,7 @@
  <!-- <button ion-button round color="primary" (click)="loadNearbyPlaces()">Find Nearby</button>-->
 
   <ion-list>
-    <ion-item>
-      Left Icon Button
-    <button ion-button outline item-end icon-left>
-      <ion-icon name="star"></ion-icon>
-      Left Icon
-    </button>
-    </ion-item>
-    <ion-item *ngFor="let restaurant of restaurants" border="primary">
+    <ion-item *ngFor="let restaurant of restaurants" border="primary" (click)="loadItemDetails(restaurant)" href="#">
     <!-- <ion-icon name="restaurant"></ion-icon>-->
      {{ restaurant.name }}
      <button ion-button outline item-end icon-left>

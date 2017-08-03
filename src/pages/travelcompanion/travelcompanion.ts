@@ -22,47 +22,12 @@ import { GoogleMap, GoogleMapsEvent, GoogleMaps, LatLng } from '@ionic-native/go
 export class TravelcompanionPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tc: TravelCompanionProvider, private discovery: DiscoveryProvider, public platform: Platform) {
-   /* platform.ready().then(() => {
-            this.loadMap();
-        });*/
 }
-map: GoogleMap;
-loadMap(){
- 
-        let location = new LatLng(-34.9290,138.6010);
- 
-       /* this.map = new GoogleMap('map', {
-          'backgroundColor': 'white',
-          'controls': {
-            'compass': true,
-            'myLocationButton': true,
-            'indoorPicker': true,
-            'zoom': true
-          },
-          'gestures': {
-            'scroll': true,
-            'tilt': true,
-            'rotate': true,
-            'zoom': true
-          },
-          'camera': {
-            'latLng': location,
-            'tilt': 30,
-            'zoom': 15,
-            'bearing': 50
-          }
-        });*/
-        this.map = new GoogleMap('map');
-       // this.map.setVisible(true);
-        this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
-            console.log('Map is ready!');
-        });
- 
-    }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad TravelassistantPage');
   }
+radius: any = "";
+cuisine: any = "";
 criteria = {
     destinations: [],
     startDate: {},
@@ -72,7 +37,7 @@ originSuggestions: Array<any> = [];
 location: string = "";
 coordinates: Array<any> = [];
 fetchSuggestions(query, type) {
-    this.discovery.fetchSuggestions(query)
+    this.discovery.fetchSuggestions2(query)
       .subscribe(suggestions => {
         this[type + 'Suggestions'] = suggestions.predictions;
         console.info('Loaded suggestions', this[type + 'Suggestions']);
@@ -86,21 +51,23 @@ addDestination(destination, type, $event) {
     //this.destinationSuggestions = [];
   }
 
-  loadNearbyPlaces(resulttype) {
+loadNearbyPlaces(resulttype) {
  let criteria1: CompanionCriteria = {
       type: resulttype,
       keyword: "",
       filter: "",
       location: this.location,
-      radius: "2000"
+      radius: this.radius
     };
+  console.log("radius:" + this.radius);
+  console.log("cuisine:" + this.cuisine);
   this.tc.getLocationCoordsForCity(criteria1).subscribe(res => this.coordinates = res.results);
    let criteria: CompanionCriteria = {
       type: resulttype,
-      keyword: "",
+      keyword: this.cuisine,
       filter: "",
       location: this.coordinates[0].geometry.location.lat + ","  + this.coordinates[0].geometry.location.lng,
-      radius: "2000"
+      radius: this.radius
     };
     if(resulttype=='airport')
     {

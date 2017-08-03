@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { TravelCompanionProvider } from '../../providers';
 import { CompanionCriteria } from '../../models/companion-criteria.model';
+import {TravelcompaniondetailPage} from '../travelcompaniondetail/travelcompaniondetail';
 
 import { Restaurant } from '../../models/restaurant';
 /**
@@ -37,7 +38,7 @@ export class TravelassistantPage {
     console.log("fetching distance");
     console.log("result length:" + this.restaurants.length);
     //let i = 0;
-    for (var i = 0; i < 5; i++) {
+  /*  for (var i = 0; i < 5; i++) {
       console.log("fetching distance inside method");
       let entry = this.restaurants[i];
       let criteria1: CompanionCriteria = {
@@ -54,7 +55,12 @@ export class TravelassistantPage {
       console.log(entry);
       i++;
     }
-    this.restaurants = this.calculateddistance;
+    this.restaurants = this.calculateddistance;*/
+  }
+  loadItemDetails(restaurant)
+  {
+    console.log(restaurant.name);
+   // this.navCtrl.push(TravelcompaniondetailPage, restaurant);
   }
 
 }
