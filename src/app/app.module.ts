@@ -120,7 +120,7 @@ import {
     TripManagerProvider,
     UserManagerProvider,
     DemoAuthenticationProvider,
-    FlightManagerProvider
+    FlightManagerProvider,
     RestAuthenticationProvider,
     FacebookOAuthProvider,
     DataManagerProvider,

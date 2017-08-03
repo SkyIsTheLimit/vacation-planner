@@ -22,17 +22,8 @@ export class SearchCriteriaPage {
   noOfGuests: Array<number>;
   budgetLimit: {};
   criteria = {
-    origin: {
-      airportCode: "BLR",
-      city: "",
-      country : "India"
-    },
-    destination: {
-      airportCode: "SIN",
-      city: "",
-      country : "Singapore"
-    },
-    currency: "INR",
+    origin: {},
+    destination: [],
     startDate: {},
     endDate: {},
     budgetLimit: 100000,
@@ -49,6 +40,8 @@ export class SearchCriteriaPage {
   destinationSearch: any;
   originSuggestions: Array<any> = [];
   destinationSuggestions: Array<any> = [];
+  selectedOrigin = '';
+  selectedDestination = '';
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Search Criteria');
@@ -77,6 +70,18 @@ export class SearchCriteriaPage {
     }
   }
 
+  setOrigin(origin) {
+    this.criteria.origin = origin;
+    this.selectedOrigin = origin.city + '(' + origin.code + ') - ' + origin.airportname;
+    this.originSuggestions = [];
+  }
+
+  setDestination(destination) {
+    this.criteria.destination = destination;
+    this.selectedDestination = destination.city + '(' + destination.code + ') - ' + destination.airportname;
+    this.destinationSuggestions = [];
+  }
+
   addDestination(destination, type, $event) {
     console.debug('Adding destination', destination, $event);
     this.criteria[type] = destination.description;
@@ -85,7 +90,7 @@ export class SearchCriteriaPage {
   }
 
   removeDestination(destination, $index) {
-    // this.criteria.destinations.splice($index, 1);
+    this.criteria.destination.splice($index, 1);
   }
 
   find() {
@@ -102,7 +107,7 @@ export class SearchCriteriaPage {
   }
 
   fetchSuggestions(query, type) {
-    this.discovery.fetchSuggestions(query)
+    this.discovery.fetchSuggestions(query, 10)
       .then(suggestions => {
         this[type + 'Suggestions'] = suggestions.predictions;
         console.info('Loaded suggestions', this[type + 'Suggestions']);

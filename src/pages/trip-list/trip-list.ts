@@ -19,16 +19,20 @@ import { HotelListPage } from '../hotel-list/hotel-list';
 })
 export class TripListPage {
   // trips: Array<any>;
-  trips: any;
+  trips: any = [];
   criteria: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public app: App,
     public fm: FlightManagerProvider, public modalCtrl: ModalController, public loadingCtrl: LoadingController) {
-      this.criteria = this.navParams.get("criteria");
-      console.log("search criteria in trip list");
-      console.log(this.criteria);
-      // fm.fetchMatchingFlights(this.criteria);
-    this.trips = fm.manageReturnedTrips();
+    this.criteria = this.navParams.get("criteria");
+    console.log("search criteria in trip list");
+    console.log(this.criteria);
+    // fm.fetchMatchingFlights(this.criteria);
+    // this.trips = fm.manageReturnedTrips();
+
+    fm.manageReturnedTrips().then(trips => {
+      this.trips = trips;
+    });
   }
 
   ionViewDidLoad() {
@@ -42,7 +46,7 @@ export class TripListPage {
     // console.log(event.target.tagName);== IMG/ DIV
   }
 
-  viewFlightDetails(flight){
+  viewFlightDetails(flight) {
     let flightDetailsModal = this.modalCtrl.create(FlightDetailModalPage, {
       flight: flight
     });

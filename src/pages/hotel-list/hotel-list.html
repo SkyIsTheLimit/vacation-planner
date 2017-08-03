@@ -20,27 +20,37 @@
     </ion-card-header>
 
   <ion-list>
-    <div ion-item>
-     <ion-avatar item-start (click)="viewHotelDetails('')">
+    <div ion-item *ngFor= "let hotel of hotels">
+     <ion-avatar item-start (click)="viewHotelDetails(hotel)">
         <img src="assets/139884-travel/svg/hotel.svg">
       </ion-avatar>
-      <div style="display: flex; text-align: right">
-        <div style="flex: 1" (click)="viewHotelDetails('')">
-          <div>Hotel Name</div>
+      <div style="display: flex; text-align: left">
+        <div style="flex: 1" (click)="viewHotelDetails(hotel)">
+          <div style="display: inline;">
+            <span style="font-size: 13px;">{{hotel.hn}}</span>
+            <span [ngClass]="{'darkgreenBackground': (hotel.gr >= 4), 'greenBackground' : (hotel.gr < 4 && hotel.gr >= 3),
+            'orangeBackground': (hotel.gr < 3 && hotel.gr >= 2), 'redBackground': (hotel.gr < 2 && hotel.gr >= 0)}">{{hotel.gr}}</span>
+          </div>
+          <div style="font-size: 11px; color: darkslategrey;">{{hotel.l}}</div>
           <div style="font-size: 10px; color: #575757">
-            <div>Per Night Tarriff</div>
-            <div>Rating</div>
-            <div>Total Rooms Left</div>
+            <div>{{hotel.personalized_keys.np_wt}}</div>
+            <div>{{hotel.room_count}} rooms left</div>
             <!--<label *ngIf="trip.phase.length == 1">non-stop</label>-->
             <!--<label *ngIf="trip.phase.length > 1"> {{trip.phase.length -1}} stops</label>-->
           </div>
         </div>
         <!--<div style="flex:1; text-align:right; color: darkblue;" (click)="viewFlightDetails(trip)">{{trip.totalPrice}}</div>-->
-        <ion-icon name='arrow-forward' style="padding-left: 5px;" (click)="viewTripDetails()"></ion-icon>
+        <ion-icon item-end name='arrow-forward' style="padding-left: 5px;" (click)="viewTripDetails()"></ion-icon>
       </div>
       
     </div>
    </ion-list>
 
+    <!--<ion-infinite-scroll (ionInfinite)="fetchMoreHotels($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>-->
+    <div style="color: blue; font-size: 12px;" (click)="setHotelList()" *ngIf="startIndex< hotelsMasterList.length">
+      <label>Load More ...</label>
+    </div>
   </ion-card>
 </ion-content>
