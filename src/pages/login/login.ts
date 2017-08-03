@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 
 import {
   DispatchPage,
@@ -35,7 +35,12 @@ export class LoginPage {
   oauthProfile: OAuthProfile;
   credentials = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toast: ToastController, public userManager: UserManagerProvider, public apiManager: ApiManagerProvider) {
+  constructor(public navCtrl: NavController,
+    public loading: LoadingController,
+    public navParams: NavParams,
+    public toast: ToastController,
+    public userManager: UserManagerProvider,
+    public apiManager: ApiManagerProvider) {
     this.authenticationProvider = this.userManager.getAuthenticationProvider();
     this.oauthProviders = this.authenticationProvider.getLinkedProviders();
 
@@ -50,9 +55,19 @@ export class LoginPage {
   }
 
   loginWithProvider(credentials) {
+    let loader = this.loading.create({
+      content: 'Trying to log in!'
+    });
+
+    loader.present();
+
     this.authenticationProvider.login(credentials).then((user) => {
       this.navCtrl.push(DispatchPage);
+      loader.dismiss();
+
     }).catch(() => {
+      loader.dismiss();
+
       this.toast.create({
         message: 'Invalid username or password',
         duration: 3000
@@ -61,6 +76,12 @@ export class LoginPage {
   }
 
   loginWithOAuthProvider(provider: OAuthProvider) {
+    let loader = this.loading.create({
+      content: 'Trying to log in!'
+    });
+
+    loader.present();
+
     provider.login().then((profile) => {
       console.info('Logged in successfully', profile);
 
@@ -87,6 +108,7 @@ export class LoginPage {
           loggedInUser.picture = this.oauthProfile.picture.data.url;
 
           // [TODO] The account linkage will have to be saved too.
+          loader.dismiss();
 
           this.navCtrl.push(DispatchPage);
         }).catch(error => {
@@ -107,11 +129,14 @@ export class LoginPage {
             return this.userManager.createOAuthProfile(profile);
           }).then(profile => {
             return this.authenticationProvider.link(profile).then(user => {
+              loader.dismiss();
               this.navCtrl.push(PreferencesPage);
             });
           });
         });
     }).catch(reason => {
+      loader.dismiss();
+
       this.toast.create({
         message: 'Something went wrong: ' + reason,
         duration: 2000

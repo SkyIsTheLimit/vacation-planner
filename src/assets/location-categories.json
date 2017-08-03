@@ -1,0 +1,338 @@
+[{
+  "category": "Beaches and Sun Soaking",
+  "destinations": [{
+      "city": "Camps Bay",
+      "state": " Western Cape",
+      "country": " South Africa",
+      "continent": " Africa"
+    },
+    {
+      "city": "Durban",
+      "state": " KwaZulu-Natal",
+      "country": " South Africa",
+      "continent": " Africa"
+    },
+    {
+      "city": "Essaouira",
+      "state": " Marrakech-Tensift-El Haouz Region",
+      "country": " Morocco",
+      "continent": " Africa"
+    },
+    {
+      "city": "Seychelles",
+      "state": " Africa",
+      "country": "",
+      "continent": ""
+    },
+    {
+      "city": "Phuket",
+      "state": " Thailand",
+      "country": " Asia",
+      "continent": ""
+    },
+    {
+      "city": "Ko Samui",
+      "state": " Surat Thani Province",
+      "country": " Thailand",
+      "continent": " Asia"
+    },
+    {
+      "city": "Bali",
+      "state": " Indonesia",
+      "country": " Asia",
+      "continent": ""
+    },
+    {
+      "city": "Boracay",
+      "state": " Aklan Province",
+      "country": " Panay Island",
+      "continent": " Visayas",
+      "FIELD5": " Philippines",
+      "FIELD6": " Asia"
+    },
+    {
+      "city": "Maldives",
+      "state": " Asia",
+      "country": "",
+      "continent": ""
+    },
+    {
+      "city": "Dominican Republic",
+      "state": " Caribbean",
+      "country": " North America",
+      "continent": ""
+    },
+    {
+      "city": "U.S. Virgin Islands",
+      "state": " Caribbean",
+      "country": " North America",
+      "continent": ""
+    },
+    {
+      "city": "Jamaica",
+      "state": " Caribbean",
+      "country": " North America",
+      "continent": ""
+    },
+    {
+      "city": "Aruba",
+      "state": " Caribbean",
+      "country": " North America",
+      "continent": ""
+    },
+    {
+      "city": "St. Maarten-St. Martin",
+      "state": " Caribbean",
+      "country": " North America",
+      "continent": ""
+    },
+    {
+      "city": "Barbados",
+      "state": " Caribbean",
+      "country": " North America",
+      "continent": ""
+    },
+    {
+      "city": "St. Lucia",
+      "state": " Caribbean",
+      "country": " North America",
+      "continent": ""
+    },
+    {
+      "city": "Grand Cayman",
+      "state": " Cayman Islands",
+      "country": " Caribbean",
+      "continent": " North America"
+    },
+    {
+      "city": "St. Kitts",
+      "state": " St. Kitts and Nevis",
+      "country": " Caribbean",
+      "continent": " North America"
+    },
+    {
+      "city": "Bahamas",
+      "state": " Caribbean",
+      "country": " North America",
+      "continent": ""
+    },
+    {
+      "city": "Puerto Rico",
+      "state": " Caribbean",
+      "country": " North America",
+      "continent": ""
+    },
+    {
+      "city": "Bermuda",
+      "state": " Caribbean",
+      "country": " North America",
+      "continent": ""
+    },
+    {
+      "city": "Curacao",
+      "state": " Caribbean",
+      "country": " North America",
+      "continent": ""
+    },
+    {
+      "city": "British Virgin Islands",
+      "state": " Caribbean",
+      "country": " North America",
+      "continent": ""
+    },
+    {
+      "city": "Nice",
+      "state": " French Riviera - Cote d'Azur",
+      "country": " Provence-Alpes-Cote d'Azur",
+      "continent": " France",
+      "FIELD5": " Europe",
+      "FIELD6": ""
+    },
+    {
+      "city": "Santorini",
+      "state": " Cyclades",
+      "country": " South Aegean",
+      "continent": " Greece",
+      "FIELD5": " Europe",
+      "FIELD6": ""
+    },
+    {
+      "city": "Corfu",
+      "state": " Ionian Islands",
+      "country": " Greece",
+      "continent": " Europe"
+    },
+    {
+      "city": "Crete",
+      "state": " Greece",
+      "country": " Europe",
+      "continent": ""
+    },
+    {
+      "city": "Tenerife",
+      "state": " Canary Islands",
+      "country": " Spain",
+      "continent": " Europe"
+    },
+    {
+      "city": "Mykonos",
+      "state": " Cyclades",
+      "country": " South Aegean",
+      "continent": " Greece",
+      "FIELD5": " Europe",
+      "FIELD6": ""
+    },
+    {
+      "city": "Cannes",
+      "state": " French Riviera - Cote d'Azur",
+      "country": " Provence-Alpes-Cote d'Azur",
+      "continent": " France",
+      "FIELD5": " Europe",
+      "FIELD6": ""
+    },
+    {
+      "city": "Lagos",
+      "state": " Faro District",
+      "country": " Algarve",
+      "continent": " Portugal",
+      "FIELD5": " Europe",
+      "FIELD6": ""
+    },
+    {
+      "city": "Nerja",
+      "state": " Costa del Sol",
+      "country": " Province of Malaga",
+      "continent": " Andalucia",
+      "FIELD5": " Spain",
+      "FIELD6": " Europe"
+    },
+    {
+      "city": "Brighton",
+      "state": " East Sussex",
+      "country": " England",
+      "continent": " United Kingdom",
+      "FIELD5": " Europe",
+      "FIELD6": ""
+    },
+    {
+      "city": "Cancun",
+      "state": " Yucatan Peninsula",
+      "country": " Mexico",
+      "continent": " North America"
+    },
+    {
+      "city": "Puerto Vallarta",
+      "state": " Mexico",
+      "country": " North America",
+      "continent": ""
+    },
+    {
+      "city": "Rio de Janeiro",
+      "state": " State of Rio de Janeiro",
+      "country": " Brazil",
+      "continent": " South America"
+    },
+    {
+      "city": "Costa Rica",
+      "state": " Central America",
+      "country": "",
+      "continent": ""
+    },
+    {
+      "city": "Sydney",
+      "state": " New South Wales",
+      "country": " Australia",
+      "continent": " South Pacific"
+    },
+    {
+      "city": "Perth",
+      "state": " Greater Perth",
+      "country": " Western Australia",
+      "continent": " Australia",
+      "FIELD5": " South Pacific",
+      "FIELD6": ""
+    },
+    {
+      "city": "Viti Levu",
+      "state": " Fiji",
+      "country": " South Pacific",
+      "continent": ""
+    },
+    {
+      "city": "Byron Bay",
+      "state": " Byron Shire",
+      "country": " New South Wales",
+      "continent": " Australia",
+      "FIELD5": " South Pacific",
+      "FIELD6": ""
+    },
+    {
+      "city": "Great Barrier Reef",
+      "state": " Queensland",
+      "country": " Australia",
+      "continent": " South Pacific"
+    },
+    {
+      "city": "Maui",
+      "state": " Hawaii",
+      "country": " United States",
+      "continent": " North America"
+    },
+    {
+      "city": "Miami Beach",
+      "state": " Florida",
+      "country": " United States",
+      "continent": " North America"
+    },
+    {
+      "city": "San Diego",
+      "state": " California",
+      "country": " United States",
+      "continent": " North America"
+    },
+    {
+      "city": "St. Pete Beach",
+      "state": " Florida",
+      "country": " United States",
+      "continent": " North America"
+    },
+    {
+      "city": "Oahu",
+      "state": " Hawaii",
+      "country": " United States",
+      "continent": " North America"
+    },
+    {
+      "city": "Santa Barbara",
+      "state": " California",
+      "country": " United States",
+      "continent": " North America"
+    },
+    {
+      "city": "Panama City Beach",
+      "state": " Florida",
+      "country": " United States",
+      "continent": " North America"
+    },
+    {
+      "city": "Santa Monica",
+      "state": " California",
+      "country": " United States",
+      "continent": " North America"
+    },
+    {
+      "city": "Key Largo",
+      "state": " Florida Keys",
+      "country": " Florida",
+      "continent": " United States",
+      "FIELD5": " North America",
+      "FIELD6": ""
+    },
+    {
+      "city": "Island of Hawaii",
+      "state": " Hawaii",
+      "country": " United States",
+      "continent": " North America"
+    }
+  ]
+}]
