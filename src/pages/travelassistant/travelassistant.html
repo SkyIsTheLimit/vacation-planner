@@ -5,7 +5,8 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
+ <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+    <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
   <ion-navbar color="primary">
     <ion-title>Travel Companion</ion-title>
   </ion-navbar>
@@ -13,14 +14,26 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
  <!-- <button ion-button round color="primary" (click)="loadNearbyPlaces()">Find Nearby</button>-->
 
   <ion-list>
+    <ion-item>
+      Left Icon Button
+    <button ion-button outline item-end icon-left>
+      <ion-icon name="star"></ion-icon>
+      Left Icon
+    </button>
+    </ion-item>
     <ion-item *ngFor="let restaurant of restaurants" border="primary">
-     <!-- <ion-icon name="restaurant"></ion-icon>-->
-      <ion-title color="secondary" align="left">{{ restaurant.name }}</ion-title>  
-      <ion-title align="right">{{restaurant.rating}}  </ion-title>
+    <!-- <ion-icon name="restaurant"></ion-icon>-->
+     {{ restaurant.name }}
+     <button ion-button outline item-end icon-left>
+     <!-- <ion-title color="secondary" align="left">{{ restaurant.name }}</ion-title> -->
+      <ion-icon name="star"></ion-icon>
+      {{restaurant.rating}}
+      </button>
+     <!-- <ion-title item-end>{{restaurant.rating}}</ion-title>-->
     </ion-item>
   </ion-list>
 </ion-content>
