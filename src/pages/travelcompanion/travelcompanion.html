@@ -88,7 +88,14 @@
      <ion-list>
       <button ion-item *ngFor="let suggestion of originSuggestions" (click)="addDestination(suggestion, 'origin', $event)">{{ suggestion.description }}</button>
     </ion-list>
- 
+ <ion-item>
+    <ion-label color="primary" fixed>Radius</ion-label>
+    <ion-input type="number" placeholder="Enter search radius" [(ngModel)]="radius"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" fixed>Cuisines</ion-label>
+    <ion-input type="text" placeholder="Enter cuisine preference" [(ngModel)]="cuisine"></ion-input>
+  </ion-item>
   <!--div class="activitesList">
 		<div style="text-align: center;">
 			<div class="circularElement" style="display: inline-block; text-align: center;">
