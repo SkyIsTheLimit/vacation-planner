@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
-// import tripsList from './flight-json';
-
+import tripsList from './flight-json';
+import hotelsList from './hotel-json';
 import 'rxjs/add/operator/map';
 
 /*
@@ -54,15 +54,23 @@ export class FlightManagerProvider {
   fetchMatchingFlights(searchCriteria) {
     this.prepareRequestObject(searchCriteria);
     this.http.post('http://ec2-54-236-63-139.compute-1.amazonaws.com:8080/flights', searchCriteria)
-      .subscribe(data => {
-        console.log("Here is your response");
-        console.log(data);
-        // this.tripList = data;
-        // return this.manageReturnedTrips(data);
-      }, (err) => {
-        console.log("Looks like something has gone wrong");
-        console.log(err);
-      });
+    .subscribe(data => {
+      console.log("Here is your response");
+      console.log(data);
+      // this.tripList = data;
+      // return this.manageReturnedTrips(data);
+    }, (err) => {
+      console.log("Looks like something has gone wrong");
+      console.log(err);
+    });
+  }
+
+
+  /**
+   * Manage hotels returned from hotel-json.ts
+   */
+  manageReturnedHotels(){
+    return hotelsList;
   }
 
   /**

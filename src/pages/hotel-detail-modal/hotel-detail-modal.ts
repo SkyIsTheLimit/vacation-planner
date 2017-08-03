@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, App } from 'ionic-angular';
 
 /**
  * Generated class for the HotelDetailModalPage page.
@@ -13,8 +13,9 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
   templateUrl: 'hotel-detail-modal.html',
 })
 export class HotelDetailModalPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+hotel: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public app: App) {
+    this.hotel = this.navParams.get("hotel");
   }
 
   ionViewDidLoad() {
@@ -23,5 +24,14 @@ export class HotelDetailModalPage {
 
    dismiss() {
     this.viewCtrl.dismiss();
+  }
+
+  starRatingArray(rating){
+    var ratings = [];
+    for (var i= 0; i < rating; i++ ){
+      ratings.push(i);
+    }
+    console.log(ratings);
+    return ratings;
   }
 }
