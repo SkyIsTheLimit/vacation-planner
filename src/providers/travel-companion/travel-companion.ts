@@ -3,6 +3,8 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { CompanionCriteria } from '../../models/companion-criteria.model'
 
+import { ApiManagerProvider } from '../api-manager/api-manager';
+
 /*
   Generated class for the TravelCompanionProvider provider.
 
@@ -16,7 +18,6 @@ export class TravelCompanionProvider {
   constructor(public http: Http) {
     let that = this;
     console.log('Hello TravelCompanionProvider Provider');
-
     navigator.geolocation.getCurrentPosition(function(position) {
             
             var pos = {
@@ -41,7 +42,7 @@ export class TravelCompanionProvider {
       '&type=' + criteria.type +
       '&keyword=' + criteria.keyword +
       '&key=AIzaSyC4x3E86QCk1dW2iVA5GHmRH9mNKtZx-1g';
-     
+
     return this.http.get(endpoint).map(response => response.json())
     // .then((json : Object) => this.res = json.toString());
     // console.log(this.res);

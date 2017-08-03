@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import { ApiManagerProvider } from '../api-manager/api-manager';
+
 /*
   Generated class for the DiscoveryProvider provider.
 
@@ -10,8 +12,9 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class DiscoveryProvider {
+  airports: Array<any>;
 
-  constructor(public http: Http) {
+  constructor(public http: Http, public apiManager: ApiManagerProvider) {
     console.log('Hello DiscoveryProvider Provider');
   }
 
@@ -20,13 +23,35 @@ export class DiscoveryProvider {
       .map(res => res.json().data);
   }
 
-  fetchSuggestions(input) {
+  fetchSuggestions2(input) {
     // let apiKey = 'AIzaSyA0XvKwTnb3YkJjQqoY0iQA3ybkhLZJmro';
     let apiKey = 'AIzaSyA0-prLuFz47IBMGsHiMwKrHxLJqjI65aQ';
     let api = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?key=' + apiKey + '&&input=' + input;
 
     return this.http.get(api)
       .map(res => res.json());
+  }
+
+  fetchSuggestions(input, n) {
+    return new Promise<any>((resolve, reject) => {
+      if (!this.airports) {
+        this.apiManager.loadAirports().subscribe(airports => {
+          this.airports = airports;
+          console.info('Airports', this.airports);
+          resolve({
+            predictions: airports.filter(function (airport) {
+              return airport.city.indexOf(input) !== -1;
+            }).splice(0, n)
+          });
+        }, error => reject(error));
+      } else {
+        resolve({
+          predictions: this.airports.filter(function (airport) {
+            return airport.city.indexOf(input) !== -1;
+          }).splice(0, n)
+        });
+      }
+    });
   }
 
   loadRestaurants() {
