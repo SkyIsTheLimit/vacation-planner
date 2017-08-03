@@ -18,26 +18,46 @@ import { HotelListPage } from '../hotel-list/hotel-list';
   templateUrl: 'trip-list.html',
 })
 export class TripListPage {
-  // trips: Array<any>;
-  trips: any;
+  tripsMasterList: Array<object> = [];
+  trips: Array<object> = [];
   criteria: any;
-
+  batchSize: number = 10;
+  startIndex: number = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, 
     public fm: FlightManagerProvider, public modalCtrl: ModalController, public loadingCtrl: LoadingController) {
       this.criteria = this.navParams.get("criteria");
       console.log("search criteria in trip list");
       console.log(this.criteria);
-      // fm.fetchMatchingFlights(this.criteria);
-    this.trips = fm.manageReturnedTrips();
+      fm.fetchMatchingFlights(this.criteria)
+        .subscribe(data => {
+        var tripsList = {
+          data:{},
+          tripOption:{}
+        };
+        var finalList;
+        console.log("Here is your response");
+        console.log(data);
+        var tripList = JSON.parse(data._body);
+        tripsList.data = JSON.parse(tripList.data);
+        tripsList.tripOption = JSON.parse(tripList.tripOptions);
+        this.tripsMasterList = fm.manageReturnedTrips(tripsList);
+        this.setFlightsList();
+      }, (err) => {
+        console.log("Looks like something has gone wrong");
+        console.log(err);
+        this.tripsMasterList = [];
+      });
   }
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad TripListPage');
   }
 
-  viewHotelsList(trip) {
+  viewHotelsList(flight) {
+    this.criteria.budgetLimit =  this.criteria.budgetLimit - parseInt(flight.totalPrice.substring(3));
     this.app.getRootNav().push(HotelListPage, {
-      trip: trip
+      flight: flight,
+      criteria: this.criteria
     });
     // console.log(event.target.tagName);== IMG/ DIV
   }
@@ -51,4 +71,27 @@ export class TripListPage {
     //   flight: flight
     // });
   }
+
+  shouldLoadMore(){
+    return (this.startIndex < this.tripsMasterList.length);
+  }
+
+  /**
+   * Method called as an extension of the constructor
+   * This method picks the first few matching hotels and pushes them to the UI linked array.
+   */
+  setFlightsList(){
+    let initialValue = this.startIndex;
+    if(this.batchSize < (this.tripsMasterList.length - this.startIndex)){
+      for(this.startIndex; this.startIndex < (this.batchSize + initialValue); this.startIndex++){
+        this.trips.push(this.tripsMasterList[this.startIndex]);
+      }
+    } else {
+      for(this.startIndex; this.startIndex < this.tripsMasterList.length; this.startIndex++){
+        this.trips.push(this.tripsMasterList[this.startIndex]);
+      }
+    }
+    //set the start index for the next iteration
+    this.startIndex ++;
+  };
 }

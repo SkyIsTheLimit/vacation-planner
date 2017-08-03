@@ -19,7 +19,7 @@
       Showing (number) matching hotel results
     </ion-card-header>
 
-  <ion-list>
+  <ion-list *ngIf="hotels.length">
     <div ion-item *ngFor= "let hotel of hotels">
      <ion-avatar item-start (click)="viewHotelDetails(hotel)">
         <img src="assets/139884-travel/svg/hotel.svg">
@@ -49,6 +49,7 @@
     <!--<ion-infinite-scroll (ionInfinite)="fetchMoreHotels($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>-->
+    <div *ngIf="hotels.length == 0">Loading matching hotls. Wait a moment...</div>
     <div style="color: blue; font-size: 12px;" (click)="setHotelList()" *ngIf="startIndex< hotelsMasterList.length">
       <label>Load More ...</label>
     </div>
