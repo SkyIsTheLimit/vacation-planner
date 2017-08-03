@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class ApiManagerProvider {
-  static API_HOST = 'http://192.168.1.104:8080';
+  static API_HOST = 'http://ec2-34-200-248-144.compute-1.amazonaws.com:8080';
   static USERS_API = ApiManagerProvider.API_HOST + '/users';
   static OAUTH_PROFILES_API = ApiManagerProvider.API_HOST + '/oauth-profiles';
   static LOGIN_API = ApiManagerProvider.API_HOST + '/users/login';

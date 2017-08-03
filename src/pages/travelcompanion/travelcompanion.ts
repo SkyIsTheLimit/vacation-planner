@@ -22,9 +22,6 @@ import { CompanionCriteria } from '../../models/companion-criteria.model';
 export class TravelcompanionPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private tc: TravelCompanionProvider, private discovery: DiscoveryProvider, public platform: Platform) {
-   /* platform.ready().then(() => {
-            this.loadMap();
-        });*/
 }
 // map: GoogleMap;
 loadMap(){
@@ -59,10 +56,11 @@ loadMap(){
       //   });
  
     }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad TravelassistantPage');
   }
+radius: any = "";
+cuisine: any = "";
 criteria = {
     destinations: [],
     startDate: {},
@@ -77,6 +75,11 @@ fetchSuggestions(query, type) {
     //     this[type + 'Suggestions'] = suggestions.predictions;
     //     console.info('Loaded suggestions', this[type + 'Suggestions']);
     //   });
+    this.discovery.fetchSuggestions2(query)
+      .subscribe(suggestions => {
+        this[type + 'Suggestions'] = suggestions.predictions;
+        console.info('Loaded suggestions', this[type + 'Suggestions']);
+      });
   }
 addDestination(destination, type, $event) {
     console.debug('Adding destination', destination, $event);
@@ -86,21 +89,23 @@ addDestination(destination, type, $event) {
     //this.destinationSuggestions = [];
   }
 
-  loadNearbyPlaces(resulttype) {
+loadNearbyPlaces(resulttype) {
  let criteria1: CompanionCriteria = {
       type: resulttype,
       keyword: "",
       filter: "",
       location: this.location,
-      radius: "2000"
+      radius: this.radius
     };
+  console.log("radius:" + this.radius);
+  console.log("cuisine:" + this.cuisine);
   this.tc.getLocationCoordsForCity(criteria1).subscribe(res => this.coordinates = res.results);
    let criteria: CompanionCriteria = {
       type: resulttype,
-      keyword: "",
+      keyword: this.cuisine,
       filter: "",
       location: this.coordinates[0].geometry.location.lat + ","  + this.coordinates[0].geometry.location.lng,
-      radius: "2000"
+      radius: this.radius
     };
     if(resulttype=='airport')
     {

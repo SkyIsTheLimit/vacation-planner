@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { OriginPickerPage } from '../../pages';
+import { OriginPickerPage, SearchCriteriaPage } from '../../pages';
 
 import {
   Location,
-  LocationCategory
+  LocationCategory,
+  Airport
 } from '../../models';
 
 /**
@@ -24,7 +25,7 @@ export class LocationPreferenceListPage {
     name: '',
     locations: []
   };
-  destination: Location;
+  destination: Airport;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.category = this.navParams.get('category');
@@ -35,7 +36,7 @@ export class LocationPreferenceListPage {
   }
 
   next() {
-    this.navCtrl.push(OriginPickerPage, {
+    this.navCtrl.push(SearchCriteriaPage, {
       destination: this.destination
     });
   }

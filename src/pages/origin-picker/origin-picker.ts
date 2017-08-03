@@ -5,7 +5,7 @@ import { DiscoveryProvider } from '../../providers';
 
 import { TripListPage } from '../../pages';
 
-import { Location } from '../../models';
+import { Location, Airport } from '../../models';
 
 /**
  * Generated class for the OriginPickerPage page.
@@ -25,8 +25,9 @@ export class OriginPickerPage {
   criteria: any = {
     origin: {}
   };
-  destination: Location;
+  destination: Airport;
   selectedOrigin = '';
+  destinationDetails: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public discovery: DiscoveryProvider) {
     this.criteria.budget = {
@@ -35,10 +36,15 @@ export class OriginPickerPage {
     };
 
     this.destination = this.navParams.get('destination');
+    this.destinationDetails = this.getDestinationDetails(this.destination);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OriginPickerPage');
+  }
+
+  getDestinationDetails(destination: Airport) {
+    return destination.city + ' (' + destination.code + ')'
   }
 
   fetchSuggestions(query) {

@@ -1,338 +1,175 @@
 [{
-  "category": "Beaches and Sun Soaking",
+  "name": "Beaches and Sun Soaking",
+  "icon": "sand-bucket",
   "destinations": [{
-      "city": "Camps Bay",
-      "state": " Western Cape",
-      "country": " South Africa",
-      "continent": " Africa"
-    },
-    {
-      "city": "Durban",
-      "state": " KwaZulu-Natal",
-      "country": " South Africa",
-      "continent": " Africa"
-    },
-    {
-      "city": "Essaouira",
-      "state": " Marrakech-Tensift-El Haouz Region",
-      "country": " Morocco",
-      "continent": " Africa"
-    },
-    {
-      "city": "Seychelles",
-      "state": " Africa",
-      "country": "",
-      "continent": ""
-    },
-    {
-      "city": "Phuket",
-      "state": " Thailand",
-      "country": " Asia",
-      "continent": ""
-    },
-    {
-      "city": "Ko Samui",
-      "state": " Surat Thani Province",
-      "country": " Thailand",
-      "continent": " Asia"
-    },
-    {
-      "city": "Bali",
-      "state": " Indonesia",
-      "country": " Asia",
-      "continent": ""
-    },
-    {
-      "city": "Boracay",
-      "state": " Aklan Province",
-      "country": " Panay Island",
-      "continent": " Visayas",
-      "FIELD5": " Philippines",
-      "FIELD6": " Asia"
-    },
-    {
-      "city": "Maldives",
-      "state": " Asia",
-      "country": "",
-      "continent": ""
-    },
-    {
-      "city": "Dominican Republic",
-      "state": " Caribbean",
-      "country": " North America",
-      "continent": ""
-    },
-    {
-      "city": "U.S. Virgin Islands",
-      "state": " Caribbean",
-      "country": " North America",
-      "continent": ""
-    },
-    {
-      "city": "Jamaica",
-      "state": " Caribbean",
-      "country": " North America",
-      "continent": ""
-    },
-    {
-      "city": "Aruba",
-      "state": " Caribbean",
-      "country": " North America",
-      "continent": ""
-    },
-    {
-      "city": "St. Maarten-St. Martin",
-      "state": " Caribbean",
-      "country": " North America",
-      "continent": ""
-    },
-    {
-      "city": "Barbados",
-      "state": " Caribbean",
-      "country": " North America",
-      "continent": ""
-    },
-    {
-      "city": "St. Lucia",
-      "state": " Caribbean",
-      "country": " North America",
-      "continent": ""
-    },
-    {
-      "city": "Grand Cayman",
-      "state": " Cayman Islands",
-      "country": " Caribbean",
-      "continent": " North America"
-    },
-    {
-      "city": "St. Kitts",
-      "state": " St. Kitts and Nevis",
-      "country": " Caribbean",
-      "continent": " North America"
-    },
-    {
-      "city": "Bahamas",
-      "state": " Caribbean",
-      "country": " North America",
-      "continent": ""
-    },
-    {
-      "city": "Puerto Rico",
-      "state": " Caribbean",
-      "country": " North America",
-      "continent": ""
-    },
-    {
-      "city": "Bermuda",
-      "state": " Caribbean",
-      "country": " North America",
-      "continent": ""
-    },
-    {
-      "city": "Curacao",
-      "state": " Caribbean",
-      "country": " North America",
-      "continent": ""
-    },
-    {
-      "city": "British Virgin Islands",
-      "state": " Caribbean",
-      "country": " North America",
-      "continent": ""
-    },
-    {
-      "city": "Nice",
-      "state": " French Riviera - Cote d'Azur",
-      "country": " Provence-Alpes-Cote d'Azur",
-      "continent": " France",
-      "FIELD5": " Europe",
-      "FIELD6": ""
-    },
-    {
-      "city": "Santorini",
-      "state": " Cyclades",
-      "country": " South Aegean",
-      "continent": " Greece",
-      "FIELD5": " Europe",
-      "FIELD6": ""
-    },
-    {
-      "city": "Corfu",
-      "state": " Ionian Islands",
-      "country": " Greece",
-      "continent": " Europe"
-    },
-    {
-      "city": "Crete",
-      "state": " Greece",
-      "country": " Europe",
-      "continent": ""
-    },
-    {
-      "city": "Tenerife",
-      "state": " Canary Islands",
-      "country": " Spain",
-      "continent": " Europe"
-    },
-    {
-      "city": "Mykonos",
-      "state": " Cyclades",
-      "country": " South Aegean",
-      "continent": " Greece",
-      "FIELD5": " Europe",
-      "FIELD6": ""
-    },
-    {
-      "city": "Cannes",
-      "state": " French Riviera - Cote d'Azur",
-      "country": " Provence-Alpes-Cote d'Azur",
-      "continent": " France",
-      "FIELD5": " Europe",
-      "FIELD6": ""
-    },
-    {
-      "city": "Lagos",
-      "state": " Faro District",
-      "country": " Algarve",
-      "continent": " Portugal",
-      "FIELD5": " Europe",
-      "FIELD6": ""
-    },
-    {
-      "city": "Nerja",
-      "state": " Costa del Sol",
-      "country": " Province of Malaga",
-      "continent": " Andalucia",
-      "FIELD5": " Spain",
-      "FIELD6": " Europe"
-    },
-    {
-      "city": "Brighton",
-      "state": " East Sussex",
-      "country": " England",
-      "continent": " United Kingdom",
-      "FIELD5": " Europe",
-      "FIELD6": ""
-    },
-    {
-      "city": "Cancun",
-      "state": " Yucatan Peninsula",
-      "country": " Mexico",
-      "continent": " North America"
-    },
-    {
-      "city": "Puerto Vallarta",
-      "state": " Mexico",
-      "country": " North America",
-      "continent": ""
-    },
-    {
-      "city": "Rio de Janeiro",
-      "state": " State of Rio de Janeiro",
-      "country": " Brazil",
-      "continent": " South America"
-    },
-    {
-      "city": "Costa Rica",
-      "state": " Central America",
-      "country": "",
-      "continent": ""
-    },
-    {
-      "city": "Sydney",
-      "state": " New South Wales",
-      "country": " Australia",
-      "continent": " South Pacific"
-    },
-    {
-      "city": "Perth",
-      "state": " Greater Perth",
-      "country": " Western Australia",
-      "continent": " Australia",
-      "FIELD5": " South Pacific",
-      "FIELD6": ""
-    },
-    {
-      "city": "Viti Levu",
-      "state": " Fiji",
-      "country": " South Pacific",
-      "continent": ""
-    },
-    {
-      "city": "Byron Bay",
-      "state": " Byron Shire",
-      "country": " New South Wales",
-      "continent": " Australia",
-      "FIELD5": " South Pacific",
-      "FIELD6": ""
-    },
-    {
-      "city": "Great Barrier Reef",
-      "state": " Queensland",
-      "country": " Australia",
-      "continent": " South Pacific"
-    },
-    {
-      "city": "Maui",
-      "state": " Hawaii",
-      "country": " United States",
-      "continent": " North America"
-    },
-    {
-      "city": "Miami Beach",
-      "state": " Florida",
-      "country": " United States",
-      "continent": " North America"
-    },
-    {
-      "city": "San Diego",
-      "state": " California",
-      "country": " United States",
-      "continent": " North America"
-    },
-    {
-      "city": "St. Pete Beach",
-      "state": " Florida",
-      "country": " United States",
-      "continent": " North America"
-    },
-    {
-      "city": "Oahu",
-      "state": " Hawaii",
-      "country": " United States",
-      "continent": " North America"
-    },
-    {
-      "city": "Santa Barbara",
-      "state": " California",
-      "country": " United States",
-      "continent": " North America"
-    },
-    {
-      "city": "Panama City Beach",
-      "state": " Florida",
-      "country": " United States",
-      "continent": " North America"
-    },
-    {
-      "city": "Santa Monica",
-      "state": " California",
-      "country": " United States",
-      "continent": " North America"
-    },
-    {
-      "city": "Key Largo",
-      "state": " Florida Keys",
-      "country": " Florida",
-      "continent": " United States",
-      "FIELD5": " North America",
-      "FIELD6": ""
-    },
-    {
-      "city": "Island of Hawaii",
-      "state": " Hawaii",
-      "country": " United States",
-      "continent": " North America"
-    }
-  ]
+    "airportname": "Samui Airport",
+    "code": "USM",
+    "city": "Ko Samui",
+    "country": "Thailand"
+  }, {
+    "airportname": "Ngurah Rai International Airport",
+    "code": "DPS",
+    "city": "Bali",
+    "country": "Indonesia"
+  }, {
+    "airportname": "Miami International Airport",
+    "code": "MIA",
+    "city": "Miami",
+    "country": "USA"
+  }, {
+    "airportname": "Galeao International Airport",
+    "code": "GIG",
+    "city": "Rio de Janeiro",
+    "country": "Brazil"
+  }, {
+    "airportname": "San Diego International Airport",
+    "code": "SAN",
+    "city": "San Diego",
+    "country": "USA"
+  }]
+}, {
+  "name": "Adventure",
+  "icon": "mountains",
+  "destinations": [{
+    "airportname": "Chengdu Shuangliu International Airport",
+    "code": "CTU",
+    "city": "Chengdu",
+    "country": "China"
+  }, {
+    "airportname": "Luis Menoz Marin International Airport",
+    "code": "SJU",
+    "city": "San Juan",
+    "country": "Puerto Rico"
+  }, {
+    "airportname": "Fresno Yosemite International Airport",
+    "code": "FAT",
+    "city": "Yosemite National Park",
+    "country": "USA"
+  }, {
+    "airportname": "Grand Canyon National Park Airport",
+    "code": "GCN",
+    "city": "Grand Canyon National Park",
+    "country": "USA"
+  }, {
+    "airportname": "Kilimanjaro International Airport",
+    "code": "JRO",
+    "city": "Kilimanjaro National Park",
+    "country": "Tanzania"
+  }]
+}, {
+  "name": "History and Culture",
+  "icon": "igloo",
+  "destinations": [{
+    "airportname": "Ben Gurion Airport",
+    "code": "TLV",
+    "city": "Jerusalem",
+    "country": "Israel"
+  }, {
+    "airportname": "Luis Menoz Marin International Airport",
+    "code": "SJU",
+    "city": "San Juan",
+    "country": "Puerto Rico"
+  }, {
+    "airportname": "Charles de Gaulle Airport",
+    "code": "CDG",
+    "city": "Paris",
+    "country": "France"
+  }, {
+    "airportname": "Changi Airport",
+    "code": "SIN",
+    "city": "Singapore",
+    "country": "Singapore"
+  }, {
+    "airportname": "Heathrow Airport",
+    "code": "LHR",
+    "city": "London",
+    "country": "United Kingdom"
+  }]
+}, {
+  "name": "Family and Fun",
+  "icon": "parasailing",
+  "destinations": [{
+    "airportname": "John F. Kennedy International Airport",
+    "code": "JFK",
+    "city": "New York City",
+    "country": "USA"
+  }, {
+    "airportname": "Los Cabos International Airport",
+    "code": "SJD",
+    "city": "Los Cabos",
+    "country": "Mexico"
+  }, {
+    "airportname": "Munich Airport",
+    "code": "MUC",
+    "city": "Munich",
+    "country": "Germany"
+  }, {
+    "airportname": "Dulles International Airport",
+    "code": "IAD",
+    "city": "Washington D.C",
+    "country": "USA"
+  }, {
+    "airportname": "Athens International Airport",
+    "code": "ATH",
+    "city": "Athens",
+    "country": "Greece"
+  }]
+}, {
+  "name": "Romance and Honeymoon",
+  "icon": "cocktail",
+  "destinations": [{
+    "airportname": "Ngurah Rai International Airport",
+    "code": "DPS",
+    "city": "Bali",
+    "country": "Indonesia"
+  }, {
+    "airportname": "Shanghai Pudong International Airport",
+    "code": "PVG",
+    "city": "Shanghai",
+    "country": "China"
+  }, {
+    "airportname": "Pisa International Airport",
+    "code": "PSA",
+    "city": "Tuscany",
+    "country": "Italy"
+  }, {
+    "airportname": "Licenciado Gustavo Díaz Ordaz International Airport",
+    "code": "PVR",
+    "city": "Puerto Vallarta",
+    "country": "Mexico"
+  }, {
+    "airportname": "Venice Marco Polo Airport",
+    "code": "VCE",
+    "city": "Venice",
+    "country": "Italy"
+  }]
+}, {
+  "name": "Shopping",
+  "icon": "bag",
+  "destinations": [{
+    "airportname": "Milan - Malpensa Airport",
+    "code": "MXP",
+    "city": "Milan",
+    "country": "Italy"
+  }, {
+    "airportname": "San Francisco International Airport",
+    "code": "SFO",
+    "city": "San Francisco",
+    "country": "USA"
+  }, {
+    "airportname": "Auckland Airport",
+    "code": "AKL",
+    "city": "Auckland",
+    "country": "New Zealand"
+  }, {
+    "airportname": "Sydney Airport",
+    "code": "SYD",
+    "city": "Sydney",
+    "country": "Australia"
+  }, {
+    "airportname": "Québec City Jean Lesage International Airport",
+    "code": "YQB",
+    "city": "Quebec City",
+    "country": "Canada"
+  }]
 }]
