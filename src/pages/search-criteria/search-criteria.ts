@@ -40,11 +40,13 @@ export class SearchCriteriaPage {
     endDate: {},
     budgetLimit: 100000,
     hotelInformation: {
-      numberOfGuests: {},
-      numberOfRooms: {},
+      numberOfGuests: 2,
+      numberOfRooms: 1,
       ratings: []
     }
   };
+  startDate = '';
+  endDate = '';
   starRating: Array<boolean>;
   five: boolean = false;
   spinner: any;
@@ -56,6 +58,10 @@ export class SearchCriteriaPage {
   selectedDestination = '';
   previouslySelectedDestination: Airport = null;
 
+  getDate(date = new Date()) {
+    return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad Search Criteria');
   }
@@ -64,10 +70,12 @@ export class SearchCriteriaPage {
     private loadingCtrl: LoadingController,
     public navParams: NavParams,
     private discovery: DiscoveryProvider) {
+    this.startDate = this.getDate(new Date());
+    this.endDate = this.getDate(new Date(new Date().getTime() + (24 * 60 * 60 * 1000)));
     this.starRating = [false, false, false, false, false];
     this.budgetLimit = {
       'lower': 100000,
-      'upper': 350000
+      'upper': 400000
     };
     this.noOfRooms = [];
     this.noOfGuests = [];
@@ -148,8 +156,8 @@ export class SearchCriteriaPage {
   discoverTrip() {
     // this.find();
     // this.criteria.budgetLimit = this.budgetLimit.upper;
-    this.criteria.startDate = new Date("" + this.criteria.startDate).getTime();
-    this.criteria.endDate = new Date("" + this.criteria.endDate).getTime();
+    this.criteria.startDate = new Date("" + this.startDate).getTime();
+    this.criteria.endDate = new Date("" + this.endDate).getTime();
     // setTimeout(() => {
     //   console.log("timeout over >>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     //   this.spinner.dismiss();

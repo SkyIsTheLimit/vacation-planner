@@ -25,7 +25,7 @@ import { ApiManagerProvider } from '../api-manager/api-manager';
 export class UserManagerProvider {
 
   constructor(public http: Http,
-    public authenticationProvider: DemoAuthenticationProvider) {
+    public authenticationProvider: RestAuthenticationProvider) {
     console.log('Hello UserManagerProvider Provider');
   }
 
@@ -52,7 +52,7 @@ export class UserManagerProvider {
         }, error => reject(error));
     });
   }
-  
+
   getAuthenticationProvider(): AuthenticationProvider {
     return this.authenticationProvider;
     // return new DemoAuthenticationProvider();

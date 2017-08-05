@@ -73,24 +73,51 @@ export class UserProfilePage {
   }
 
   loginWithOAuthProvider(provider: OAuthProvider) {
+    let receivedProfile = null;
+
     provider.login()
       .then(profile => {
         return provider.getAuthenticatedUser({
           fields: 'name,email,picture'
+        }).then(profile => {
+          if (profile.picture.data) {
+            profile.picture = profile.picture.data.url;
+          }
+
+          receivedProfile = profile;
+          return this.userManager.createOAuthProfile(profile)
+            .then(profile => {
+              return this.authenticationProvider.link(receivedProfile);
+            });
         });
-      })
-      .then(profile => {
-        return this.authenticationProvider.link(profile);
       })
       .then(user => {
         console.info('Received updated user', user);
         this.user = user;
       }).catch(reason => {
+        // First create the user.
+        this.userManager.createOAuthProfile(receivedProfile).then(profile => {
+          return provider.getAuthenticatedUser({
+            fields: 'name,email,picture'
+          }).then(profile => {
+            if (profile.picture.data) {
+              profile.picture = profile.picture.data.url;
+            }
+
+            return this.authenticationProvider.link(profile);
+          }).catch(reason => {
+            this.toast.create({
+              message: reason,
+              duration: 5000
+            }).present();
+          });
+        })
+
         this.toast.create({
           message: reason,
           duration: 5000
         }).present();
-      })
+      });
   }
 
   logoutWithProvider() {

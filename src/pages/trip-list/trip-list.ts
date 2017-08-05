@@ -31,12 +31,12 @@ export class TripListPage {
     console.log("search criteria in trip list");
     console.log(this.criteria);
     fm.fetchMatchingFlights(this.criteria)
-      // .map((res: any) => {
-      //   res._body = res._body.replace('\\', '');
-      //   return res.json()
-      // })
+      .map((res: any) => {
+        return res.json();
+      })
       .subscribe((data: any) => {
-        data = JSON.parse(data._body);
+        console.info('Data Received', data);
+        // data = JSON.parse(data._body);
         var tripsList = {
           data: {},
           tripOption: {}
@@ -75,7 +75,8 @@ export class TripListPage {
 
   viewFlightDetails(flight) {
     let flightDetailsModal = this.modalCtrl.create(FlightDetailModalPage, {
-      flight: flight
+      flight: flight,
+      criteria: this.criteria
     });
     flightDetailsModal.present();
     // this.app.getRootNav().push(FlightDetailModalPage, {

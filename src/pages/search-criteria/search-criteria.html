@@ -21,7 +21,7 @@
       <ion-input [(ngModel)]="selectedOrigin" (ngModelChange)="fetchSuggestions(selectedOrigin, 'origin')" color="link"></ion-input>
     </ion-item>
 
-    <ion-list>
+    <ion-list *ngIf="originSuggestions.length">
       <button ion-item *ngFor="let suggestion of originSuggestions" (click)="setOrigin(suggestion, 'origin', $event)">{{ suggestion.city }} ({{ suggestion.code }}) - {{ suggestion.airportname }}</button>
     </ion-list>
 
@@ -31,17 +31,17 @@
       <ion-input [(ngModel)]="selectedDestination" (ngModelChange)="fetchSuggestions(selectedDestination, 'destination')" color="link"></ion-input>
     </ion-item>
 
-    <ion-list>
+    <ion-list *ngIf="destinationSuggestions.length">
       <button ion-item *ngFor="let suggestion of destinationSuggestions" (click)="setDestination(suggestion, 'destination', $event)">{{ suggestion.city }} ({{ suggestion.code }}) - {{ suggestion.airportname }}</button>
     </ion-list>
 
     <ion-item>
       <ion-label>Start Date</ion-label>
-      <ion-datetime displayFormat="MMM DD YYYY" style="color: blue" [(ngModel)]="criteria.startDate"></ion-datetime>
+      <ion-datetime displayFormat="MMM DD YYYY" style="color: blue" [(ngModel)]="startDate"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>End Date</ion-label>
-      <ion-datetime displayFormat="MMM DD YYYY" style="color: blue" [(ngModel)]="criteria.endDate"></ion-datetime>
+      <ion-datetime displayFormat="MMM DD YYYY" style="color: blue" [(ngModel)]="endDate"></ion-datetime>
       <!-- [(ngModel)]="event.month" -->
     </ion-item>
 
@@ -60,28 +60,29 @@
     <ion-label style="font-size: 16px; padding-left: 16px;">Hotel Preferences</ion-label>
     <ion-item>Star Rating
       <div style="display: flex; padding-top: 20px;">
-        <button [ngClass]="{'activated': this.starRating[0], 'star-rating-button': this.starRating[0]}" ion-button outline color="link" 
-          style="flex: 1; height: 25px; margin-left: 10px; margin-right: 10px;" (click)="addSelectedRating(1, one)">
-          <label style="font-size: 1.2em">1</label>
+        <button class="star-rating" [ngClass]="{'activated': this.starRating[0], 'star-rating-button': !this.starRating[0]}" ion-button outline color="primary"
+          style="flex: 1; height: 25px; margin-left: 10px; margin-right: 10px;" (click)="addSelectedRating(1)">
+          <!-- <label style="font-size: 1.2em">1</label> -->
+          1
           <ion-icon name="star"></ion-icon>
         </button>
-        <button [ngClass]="{'activated': this.starRating[1], 'star-rating-button': !this.starRating[1]}" ion-button outline color="link" 
-          style="flex: 1; height: 25px; margin-left: 10px; margin-right: 10px;" (click)="addSelectedRating(2, two)">
+        <button class="star-rating" [ngClass]="{'activated': this.starRating[1], 'star-rating-button': !this.starRating[1]}" ion-button outline color="primary"
+          style="flex: 1; height: 25px; margin-left: 10px; margin-right: 10px;" (click)="addSelectedRating(2)">
           <label style="font-size: 1.2em">2</label>
           <ion-icon name="star"></ion-icon>
         </button>
-        <button [ngClass]="{'activated': this.starRating[2], 'star-rating-button': !this.starRating[2]}" ion-button outline color="link" 
-          style="flex: 1; height: 25px; margin-left: 10px; margin-right: 10px;" (click)="addSelectedRating(3, three)">
+        <button class="star-rating" [ngClass]="{'activated': this.starRating[2], 'star-rating-button': !this.starRating[2]}" ion-button outline color="primary"
+          style="flex: 1; height: 25px; margin-left: 10px; margin-right: 10px;" (click)="addSelectedRating(3)">
           <label style="font-size: 1.2em">3</label>
           <ion-icon name="star"></ion-icon>
         </button>
-        <button class="star-rating-button" [ngClass]="{'activated': this.starRating[3], 'star-rating-button': !this.starRating[3]}" ion-button outline color="link" 
-          style="flex: 1; height: 25px; margin-left: 10px; margin-right: 10px;" (click)="addSelectedRating(4, four)">
+        <button class="star-rating" [ngClass]="{'activated': this.starRating[3], 'star-rating-button': !this.starRating[3]}" ion-button outline color="primary"
+          style="flex: 1; height: 25px; margin-left: 10px; margin-right: 10px;" (click)="addSelectedRating(4)">
           <label style="font-size: 1.2em">4</label>
           <ion-icon name="star"></ion-icon>
         </button>
-        <button [ngClass]= "{'activated' : five}" ion-button outline color="link" 
-          style="flex: 1; height: 25px; margin-left: 10px; margin-right: 10px;" (click)="toggle()">
+        <button class="star-rating" [ngClass]="{'activated': this.starRating[4], 'star-rating-button': !this.starRating[4]}" ion-button outline color="primary"
+          style="flex: 1; height: 25px; margin-left: 10px; margin-right: 10px;" (click)="addSelectedRating(5)">
           <label style="font-size: 1.2em">5</label>
           <ion-icon name="star"></ion-icon>
         </button>
@@ -101,6 +102,6 @@
       </ion-select>
     </ion-item>
 
-    <button ion-button round color="secondary" (click)="discoverTrip()">Surprise Me!</button>
+    <button ion-button round block color="secondary" (click)="discoverTrip()">Surprise Me!</button>
   </ion-list>
 </ion-content>

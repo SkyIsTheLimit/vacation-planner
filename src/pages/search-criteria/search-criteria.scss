@@ -1,3 +1,14 @@
 page-search-criteria {
+  .star-rating {
+    background: map-get($colors, secondary);
+    color: map-get($colors, dark);
+    font-weight: bold;
+  }
 
+  .star-rating-button {
+    font-weight: normal;
+    background: white;
+    color: map-get($colors, primary);
+    // border: 1px solid map-get($colors, secondary);
+  }
 }
