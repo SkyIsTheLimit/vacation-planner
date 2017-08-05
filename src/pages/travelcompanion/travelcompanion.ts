@@ -51,23 +51,30 @@ addDestination(destination, type, $event) {
     this.criteria[type] = destination.description;
     this.originSuggestions = [];
     this.location = destination.description;
-    //this.destinationSuggestions = [];
-  }
-
-loadNearbyPlaces(resulttype) {
- this.radiusinmiles = (this.radius * 1609.34);
- let criteria1: CompanionCriteria = {
-      type: resulttype,
+     let criteria1: CompanionCriteria = {
+      type: "",
       keyword: "",
       filter: "",
       location: this.location,
       radius: this.radiusinmiles
     };
+    this.tc.getLocationCoordsForCity(criteria1).subscribe(res => this.coordinates = res.results);
+   this.locationcoords = this.coordinates[0].geometry.location.lat + ","  + this.coordinates[0].geometry.location.lng;
+    console.log("co ordinates of location:" + this.locationcoords);
+  }
+
+loadNearbyPlaces(resulttype) {
+ this.radiusinmiles = (this.radius * 1609.34);
+ /*let criteria1: CompanionCriteria = {
+      type: resulttype,
+      keyword: "",
+      filter: "",
+      location: this.location,
+      radius: this.radiusinmiles
+    };*/
   console.log("radius:" + this.radius);
   console.log("cuisine:" + this.cuisine);
- 
-  this.tc.getLocationCoordsForCity(criteria1).subscribe(res => setTimeout(() => this.coordinates = res.results, 1000));
-   this.locationcoords = this.coordinates[0].geometry.location.lat + ","  + this.coordinates[0].geometry.location.lng;
+this.locationcoords = this.coordinates[0].geometry.location.lat + ","  + this.coordinates[0].geometry.location.lng;
    let criteria: CompanionCriteria = {
       type: resulttype,
       keyword: this.cuisine,
@@ -83,7 +90,7 @@ loadNearbyPlaces(resulttype) {
    console.log("result type"  + resulttype);
    this.tc.searchNearByRestaurants(criteria).subscribe( res => this.restaurants = res.results);
    // this.navCtrl.push(TravelassistantPage,criteria); 
-   setTimeout(() =>this.navCtrl.push(TravelassistantPage, this.restaurants), 1000);
+   setTimeout(() =>this.navCtrl.push(TravelassistantPage, this.restaurants), 2000);
   }
 
 }
