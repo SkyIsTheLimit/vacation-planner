@@ -15,11 +15,13 @@ import { HotelListPage } from '../hotel-list/hotel-list';
 })
 export class FlightDetailModalPage {
   flight: any;
+  criteria: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
+  constructor(public navCtrl: NavController, public navParams: NavParams,
     public app: App, public viewCtrl: ViewController) {
     //flight information fetched from 
     this.flight = this.navParams.get('flight');
+    this.criteria = this.navParams.get('criteria');
   }
 
   ionViewDidLoad() {
@@ -27,14 +29,15 @@ export class FlightDetailModalPage {
     // console.log(this.flight);
   }
 
-/**
- * This method is called when the user clicks on the '>' for any flight option presented
- * This enables the user to see the hotel options that match their serarch criteria. The
- * opted flight information is passed to the Hotel-list page
- */
+  /**
+   * This method is called when the user clicks on the '>' for any flight option presented
+   * This enables the user to see the hotel options that match their serarch criteria. The
+   * opted flight information is passed to the Hotel-list page
+   */
   showHotelList() {
     this.app.getRootNav().push(HotelListPage, {
-      flight: this.flight
+      flight: this.flight,
+      criteria: this.criteria
     });
   }
 

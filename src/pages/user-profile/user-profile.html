@@ -20,7 +20,7 @@
   <ion-grid>
     <ion-row>
       <ion-col text-center>
-        <ion-label>Logged in as {{ user.name }}</ion-label>
+        <ion-label>Logged in as {{ (user.name && user.name.trim() ? user.name : user.username) }}</ion-label>
         <p>( {{ user.email }} )</p>
         <button ion-button block clear (click)="gotoPreferences()">
           <ion-icon name="settings"></ion-icon>&nbsp;&nbsp;

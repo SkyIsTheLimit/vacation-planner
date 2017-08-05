@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
 import {
   // Authentication,
@@ -33,11 +33,13 @@ export class SignupPage {
   authenticationProvider: AuthenticationProvider;
   oauthProviders: Array<OAuthProvider> = [];
   credentials = {};
+  repeatPassword: string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     // public authentication: Authentication,
-    public userManager: UserManagerProvider) {
+    public userManager: UserManagerProvider,
+    public toast: ToastController) {
     this.authenticationProvider = this.userManager.getAuthenticationProvider();
     this.oauthProviders = this.authenticationProvider.getLinkedProviders();
   }
@@ -47,6 +49,15 @@ export class SignupPage {
   }
 
   signupWithProvider(credentials) {
+    if (!this.repeatPassword || (this.repeatPassword !== credentials.password)) {
+      this.toast.create({
+        message: 'Please enter same repeat password',
+        duration: 4000
+      }).present();
+
+      return;
+    }
+
     this.authenticationProvider.signup(credentials).then(function () {
       this.navCtrl.push(DispatchPage);
     }).catch(() => {
@@ -61,6 +72,9 @@ export class SignupPage {
       fields: 'email,name,picture'
     })
       .then(profile => {
+        if (profile.picture.data) {
+          profile.picture = profile.picture.data.url;
+        }
         // Create the oauth-profile.
         return this.userManager.createOAuthProfile(profile);
       })
@@ -82,6 +96,9 @@ export class SignupPage {
 
         provider.login()
           .then(profile => {
+            if (profile.picture.data) {
+              profile.picture = profile.picture.data.url;
+            }
             // Create the oauth-profile.
             return this.userManager.createOAuthProfile(profile);
           })
