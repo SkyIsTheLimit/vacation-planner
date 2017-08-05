@@ -20,3 +20,4 @@ export * from './origin-picker/origin-picker';
 export * from './flight-detail-modal/flight-detail-modal';
 export * from './hotel-list/hotel-list';
 export * from './hotel-detail-modal/hotel-detail-modal';
+export * from './trip-comparison/trip-comparison';

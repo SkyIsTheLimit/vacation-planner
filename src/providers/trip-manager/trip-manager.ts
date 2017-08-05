@@ -15,9 +15,14 @@ export class TripManagerProvider {
   myTrips: Array<Trip> = [];
   bookmarkedTrips: Array<Trip> = [];
   recentlyViewedTrips: Array<Trip> = [];
+  currentTrip: any;
 
   constructor(public http: Http) {
     console.log('Hello TripManagerProvider Provider');
+  }
+
+  setCurrentTrip(trip) {
+    this.currentTrip = trip;
   }
 
   addToMyTrips(trip) {

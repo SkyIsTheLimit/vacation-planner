@@ -5,6 +5,7 @@ import { DiscoveryProvider } from '../../providers';
 import { BookkeeperPage } from '../bookkeeper/bookkeeper';
 import { TripListPage } from '../trip-list/trip-list';
 import { TripDetailPage } from '../trip-detail/trip-detail';
+import { TripComparisonPage } from '../trip-comparison/trip-comparison';
 
 import { Airport } from '../../models';
 
@@ -154,13 +155,14 @@ export class SearchCriteriaPage {
     //   this.spinner.dismiss();
     // }, 5000);
 
-    this.navCtrl.push(TripDetailPage);
+    // this.navCtrl.push(TripDetailPage);
+    // this.navCtrl.push(TripComparisonPage);
 
-    // this.navCtrl.push(TripListPage, {
-    //   criteria: this.criteria,
-    //   spinner: this.spinner,
-    //   spinnerThis: this.spinnerThis
-    // });
+    this.navCtrl.push(TripListPage, {
+      criteria: this.criteria,
+      spinner: this.spinner,
+      spinnerThis: this.spinnerThis
+    });
   }
 
   /**

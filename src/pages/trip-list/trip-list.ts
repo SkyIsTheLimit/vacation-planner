@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import 'rxjs/add/operator/map';
 import { IonicPage, NavController, NavParams, App, ModalController, LoadingController } from 'ionic-angular';
 
 import { TripDetailPage } from '../trip-detail/trip-detail';
@@ -23,27 +25,31 @@ export class TripListPage {
   criteria: any;
   batchSize: number = 10;
   startIndex: number = 0;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public app: App,
     public fm: FlightManagerProvider, public modalCtrl: ModalController, public loadingCtrl: LoadingController) {
-      this.criteria = this.navParams.get("criteria");
-      console.log("search criteria in trip list");
-      console.log(this.criteria);
-      fm.fetchMatchingFlights(this.criteria)
-        .map(res =>res.json())
-        .subscribe(data => {
+    this.criteria = this.navParams.get("criteria");
+    console.log("search criteria in trip list");
+    console.log(this.criteria);
+    fm.fetchMatchingFlights(this.criteria)
+      // .map((res: any) => {
+      //   res._body = res._body.replace('\\', '');
+      //   return res.json()
+      // })
+      .subscribe((data: any) => {
+        data = JSON.parse(data._body);
         var tripsList = {
-          data:{},
-          tripOption:{}
+          data: {},
+          tripOption: {}
         };
         var finalList;
         console.log("Here is your response");
         console.log(data);
         // if(data.tripOptions){
-          // var tripList = JSON.parse(data.data);
-          tripsList.data = JSON.parse(data.data);
-          tripsList.tripOption = JSON.parse(data.tripOptions);
-          this.tripsMasterList = fm.manageReturnedTrips(tripsList);
-          this.setFlightsList();
+        // var tripList = JSON.parse(data.data);
+        tripsList.data = JSON.parse(data.data);
+        tripsList.tripOption = JSON.parse(data.tripOptions);
+        this.tripsMasterList = fm.manageReturnedTrips(tripsList);
+        this.setFlightsList();
         // } else{
         //   this.tripsMasterList  = [];
         // }
@@ -59,7 +65,7 @@ export class TripListPage {
   }
 
   viewHotelsList(flight) {
-    this.criteria.budgetLimit =  this.criteria.budgetLimit - parseInt(flight.totalPrice.substring(3));
+    this.criteria.budgetLimit = this.criteria.budgetLimit - parseInt(flight.totalPrice.substring(3));
     this.app.getRootNav().push(HotelListPage, {
       flight: flight,
       criteria: this.criteria
@@ -77,7 +83,7 @@ export class TripListPage {
     // });
   }
 
-  shouldLoadMore(){
+  shouldLoadMore() {
     return (this.startIndex < this.tripsMasterList.length);
   }
 
@@ -85,18 +91,18 @@ export class TripListPage {
    * Method called as an extension of the constructor
    * This method picks the first few matching hotels and pushes them to the UI linked array.
    */
-  setFlightsList(){
+  setFlightsList() {
     let initialValue = this.startIndex;
-    if(this.batchSize < (this.tripsMasterList.length - this.startIndex)){
-      for(this.startIndex; this.startIndex < (this.batchSize + initialValue); this.startIndex++){
+    if (this.batchSize < (this.tripsMasterList.length - this.startIndex)) {
+      for (this.startIndex; this.startIndex < (this.batchSize + initialValue); this.startIndex++) {
         this.trips.push(this.tripsMasterList[this.startIndex]);
       }
     } else {
-      for(this.startIndex; this.startIndex < this.tripsMasterList.length; this.startIndex++){
+      for (this.startIndex; this.startIndex < this.tripsMasterList.length; this.startIndex++) {
         this.trips.push(this.tripsMasterList[this.startIndex]);
       }
     }
     //set the start index for the next iteration
-    this.startIndex ++;
+    this.startIndex++;
   };
 }

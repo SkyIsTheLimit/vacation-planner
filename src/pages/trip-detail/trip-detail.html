@@ -37,7 +37,37 @@
     <ion-row>
       <ion-col>
         <h2>Flight Info</h2>
-        <button ion-button (click)="moveToTravelCompanion()">Travel Companion</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div style="font-size:12px; color: grey; white-space: pre-wrap;">{{leg.carrier}} <b>{{leg.flightNumber}}</b></div>
+        <br>
+        <div style="display:flex;">
+          <div style="flex:5; text-align:right;">
+            <div>{{leg.origin}} <b>{{leg.departure.time.hours}}:{{leg.departure.time.mins}}</b></div>
+            <div style="font-size:12px; color: grey">{{leg.departure.date.day}}, {{leg.departure.date.date}} {{leg.departure.date.month}}</div>
+            <div style="font-size:12px; color: grey; white-space: pre-wrap;">{{leg.originAirport}}, {{leg.originCity}}</div>
+          </div>
+          <div align="center" style="flex:1; padding:0px 15px 15px 15px;">
+            <ion-icon ios="ios-time-outline" md="md-time"></ion-icon>
+            <div style="font-size:9px; color: grey">{{leg.duration}} m</div>
+          </div>
+          <div style="flex:5; text-align:left;">
+            <div>{{leg.destination}} <b>{{leg.arrival.time.hours}}:{{leg.arrival.time.hours}}</b></div>
+            <div style="font-size:12px; color: grey">{{leg.arrival.date.day}}, {{leg.arrival.date.date}} {{leg.arrival.date.month}}</div>
+            <div style="font-size:12px; color: grey; white-space: pre-wrap;">{{leg.destinationAirport}}, {{leg.destinationCity}}</div>
+          </div>
+        </div>
+        <!-- Display connect duration here in case it is not a non-stop flight-->
+        <br>
+        <div *ngIf="leg.connectionDuration">
+          <hr>
+          <div align="center" style="font-size:12px; color: grey;">
+            <label>Layover: {{leg.connectionDuration}}m</label>
+          </div>
+        </div>
       </ion-col>
     </ion-row>
 
@@ -67,9 +97,20 @@
 
     <ion-row>
       <ion-col>
-        <h2>Things to Do</h2>
-        <h3>Places to Visit</h3>
-        <h3>Places to Eat</h3>
+        <!-- <h3>Things to Do</h3> -->
+        <h3>Nearby Places</h3>
+        <!-- <h3>Places to Eat</h3> -->
+
+        <ion-list>
+          <ion-item *ngFor="let place of trip.nearbyPlaces">
+            <ion-thumbnail item-start>
+              <img [src]="place.icon">
+            </ion-thumbnail>
+            <h2>{{ place.name }}</h2>
+            <p>{{ place.vicinity }}</p>
+          </ion-item>
+        </ion-list>
+
       </ion-col>
     </ion-row>
   </ion-grid>
