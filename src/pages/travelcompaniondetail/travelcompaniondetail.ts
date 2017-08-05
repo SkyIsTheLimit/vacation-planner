@@ -15,9 +15,12 @@ import { TravelCompanionProvider } from '../../providers';
 })
 export class TravelcompaniondetailPage {
   restaurant: any = "";
-  details: Array<any> = [];
+  details: any = "";
   reviews: Array<any> = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, private tc: TravelCompanionProvider) {
+    console.log("res details" + this.navParams.data);
+    this.restaurant = this.navParams.data;
+     //this.details = this.navParams.data;
   }
 
   ionViewDidLoad() {
@@ -25,7 +28,7 @@ export class TravelcompaniondetailPage {
     console.log("restaurant name" + this.restaurant.name);
     console.log("restaurant name" + this.restaurant.place_id);
     console.log('ionViewDidLoad TravelcompaniondetailPage');
-    this.getplacedetails();
+   // this.getplacedetails();
   }
   getplacedetails()
   {
@@ -35,8 +38,8 @@ export class TravelcompaniondetailPage {
   
     //res.subscribe(results => this.reviews = results.result.reviews);
     console.log("data:" + res);
-    console.log("details:" + this.details.length);
-    console.log("detail address:" + this.details[0]);
+    console.log("details:" + this.details);
+    console.log("detail address:" + this.details);
   }
 
 }

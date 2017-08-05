@@ -21,12 +21,14 @@ export class TravelassistantPage {
   restaurants: Array<any> = [];
   distances: Array<any> = [];
   calculateddistance: Array<any> = [];
+  details : any = {};
   constructor(public navCtrl: NavController, public navParams: NavParams, private tc: TravelCompanionProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TravelassistantPage');
-    this.loadNearbyPlaces(this.navParams.data);
+    this.restaurants = this.navParams.data;
+    //this.loadNearbyPlaces(this.navParams.data);
   }
 
   loadNearbyPlaces(criteria) {
@@ -59,8 +61,9 @@ export class TravelassistantPage {
   }
   loadItemDetails(restaurant)
   {
-    console.log(restaurant.name);
-   // this.navCtrl.push(TravelcompaniondetailPage, restaurant);
+   console.log(restaurant.name);
+    this.tc.getPlaceDetails(restaurant.place_id).subscribe(res => {
+      setTimeout(() => {this.details = res}, 500)});
+     setTimeout(() =>this.navCtrl.push(TravelcompaniondetailPage, this.details), 2000);
   }
-
 }

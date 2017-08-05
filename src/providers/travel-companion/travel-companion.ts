@@ -72,16 +72,6 @@ export class TravelCompanionProvider {
     console.log("place id:" + criteria);
     var endpoint = 'https://maps.googleapis.com/maps/api/place/details/json?' + 
     'placeid=' + criteria + '&key=AIzaSyC4x3E86QCk1dW2iVA5GHmRH9mNKtZx-1g';
-    endpoint = 'http://localhost:8080/nearbydetail?placeid=ChIJN4S8aYtZwokRuFd8K1VkO94&key=AIzaSyC4x3E86QCk1dW2iVA5GHmRH9mNKtZx-1g';
-     let res = this.http.get(endpoint);
-    let res1 = "";
-     console.log("endpoint:" + endpoint);
-     console.log(res.map(res => res1 = res.json()));
-     this.resjson.push(res1);
-     console.log("json result:"  + this.resjson.length);
-      console.log(JSON.stringify(res));
-     console.log(JSON.stringify(res1));
-      JSON.stringify(res1);
     return this.http.get(endpoint).map(response => response.json());
   }
 
