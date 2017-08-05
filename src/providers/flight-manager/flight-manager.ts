@@ -119,7 +119,7 @@ export class FlightManagerProvider {
         trip.phase[j].originAirport = this.getAirportInformation(trip.phase[j].origin);
         trip.phase[j].destinationAirport = this.getAirportInformation(trip.phase[j].destination);
         trip.phase[j].carrier = this.getCarrierInformation(tripsList.tripOption[i].slice[0].segment[j].flight.carrier);
-        trip.phase[j].connectionDuration = tripsList.tripOption[i].slice[0].segment[j].connectionDuration | "";
+        trip.phase[j].connectionDuration = tripsList.tripOption[i].slice[0].segment[j].connectionDuration | 0;
         // trip.phase[j].destinationTerminal = tripsList.tripOption[i].slice[0].segment[j].leg[0].destinationTerminal || "";
         // trip.phase[j].originTerminal = tripsList.tripOption[i].slice[0].segment[j].leg[0].originTerminal || "";
         trip.phase[j].meal = tripsList.tripOption[i].slice[0].segment[j].leg[0].meal || "";

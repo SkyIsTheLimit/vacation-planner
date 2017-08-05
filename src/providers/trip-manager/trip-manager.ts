@@ -29,7 +29,9 @@ export class TripManagerProvider {
   }
 
   addToRecentlyViewedTrips(trip) {
-    this.recentlyViewedTrips.push(trip);
+    if (this.recentlyViewedTrips.indexOf(trip) === -1) {
+      this.recentlyViewedTrips.push(trip);
+    }
 
     if (this.recentlyViewedTrips.length > 20) {
       this.recentlyViewedTrips = this.recentlyViewedTrips.reverse();

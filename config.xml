@@ -3,7 +3,7 @@
     <name>Vacation Planner</name>
     <description>Helping you in planning vacations.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.200.1:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-navigation href="http://3.204.174.91:8100" />
@@ -83,9 +83,6 @@
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
-    <engine name="android" spec="^6.2.2" />
-    <engine name="browser" spec="^4.1.0" />
-    <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-console" spec="^1.0.5" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
@@ -96,4 +93,7 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.2.2" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <engine name="android" spec="^6.2.2" />
+    <engine name="browser" spec="^4.1.0" />
+    <engine name="ios" spec="^4.4.0" />
 </widget>

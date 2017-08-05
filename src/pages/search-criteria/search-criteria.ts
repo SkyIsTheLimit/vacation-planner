@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { DiscoveryProvider } from '../../providers';
 import { BookkeeperPage } from '../bookkeeper/bookkeeper';
 import { TripListPage } from '../trip-list/trip-list';
+import { TripDetailPage } from '../trip-detail/trip-detail';
 
 import { Airport } from '../../models';
 
@@ -77,7 +78,11 @@ export class SearchCriteriaPage {
     if (this.previouslySelectedDestination) {
       var d = this.previouslySelectedDestination;
       this.selectedDestination = d.city + '(' + d.code + ') - ' + d.airportname;
-      this.criteria.destination = d;
+      this.criteria.destination = {
+        airportCode: d.code,
+        city: d.city,
+        country: d.country
+      }
     }
   }
 
@@ -148,11 +153,14 @@ export class SearchCriteriaPage {
     //   console.log("timeout over >>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     //   this.spinner.dismiss();
     // }, 5000);
-    this.navCtrl.push(TripListPage, {
-      criteria: this.criteria,
-      spinner: this.spinner,
-      spinnerThis: this.spinnerThis
-    });
+
+    this.navCtrl.push(TripDetailPage);
+
+    // this.navCtrl.push(TripListPage, {
+    //   criteria: this.criteria,
+    //   spinner: this.spinner,
+    //   spinnerThis: this.spinnerThis
+    // });
   }
 
   /**

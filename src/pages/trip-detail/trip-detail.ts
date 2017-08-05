@@ -17,11 +17,22 @@ import { TravelcompanionPage } from '../../pages';
   templateUrl: 'trip-detail.html',
 })
 export class TripDetailPage {
-  trip: any;
+  trip: any = {};
+  exampleTrip = {
+    flight: {
+      startDate: new Date(),
+      endDate: new Date()
+    },
+    hotel: {
+      name: 'Mariott',
+      location: 'Indiranagar',
+      city: 'Bangalore'
+    }
+  };
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public tripManager: TripManagerProvider) {
-    this.trip = this.navParams.get('trip');
+    this.trip = this.navParams.get('trip') || this.exampleTrip;
 
     // Add this trip to recently viewed.
     this.tripManager.addToRecentlyViewedTrips(this.trip);
