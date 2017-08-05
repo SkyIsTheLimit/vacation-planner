@@ -89,7 +89,7 @@
       <button ion-item *ngFor="let suggestion of originSuggestions" (click)="addDestination(suggestion, 'origin', $event)">{{ suggestion.description }}</button>
     </ion-list>
  <ion-item>
-    <ion-label color="primary" fixed>Radius</ion-label>
+    <ion-label color="primary" fixed>Radius(miles)</ion-label>
     <ion-input type="number" placeholder="Enter search radius" [(ngModel)]="radius"></ion-input>
   </ion-item>
   <ion-item>
