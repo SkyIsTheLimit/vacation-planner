@@ -41,7 +41,7 @@
     </ion-row>
 
     <ion-row>
-      <ion-col>
+      <ion-col *ngFor="let leg of trip.flight.phase">
         <div style="font-size:12px; color: grey; white-space: pre-wrap;">{{leg.carrier}} <b>{{leg.flightNumber}}</b></div>
         <br>
         <div style="display:flex;">
@@ -71,14 +71,14 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <!--<ion-row>
       <ion-col>
         <ion-datetime displayFormat="MMM DD YYYY" style="color: blue" [(ngModel)]="trip.startDate"></ion-datetime>
       </ion-col>
       <ion-col>
         <ion-datetime displayFormat="MMM DD YYYY" style="color: blue" [(ngModel)]="trip.endDate"></ion-datetime>
       </ion-col>
-    </ion-row>
+    </ion-row>-->
 
     <ion-row>
       <ion-col>
@@ -87,11 +87,11 @@
     </ion-row>
 
     <ion-row>
-      <img src="https://placekitten.com/200/200" alt="" width="72" height="72" />
+      <img src={{trip.hotel.tbig}} alt="" width="72" height="72" />
 
       <div style="float: left; width: 70%; padding-left: 10px;">
-        <h3 style="margin-top: 0; margin-bottom: 0">{{ trip.hotel.name }}</h3>
-        <p style="margin-top: 0; margin-bottom: 0">{{ trip.hotel.location }}, {{ trip.hotel.city }}</p>
+        <h3 style="margin-top: 0; margin-bottom: 0">{{ trip.hotel.hn }}</h3>
+        <p style="margin-top: 0; margin-bottom: 0">{{ trip.hotel.l }}, {{ trip.hotel.c }}</p>
       </div>
     </ion-row>
 
