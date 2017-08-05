@@ -18,17 +18,18 @@ export class TravelCompanionProvider {
   constructor(public http: Http) {
     let that = this;
     console.log('Hello TravelCompanionProvider Provider');
-    navigator.geolocation.getCurrentPosition(function(position) {
-            
-            var pos = {
-              lat: position.coords.latitude, 
-              lng: position.coords.longitude
-            };
-            that.location = pos.lat + "," + pos.lng;
-            //console.log("lattitude:" + location.lat);
-            //this.res = location.lat + "," + pos.lng;
-          });
-          console.log("lattitude:" + this.location);
+    navigator.geolocation.getCurrentPosition(function (position) {
+
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      that.location = pos.lat + "," + pos.lng;
+      //console.log("lattitude:" + location.lat);
+
+      //this.res = location.lat + "," + pos.lng;
+    });
+    console.log("lattitude:" + this.location);
   }
   searchNearByRestaurants(criteria: CompanionCriteria) {
     console.log("Inside add method");
@@ -36,8 +37,8 @@ export class TravelCompanionProvider {
     console.log("radius: " + criteria.radius);
     console.log("type: " + criteria.type);
     console.log("location:" + this.location);
-    var endpoint = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
-      + 'location=' + criteria.location +
+    var endpoint = ApiManagerProvider.NEARBY_API + '?'
+      + 'location=' + this.location +
       '&radius=' + criteria.radius +
       '&type=' + criteria.type +
       '&keyword=' + criteria.keyword +
@@ -48,27 +49,25 @@ export class TravelCompanionProvider {
     // console.log(this.res);
     // return this.res;
   }
-  getLocationCoordsForCity(criteria:CompanionCriteria)
-  {
-    var endpoint = 'https://maps.googleapis.com/maps/api/geocode/json?'+
-         'address=' + criteria.location + 
-     /* + 'location=' + this.location +
-      '&radius=' + criteria.radius +
-      '&type=' + criteria.type +
-      '&keyword=' + criteria.keyword +*/
+
+  getLocationCoordsForCity(criteria: CompanionCriteria) {
+    var endpoint = 'https://maps.googleapis.com/maps/api/geocode/json?' +
+      'address=' + criteria.location +
+      /* + 'location=' + this.location +
+       '&radius=' + criteria.radius +
+       '&type=' + criteria.type +
+       '&keyword=' + criteria.keyword +*/
       '&key=AIzaSyAfmZS0HL2gy02bHOco0sDhmG7dpMBaflA';
-        return this.http.get(endpoint).map(response => response.json())
+    return this.http.get(endpoint).map(response => response.json())
   }
-  getdistanceForCoords(criteria:CompanionCriteria )
-  {
-    var endpoint = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&'+
-         'origins=' + criteria.location + "|" + criteria.radius +
+  getdistanceForCoords(criteria: CompanionCriteria) {
+    var endpoint = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&' +
+      'origins=' + criteria.location + "|" + criteria.radius +
       '&destinations=' + criteria.radius + "|" + criteria.location
-      '&key=AIzaSyAfmZS0HL2gy02bHOco0sDhmG7dpMBaflA';
-        return this.http.get(endpoint).map(response => response.json())
+    '&key=AIzaSyAfmZS0HL2gy02bHOco0sDhmG7dpMBaflA';
+    return this.http.get(endpoint).map(response => response.json())
   }
-  getPlaceDetails(criteria:String)
-  {
+  getPlaceDetails(criteria: String) {
     console.log("place id:" + criteria);
     var endpoint = 'https://maps.googleapis.com/maps/api/place/details/json?' + 
     'placeid=' + criteria + '&key=AIzaSyC4x3E86QCk1dW2iVA5GHmRH9mNKtZx-1g';
@@ -77,6 +76,17 @@ export class TravelCompanionProvider {
 
   fetchSuggestions(input) {
     var api = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyA0XvKwTnb3YkJjQqoY0iQA3ybkhLZJmro&&input=' + input;
-     return this.http.get(api).map(res => res.json());
-    }
+    return this.http.get(api).map(res => res.json());
+  }
+
+  getNearbyPlaces(location, radius, types, name) {
+    var url = ApiManagerProvider.process(ApiManagerProvider.NEARBY_GOOGLE_API, {
+      location: location,
+      radius: radius,
+      types: types,
+      name: name
+    });
+
+    return this.http.get(url);
+  }
 }

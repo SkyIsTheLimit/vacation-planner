@@ -1,0 +1,75 @@
+<!--
+  Generated template for the TripComparisonPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Compare Trips</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h3>
+          Total Cost
+        </h3>
+        <p>
+          {{ trip1.cost }}
+        </p>
+      </ion-col>
+      <ion-col>
+        <h3>
+          Total Cost
+        </h3>
+        <p>
+          {{ trip2.cost }}
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h3>
+          Hotel Name
+        </h3>
+        <p>
+          {{ trip1.hotel.name }}
+        </p>
+      </ion-col>
+      <ion-col>
+        <h3>
+          Hotel Name
+        </h3>
+        <p>
+          {{ trip2.hotel.name }}
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h3>
+          Hotel Cost
+        </h3>
+        <p>
+          {{ trip1.hotel.cost }}
+        </p>
+      </ion-col>
+      <ion-col>
+        <h3>
+          Hotel Cost
+        </h3>
+        <p>
+          {{ trip2.hotel.cost }}
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

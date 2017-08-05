@@ -17,15 +17,32 @@ import { TripDetailPage } from '../trip-detail/trip-detail';
 })
 export class HotelListPage {
 hotels: Array<object> = [];
-hotelsMasterList : any;
+hotelsMasterList :Array<object> = [];
 flights: any;
 batchSize: number = 10;
 startIndex: number = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public app: App, public modalCtrl: ModalController, public fm: FlightManagerProvider) {
     this.flights = this.navParams.get('flight');
-    this.hotelsMasterList = fm.manageReturnedHotels();
-    this.setHotelList();
+    console.log(this.flights);
+    // this.hotelsMasterList =
+     fm.manageReturnedHotels(this.navParams.get('criteria'))
+     .map(res =>res.json())
+     .subscribe(data => {
+      console.log("Here is your response");
+      console.log(data);
+      // var hotelList = [];
+      // hotelList = 
+      this.hotelsMasterList = data;
+      this.setHotelList();
+      // finalObj.data = JSON.parse(data);
+      // this.tripList = data;
+      // return this.manageReturnedTrips(data);
+    }, (err) => {
+      console.log("Looks like something has gone wrong");
+      console.log(err);
+      this.hotelsMasterList = [];
+    });
   }
 
   ionViewDidLoad() {

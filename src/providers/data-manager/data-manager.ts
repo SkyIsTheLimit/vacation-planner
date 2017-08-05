@@ -4,7 +4,8 @@ import 'rxjs/add/operator/map';
 
 import {
   Location,
-  LocationCategory
+  LocationCategory,
+  Airport
 } from '../../models';
 
 /*
@@ -20,12 +21,21 @@ export class DataManagerProvider {
     console.log('Hello DataManagerProvider Provider');
   }
 
-  getLocationCategories(): Promise<Array<LocationCategory>> {
+  getLocationCategories2(): Promise<Array<LocationCategory>> {
     return new Promise<Array<LocationCategory>>((resolve, reject) => {
       this.http.get('assets/location-categories.csv').subscribe((data: any) => {
         console.log('Received data from location-categories.csv\n\n', data)
         resolve(this.parseCategories(data._body));
       });
+    });
+  }
+
+  getLocationCategories(): Promise<Array<Airport>> {
+    return new Promise<Array<Airport>>((resolve, reject) => {
+      this.http.get('assets/location-categories.json').map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
     });
   }
 

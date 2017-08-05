@@ -5,6 +5,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Facebook } from '@ionic-native/facebook';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Geolocation } from '@ionic-native/geolocation';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 import { MyApp } from './app.component';
 
@@ -30,7 +32,8 @@ import {
   OriginPickerPage,
   FlightDetailModalPage,
   HotelListPage,
-  HotelDetailModalPage
+  HotelDetailModalPage,
+  TripComparisonPage
 } from '../pages';
 
 import {
@@ -75,7 +78,8 @@ import {
     OriginPickerPage,
     FlightDetailModalPage,
     HotelListPage,
-    HotelDetailModalPage
+    HotelDetailModalPage,
+    TripComparisonPage
   ],
   imports: [
     HttpModule,
@@ -106,9 +110,12 @@ import {
     OriginPickerPage,
     FlightDetailModalPage,
     HotelListPage,
-    HotelDetailModalPage
+    HotelDetailModalPage,
+    TripComparisonPage
   ],
   providers: [
+    AndroidPermissions,
+    Geolocation,
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },

@@ -15,9 +15,14 @@ export class TripManagerProvider {
   myTrips: Array<Trip> = [];
   bookmarkedTrips: Array<Trip> = [];
   recentlyViewedTrips: Array<Trip> = [];
+  currentTrip: any;
 
   constructor(public http: Http) {
     console.log('Hello TripManagerProvider Provider');
+  }
+
+  setCurrentTrip(trip) {
+    this.currentTrip = trip;
   }
 
   addToMyTrips(trip) {
@@ -29,7 +34,9 @@ export class TripManagerProvider {
   }
 
   addToRecentlyViewedTrips(trip) {
-    this.recentlyViewedTrips.push(trip);
+    if (this.recentlyViewedTrips.indexOf(trip) === -1) {
+      this.recentlyViewedTrips.push(trip);
+    }
 
     if (this.recentlyViewedTrips.length > 20) {
       this.recentlyViewedTrips = this.recentlyViewedTrips.reverse();

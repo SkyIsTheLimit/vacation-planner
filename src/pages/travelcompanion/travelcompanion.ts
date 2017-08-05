@@ -7,7 +7,7 @@ import { DiscoveryProvider } from '../../providers';
 import { Restaurant } from '../../models/restaurant';
 import { TravelassistantPage } from '../travelassistant/travelassistant';
 import { CompanionCriteria } from '../../models/companion-criteria.model';
-import { GoogleMap, GoogleMapsEvent, GoogleMaps, LatLng } from '@ionic-native/google-maps';
+// import { GoogleMap, GoogleMapsEvent, GoogleMaps, LatLng } from '@ionic-native/google-maps';
 /**
  * Generated class for the TravelassistantPage page.
  *
@@ -21,20 +21,63 @@ import { GoogleMap, GoogleMapsEvent, GoogleMaps, LatLng } from '@ionic-native/go
 })
 export class TravelcompanionPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private tc: TravelCompanionProvider, private discovery: DiscoveryProvider, public platform: Platform) {
-}
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private tc: TravelCompanionProvider,
+    private discovery: DiscoveryProvider,
+    public platform: Platform) {
+    this.tc.getNearbyPlaces('12.9716,77.5946', 10000, 'food', '').map(res => res.json()).subscribe(value => {
+      console.info('Received info', value);
+    }, error => console.error(error));
+  }
+  // map: GoogleMap;
+  loadMap() {
+
+    // let location = new LatLng(-34.9290,138.6010);
+
+    /* this.map = new GoogleMap('map', {
+       'backgroundColor': 'white',
+       'controls': {
+         'compass': true,
+         'myLocationButton': true,
+         'indoorPicker': true,
+         'zoom': true
+       },
+       'gestures': {
+         'scroll': true,
+         'tilt': true,
+         'rotate': true,
+         'zoom': true
+       },
+       'camera': {
+         'latLng': location,
+         'tilt': 30,
+         'zoom': 15,
+         'bearing': 50
+       }
+     });*/
+    //   this.map = new GoogleMap('map');
+    //  // this.map.setVisible(true);
+    //   this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
+    //       console.log('Map is ready!');
+    //   });
+
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad TravelassistantPage');
   }
+
 radius: any = "";
 radiusinmiles : any = "";
 cuisine: any = "";
  restaurants: Array<any> = [];
 criteria = {
+
     destinations: [],
     startDate: {},
     endDate: {}
   };
+
 originSuggestions: Array<any> = [];
 location: string = "";
 locationcoords: string ="";
@@ -46,7 +89,7 @@ fetchSuggestions(query, type) {
         console.info('Loaded suggestions', this[type + 'Suggestions']);
       });
   }
-addDestination(destination, type, $event) {
+  addDestination(destination, type, $event) {
     console.debug('Adding destination', destination, $event);
     this.criteria[type] = destination.description;
     this.originSuggestions = [];
@@ -66,6 +109,9 @@ addDestination(destination, type, $event) {
 loadNearbyPlaces(resulttype) {
  this.radiusinmiles = (this.radius * 1609.34);
  /*let criteria1: CompanionCriteria = {
+
+  loadNearbyPlaces(resulttype) {
+    let criteria1: CompanionCriteria = {
       type: resulttype,
       keyword: "",
       filter: "",
@@ -82,11 +128,12 @@ this.locationcoords = this.coordinates[0].geometry.location.lat + ","  + this.co
       location: this.locationcoords,//this.coordinates[0].geometry.location.lat + ","  + this.coordinates[0].geometry.location.lng,
       radius: this.radiusinmiles
     };
-    if(resulttype=='airport')
-    {
+    console.log("radius:" + this.radius);
+    console.log("cuisine:" + this.cuisine);
+    this.tc.getLocationCoordsForCity(criteria1).subscribe(res => this.coordinates = res.results);
+    if (resulttype == 'airport') {
       criteria.radius = "30000";
     }
-
    console.log("result type"  + resulttype);
    this.tc.searchNearByRestaurants(criteria).subscribe( res => this.restaurants = res.results);
    // this.navCtrl.push(TravelassistantPage,criteria); 

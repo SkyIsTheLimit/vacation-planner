@@ -32,14 +32,14 @@ export class FlightManagerProvider {
       country: ""
     },
     'hotelInformation': {
-      numberOfGuests: Number,
-      numberOfRooms: Number,
-      ratings: []
+      numberOfGuests: 2,
+      numberOfRooms: 1,
+      ratings: [3, 4]
     },
-    budgetLimit: Number,
-    currency: "",
-    startDate: Number,
-    endDate: Number,
+    budgetLimit: 100000,
+    currency: "INR",
+    startDate: 1501785000000,
+    endDate: 1502130600000,
   };
   // searchCriteria: any;
   constructor(public http: Http) {
@@ -51,26 +51,21 @@ export class FlightManagerProvider {
   /**
    * Method that queries the backend to fetch matching flights
    */
-  fetchMatchingFlights(searchCriteria) {
+  fetchMatchingFlights(searchCriteria){
     this.prepareRequestObject(searchCriteria);
-    this.http.post('http://ec2-54-236-63-139.compute-1.amazonaws.com:8080/flights', searchCriteria)
-    .subscribe(data => {
-      console.log("Here is your response");
-      console.log(data);
-      // this.tripList = data;
-      // return this.manageReturnedTrips(data);
-    }, (err) => {
-      console.log("Looks like something has gone wrong");
-      console.log(err);
-    });
-  }
+    return this.http.post('http://ec2-34-200-248-144.compute-1.amazonaws.com:8080/flights', this.request);
+    // .map(res => res.json());
+    // return finalList;
+  };
 
 
   /**
    * Manage hotels returned from hotel-json.ts
    */
-  manageReturnedHotels(){
-    return hotelsList;
+  manageReturnedHotels(searchCriteria){
+    this.prepareRequestObject(searchCriteria);
+    return this.http.post('http://ec2-34-200-248-144.compute-1.amazonaws.com:8080/hotels', this.request)
+    // return hotelsList;
   }
 
   /**
@@ -89,7 +84,7 @@ export class FlightManagerProvider {
     this.request.hotelInformation.numberOfRooms = searchCriteria.hotelInformation.numberOfRooms;
     this.request.hotelInformation.ratings = searchCriteria.hotelInformation.ratings;
 
-    this.request.budgetLimit = searchCriteria.budgetLimit.upper;
+    this.request.budgetLimit = searchCriteria.budgetLimit;
     this.request.currency = "INR";
     this.request.startDate = searchCriteria.startDate;
     this.request.endDate = searchCriteria.endDate;
@@ -99,73 +94,68 @@ export class FlightManagerProvider {
   /*
   * Manage trips json returned from flight-json.ts
   */
-  // manageReturnedTrips(data){
-  // let tripsList = data;
-  // this.manageMetaData(data);
-  manageReturnedTrips() {
-    return new Promise<any>((resolve, reject) => {
-      this.http.get('assets/flights.json').map(res => res.json()).subscribe(tripsList => {
-        this.manageMetaData(tripsList);
-        // this.trips.add(this.airports);
-        this.trips.list = [];
-        //for each trip object
-        for (var i = 0; i < tripsList.trips.tripOption.length; i++) {
-          var trip: any = {};
-          trip.totalPrice = tripsList.trips.tripOption[i].saleTotal;
-          trip.totalDuration = tripsList.trips.tripOption[i].slice[0].duration;
-          trip.phase = [];
-          for (var j = 0; j < tripsList.trips.tripOption[i].slice[0].segment.length; j++) {
-            trip.phase[j] = {};
-            trip.phase[j].duration = tripsList.trips.tripOption[i].slice[0].segment[j].duration;
-            trip.phase[j].flightNumber = tripsList.trips.tripOption[i].slice[0].segment[j].flight.carrier + "" + tripsList.trips.tripOption[i].slice[0].segment[j].flight.number;
-            trip.phase[j].arrival = this.getTimeandDate(tripsList.trips.tripOption[i].slice[0].segment[j].leg[0].arrivalTime);
-            trip.phase[j].departure = this.getTimeandDate(tripsList.trips.tripOption[i].slice[0].segment[j].leg[0].departureTime);
-            trip.phase[j].origin = tripsList.trips.tripOption[i].slice[0].segment[j].leg[0].origin;
-            trip.phase[j].destination = tripsList.trips.tripOption[i].slice[0].segment[j].leg[0].destination;
-            trip.phase[j].originCity = this.getCityInformation(trip.phase[j].origin);
-            trip.phase[j].destinationCity = this.getCityInformation(trip.phase[j].destination);
-            trip.phase[j].originAirport = this.getAirportInformation(trip.phase[j].origin);
-            trip.phase[j].destinationAirport = this.getAirportInformation(trip.phase[j].destination);
-            trip.phase[j].carrier = this.getCarrierInformation(tripsList.trips.tripOption[i].slice[0].segment[j].flight.carrier);
-            trip.phase[j].connectionDuration = tripsList.trips.tripOption[i].slice[0].segment[j].connectionDuration | 0;
-            // trip.phase[j].destinationTerminal = tripsList.trips.tripOption[i].slice[0].segment[j].leg[0].destinationTerminal || "";
-            // trip.phase[j].originTerminal = tripsList.trips.tripOption[i].slice[0].segment[j].leg[0].originTerminal || "";
-            trip.phase[j].meal = tripsList.trips.tripOption[i].slice[0].segment[j].leg[0].meal || "";
-            // trip.phase[j].connectionDuration = tripsList.trips.tripOption[i].slice[0].segment[j];
+  manageReturnedTrips(data){
+    let tripsList = data;
+    this.manageMetaData(data);
+    // manageReturnedTrips(){
+      // this.manageMetaData();  
+      this.trips = [];
+    //for each trip object
+    for (var i = 0; i < tripsList.tripOption.length; i++){
+      var trip : any = {};
+      trip.totalPrice = tripsList.tripOption[i].saleTotal;
+      trip.totalDuration = tripsList.tripOption[i].slice[0].duration;
+      trip.phase = [];
+      for(var j = 0; j < tripsList.tripOption[i].slice[0].segment.length; j++){
+        trip.phase[j] = {};
+        trip.phase[j].duration = tripsList.tripOption[i].slice[0].segment[j].duration;
+        trip.phase[j].flightNumber = tripsList.tripOption[i].slice[0].segment[j].flight.carrier +""+ tripsList.tripOption[i].slice[0].segment[j].flight.number;
+        trip.phase[j].arrival = this.getTimeandDate(tripsList.tripOption[i].slice[0].segment[j].leg[0].arrivalTime);
+        trip.phase[j].departure = this.getTimeandDate(tripsList.tripOption[i].slice[0].segment[j].leg[0].departureTime);
+        trip.phase[j].origin = tripsList.tripOption[i].slice[0].segment[j].leg[0].origin;
+        trip.phase[j].destination = tripsList.tripOption[i].slice[0].segment[j].leg[0].destination;
+        trip.phase[j].originCity = this.getCityInformation(trip.phase[j].origin);
+        trip.phase[j].destinationCity = this.getCityInformation(trip.phase[j].destination);
+        trip.phase[j].originAirport = this.getAirportInformation(trip.phase[j].origin);
+        trip.phase[j].destinationAirport = this.getAirportInformation(trip.phase[j].destination);
+        trip.phase[j].carrier = this.getCarrierInformation(tripsList.tripOption[i].slice[0].segment[j].flight.carrier);
+        trip.phase[j].connectionDuration = tripsList.tripOption[i].slice[0].segment[j].connectionDuration | 0;
+        // trip.phase[j].destinationTerminal = tripsList.tripOption[i].slice[0].segment[j].leg[0].destinationTerminal || "";
+        // trip.phase[j].originTerminal = tripsList.tripOption[i].slice[0].segment[j].leg[0].originTerminal || "";
+        trip.phase[j].meal = tripsList.tripOption[i].slice[0].segment[j].leg[0].meal || "";
+        // trip.phase[j].connectionDuration = tripsList.tripOption[i].slice[0].segment[j];
 
-            if (j == 0) {
-              //first element
-              //set origin as origin of trip
-              trip.origin = tripsList.trips.tripOption[i].slice[0].segment[j].leg[0].origin;
-              trip.originCity = this.getCityInformation(trip.origin);
-              trip.originDeparture = trip.phase[0].departure;
-            }
-            if (j == tripsList.trips.tripOption[i].slice[0].segment.length - 1) {
-              //last element
-              //set destination as final destination of trip
-              trip.destination = tripsList.trips.tripOption[i].slice[0].segment[j].leg[0].destination;
-              trip.destinationCity = this.getCityInformation(trip.destination);
-              trip.baseFareTotal = tripsList.trips.tripOption[i].pricing[0].baseFareTotal;
-              trip.saleTaxTotal = tripsList.trips.tripOption[i].pricing[0].saleTaxTotal;
-              trip.saleTotal = tripsList.trips.tripOption[i].pricing[0].saleTotal;
-              trip.isRefundable = tripsList.trips.tripOption[i].pricing[0].refundable;
-              trip.adultCount = tripsList.trips.tripOption[i].pricing[0].passengers.adultCount;
-              trip.destinationArrival = trip.phase[j].departure;
-            }
-          }
-          this.trips.list.push(trip);
+        if(j == 0){
+          //first element
+          //set origin as origin of trip
+          trip.origin = tripsList.tripOption[i].slice[0].segment[j].leg[0].origin;
+          trip.originCity = this.getCityInformation(trip.origin);
+          trip.originDeparture = trip.phase[0].departure;
         }
-        resolve(this.trips);
-      });
-    });
+        if(j == tripsList.tripOption[i].slice[0].segment.length -1){
+          //last element
+          //set destination as final destination of trip
+          trip.destination = tripsList.tripOption[i].slice[0].segment[j].leg[0].destination;
+          trip.destinationCity = this.getCityInformation(trip.destination);
+          trip.baseFareTotal = tripsList.tripOption[i].pricing[0].baseFareTotal;
+          trip.saleTaxTotal = tripsList.tripOption[i].pricing[0].saleTaxTotal;
+          trip.saleTotal = tripsList.tripOption[i].pricing[0].saleTotal;
+          trip.isRefundable = tripsList.tripOption[i].pricing[0].refundable;
+          trip.adultCount = tripsList.tripOption[i].pricing[0].passengers.adultCount;
+          trip.destinationArrival = trip.phase[j].departure;
+        }
+      }
+      this.trips.push(trip);
+    }
+    return this.trips;
   }
 
-  // manageMetaData(tripsList){
-  //   console.log(tripsList);
-  manageMetaData(tripsList) {
-    this.airports = this.generateReferenceObject(tripsList.trips.data.airport);
-    this.cities = this.generateReferenceObject(tripsList.trips.data.city);
-    this.carriers = this.generateReferenceObject(tripsList.trips.data.carrier);
+  manageMetaData(tripsList){
+    console.log(tripsList);
+    // manageMetaData(){
+    this.airports = this.generateReferenceObject(tripsList.data.airport);
+    this.cities = this.generateReferenceObject(tripsList.data.city);
+    this.carriers = this.generateReferenceObject(tripsList.data.carrier);
   }
 
   generateReferenceObject(data) {

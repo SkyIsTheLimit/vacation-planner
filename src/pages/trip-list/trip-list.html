@@ -15,12 +15,12 @@
 
 <ion-content padding>
   <ion-card style="display: inline;">
-    <ion-card-header>
-      Showing {{trips.list.length}} matching flight results.
+    <ion-card-header *ngIf="trips.length">
+      Showing {{trips.length}} matching flight results.
     </ion-card-header>
 
-  <ion-list>
-    <div ion-item *ngFor="let trip of trips.list">
+  <ion-list *ngIf="trips.length">
+    <div ion-item *ngFor="let trip of trips">
      <ion-avatar item-start (click)="viewFlightDetails(trip)">
         <img src="assets/139884-travel/svg/airplane-1.svg">
       </ion-avatar>
@@ -43,11 +43,16 @@
           </div>
         </div>
         <div style="flex:1; text-align:right; color: darkblue;" (click)="viewFlightDetails(trip)">{{trip.totalPrice}}</div>
-        <ion-icon name='arrow-forward' style="padding-left: 5px;" (click)="viewHotelsList(trip, $event)"></ion-icon>
+        <ion-icon name='arrow-forward' style="padding-left: 5px;" (click)="viewHotelsList(trip)"></ion-icon>
       </div>
       
     </div>
    </ion-list>
-
+   <div *ngIf="trips.length == 0">Loading matching flights. Wait a moment...</div>
+   <!--<div *ngIf="tripsMasterList">-->
+    <div style="color: blue; font-size: 12px;" (click)="setFlightsList()" *ngIf="startIndex< tripsMasterList.length">
+        <label>Load More ...</label>
+      </div>
+   <!--</div>-->
   </ion-card>
 </ion-content>

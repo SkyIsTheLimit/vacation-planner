@@ -4,6 +4,10 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { DiscoveryProvider } from '../../providers';
 import { BookkeeperPage } from '../bookkeeper/bookkeeper';
 import { TripListPage } from '../trip-list/trip-list';
+import { TripDetailPage } from '../trip-detail/trip-detail';
+import { TripComparisonPage } from '../trip-comparison/trip-comparison';
+
+import { Airport } from '../../models';
 
 /**
  * Generated class for the SearchCriteriaPage page.
@@ -22,8 +26,16 @@ export class SearchCriteriaPage {
   noOfGuests: Array<number>;
   budgetLimit: {};
   criteria = {
-    origin: {},
-    destination: [],
+    'origin': {
+      airportCode: "",
+      city: "",
+      country: ""
+    },
+    'destination': {
+      airportCode: "",
+      city: "",
+      country: ""
+    },
     startDate: {},
     endDate: {},
     budgetLimit: 100000,
@@ -42,6 +54,7 @@ export class SearchCriteriaPage {
   destinationSuggestions: Array<any> = [];
   selectedOrigin = '';
   selectedDestination = '';
+  previouslySelectedDestination: Airport = null;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Search Criteria');
@@ -51,15 +64,27 @@ export class SearchCriteriaPage {
     private loadingCtrl: LoadingController,
     public navParams: NavParams,
     private discovery: DiscoveryProvider) {
-      this.starRating= [false, false, false, false, false];
-      this.budgetLimit = {
-        'lower': 100000,
-        'upper': 350000
-      };
-      this.noOfRooms = [];
-      this.noOfGuests = [];
-      this.incrementToTen(this.noOfRooms);
-      this.incrementToTen(this.noOfGuests);
+    this.starRating = [false, false, false, false, false];
+    this.budgetLimit = {
+      'lower': 100000,
+      'upper': 350000
+    };
+    this.noOfRooms = [];
+    this.noOfGuests = [];
+    this.incrementToTen(this.noOfRooms);
+    this.incrementToTen(this.noOfGuests);
+
+    this.previouslySelectedDestination = this.navParams.get('destination');
+
+    if (this.previouslySelectedDestination) {
+      var d = this.previouslySelectedDestination;
+      this.selectedDestination = d.city + '(' + d.code + ') - ' + d.airportname;
+      this.criteria.destination = {
+        airportCode: d.code,
+        city: d.city,
+        country: d.country
+      }
+    }
   }
 
   incrementToTen(variable) {
@@ -71,13 +96,18 @@ export class SearchCriteriaPage {
   }
 
   setOrigin(origin) {
-    this.criteria.origin = origin;
+    this.criteria.origin.city = origin.city;
+    this.criteria.origin.airportCode = origin.code;
+    this.criteria.origin.country = origin.country;
     this.selectedOrigin = origin.city + '(' + origin.code + ') - ' + origin.airportname;
     this.originSuggestions = [];
   }
 
   setDestination(destination) {
-    this.criteria.destination = destination;
+    this.criteria.destination.city = destination.city;
+    this.criteria.destination.airportCode = destination.code;
+    this.criteria.destination.country = destination.country;
+    // this.criteria.destination = destination;
     this.selectedDestination = destination.city + '(' + destination.code + ') - ' + destination.airportname;
     this.destinationSuggestions = [];
   }
@@ -87,10 +117,6 @@ export class SearchCriteriaPage {
     this.criteria[type] = destination.description;
     this.originSuggestions = [];
     this.destinationSuggestions = [];
-  }
-
-  removeDestination(destination, $index) {
-    this.criteria.destination.splice($index, 1);
   }
 
   find() {
@@ -120,14 +146,18 @@ export class SearchCriteriaPage {
    * and display them
    */
   discoverTrip() {
-    this.find();
+    // this.find();
     // this.criteria.budgetLimit = this.budgetLimit.upper;
-    this.criteria.startDate = new Date(""+this.criteria.startDate).getTime();
-    this.criteria.endDate = new Date(""+this.criteria.endDate).getTime();
+    this.criteria.startDate = new Date("" + this.criteria.startDate).getTime();
+    this.criteria.endDate = new Date("" + this.criteria.endDate).getTime();
     // setTimeout(() => {
     //   console.log("timeout over >>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     //   this.spinner.dismiss();
     // }, 5000);
+
+    // this.navCtrl.push(TripDetailPage);
+    // this.navCtrl.push(TripComparisonPage);
+
     this.navCtrl.push(TripListPage, {
       criteria: this.criteria,
       spinner: this.spinner,
@@ -139,16 +169,16 @@ export class SearchCriteriaPage {
    * Function called when the user clicks on a star rating as part of trip search criteria
    * the star rating limits the hotel searches to only the selected star ratings
    */
-  addSelectedRating(rating, ratingString){
+  addSelectedRating(rating, ratingString) {
     let index = this.criteria.hotelInformation.ratings.indexOf(rating);
-    if(index >= 0){
+    if (index >= 0) {
       //already exists, need to remove
-      this.starRating[rating-1] = false;
+      this.starRating[rating - 1] = false;
       this.criteria.hotelInformation.ratings.splice(index, 1);
-    } else{
+    } else {
       //does not exist, need to add
       this.criteria.hotelInformation.ratings.push(rating);
-      this.starRating[rating-1] = true;
+      this.starRating[rating - 1] = true;
     }
     console.log(this.starRating);
   }
@@ -156,15 +186,15 @@ export class SearchCriteriaPage {
   /**
    * button called when user selects a star rating button
    */
-  isButtonSelected(rating){
+  isButtonSelected(rating) {
     let index = this.criteria.hotelInformation.ratings.indexOf(rating);
-    if(index >= 0) {
-      console.log("returning true for "+ rating +" "+ index);
+    if (index >= 0) {
+      console.log("returning true for " + rating + " " + index);
       return true;
     }
   }
 
-  toggle(){
+  toggle() {
     this.five = !this.five;
   }
 }
