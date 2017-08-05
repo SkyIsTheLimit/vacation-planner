@@ -77,7 +77,15 @@ startIndex: number = 0;
  * This method is called when the user clicks on the '>' icon on the hotel-list page.
  * This signifies that the user has finalized on the hotel and wants to view the entire trip.
  */
-  viewTripDetails(){
-     this.app.getRootNav().push(TripDetailPage);
+  viewTripDetails(hotel){
+    var trip: any = {};
+    trip.hotel = hotel;
+    trip.destination = {};
+    trip.destination.lat = hotel.la;
+    trip.destination.lon = hotel.lo;
+    trip.flight = this.flights;
+     this.app.getRootNav().push(TripDetailPage, {
+      trip: trip
+    });
   }
 }

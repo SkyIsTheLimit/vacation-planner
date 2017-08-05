@@ -46,13 +46,8 @@ export class TripListPage {
         console.log(data);
         // if(data.tripOptions){
         // var tripList = JSON.parse(data.data);
-        let tripList = data.data;
-        tripList.data = data.data;
-        tripList.tripOption = data.tripOption;
-        // tripsList.data = JSON.parse(data.data);
         tripsList.data = data.data;
         tripsList.tripOption = data.tripOption;
-        // tripsList.tripOption = JSON.parse(data.tripOptions);
         this.tripsMasterList = fm.manageReturnedTrips(tripsList);
         this.setFlightsList();
         // } else{
