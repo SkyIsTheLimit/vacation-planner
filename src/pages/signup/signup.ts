@@ -48,7 +48,7 @@ export class SignupPage {
 
   signupWithProvider(credentials) {
     this.authenticationProvider.signup(credentials).then(function () {
-      this.navCtrl.push(PreferencesPage);
+      this.navCtrl.push(DispatchPage);
     }).catch(() => {
       this.navCtrl.push(DispatchPage);
     });
@@ -76,7 +76,7 @@ export class SignupPage {
 
         return this.authenticationProvider.signup(user);
       }).then(user => {
-        this.navCtrl.push(PreferencesPage);
+        this.navCtrl.push(DispatchPage);
       }).catch(error => {
         // Facebook user not logged in.
 
@@ -97,7 +97,7 @@ export class SignupPage {
 
             return this.authenticationProvider.signup(user);
           }).then(user => {
-            this.navCtrl.push(PreferencesPage);
+            this.navCtrl.push(DispatchPage);
           }).catch(error => {
           });
       });

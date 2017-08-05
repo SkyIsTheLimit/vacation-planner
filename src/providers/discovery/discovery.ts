@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import { Airport } from '../../models/airport';
 import { ApiManagerProvider } from '../api-manager/api-manager';
 
 /*
@@ -39,15 +40,21 @@ export class DiscoveryProvider {
           this.airports = airports;
           console.info('Airports', this.airports);
           resolve({
-            predictions: airports.filter(function (airport) {
-              return airport.city.indexOf(input) !== -1;
+            predictions: airports.filter(function (airport: Airport) {
+              return airport.city.indexOf(input) !== -1 ||
+                airport.airportname.indexOf(input) !== -1 ||
+                airport.code.indexOf(input) !== -1 ||
+                airport.country.indexOf(input) !== -1;
             }).splice(0, n)
           });
         }, error => reject(error));
       } else {
         resolve({
           predictions: this.airports.filter(function (airport) {
-            return airport.city.indexOf(input) !== -1;
+            return airport.city.indexOf(input) !== -1 ||
+              airport.airportname.indexOf(input) !== -1 ||
+              airport.code.indexOf(input) !== -1 ||
+              airport.country.indexOf(input) !== -1;
           }).splice(0, n)
         });
       }

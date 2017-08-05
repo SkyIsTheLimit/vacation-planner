@@ -17,6 +17,7 @@ export class ApiManagerProvider {
   static LINK_USER_API = ApiManagerProvider.API_HOST + '/users/:id/link/:oAuthId';
   static OAUTH_PROFILE_TO_USER_API = ApiManagerProvider.API_HOST + '/oauth-profiles/:oAuthId/user';
   static NEARBY_API = ApiManagerProvider.API_HOST + '/NearBy';
+  static NEARBY_GOOGLE_API = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=:location&radius=:radius&types=:types&name=:name&key=AIzaSyBNTW_iSAzZ_HT-TTil-3VNAHW7IcoO76Y';
 
   constructor(public http: Http) {
     console.log('Hello ApiManagerProvider Provider');
