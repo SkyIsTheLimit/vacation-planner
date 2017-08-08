@@ -41,8 +41,8 @@
       <div *ngIf="myTrips.length !== 0">
         <ion-list>
           <ion-item *ngFor="let trip of myTrips">
-            <h2>Stay at {{ trip.hotel.name }}</h2>
-            <p>{{ trip.flight.startDate }} - {{ trip.flight.endDate }}</p>
+            <h2>Stay at {{ trip.hotel.hn }}</h2>
+            <!-- <p>{{ trip.flight.startDate }} - {{ trip.flight.endDate }}</p> -->
             <button ion-button clear item-end (click)="viewDetail(trip)">View</button>
           </ion-item>
         </ion-list>
@@ -58,8 +58,8 @@
       <div *ngIf="bookmarkedTrips.length !== 0">
         <ion-list>
           <ion-item *ngFor="let trip of bookmarkedTrips">
-            <h2>Stay at {{ trip.hotel.name }}</h2>
-            <p>{{ trip.flight.startDate }} - {{ trip.flight.endDate }}</p>
+            <h2>Stay at {{ trip.hotel.hn }}</h2>
+            <!-- <p>{{ trip.flight.startDate }} - {{ trip.flight.endDate }}</p> -->
             <button ion-button clear item-end (click)="viewDetail(trip)">View</button>
           </ion-item>
         </ion-list>
@@ -75,8 +75,8 @@
       <div *ngIf="recentlyViewedTrips.length !== 0">
         <ion-list>
           <ion-item *ngFor="let trip of recentlyViewedTrips">
-            <h2>Stay at {{ trip.hotel.name }}</h2>
-            <p>{{ trip.flight.startDate }} - {{ trip.flight.endDate }}</p>
+            <h2>Stay at {{ trip.hotel.hn }}</h2>
+            <!-- <p>{{ trip.flight.startDate }} - {{ trip.flight.endDate }}</p> -->
             <button ion-button clear item-end (click)="viewDetail(trip)">View</button>
           </ion-item>
         </ion-list>

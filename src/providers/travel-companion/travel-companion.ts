@@ -26,7 +26,6 @@ export class TravelCompanionProvider {
       };
       that.location = pos.lat + "," + pos.lng;
       //console.log("lattitude:" + location.lat);
-
       //this.res = location.lat + "," + pos.lng;
     });
     console.log("lattitude:" + this.location);
@@ -37,8 +36,8 @@ export class TravelCompanionProvider {
     console.log("radius: " + criteria.radius);
     console.log("type: " + criteria.type);
     console.log("location:" + this.location);
-    var endpoint = ApiManagerProvider.NEARBY_API + '?'
-      + 'location=' + this.location +
+    var endpoint = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
+      + 'location=' + criteria.location +
       '&radius=' + criteria.radius +
       '&type=' + criteria.type +
       '&keyword=' + criteria.keyword +
@@ -49,7 +48,6 @@ export class TravelCompanionProvider {
     // console.log(this.res);
     // return this.res;
   }
-
   getLocationCoordsForCity(criteria: CompanionCriteria) {
     var endpoint = 'https://maps.googleapis.com/maps/api/geocode/json?' +
       'address=' + criteria.location +
@@ -69,8 +67,8 @@ export class TravelCompanionProvider {
   }
   getPlaceDetails(criteria: String) {
     console.log("place id:" + criteria);
-    var endpoint = 'https://maps.googleapis.com/maps/api/place/details/json?' + 
-    'placeid=' + criteria + '&key=AIzaSyC4x3E86QCk1dW2iVA5GHmRH9mNKtZx-1g';
+    var endpoint = 'https://maps.googleapis.com/maps/api/place/details/json?' +
+      'placeid=' + criteria + '&key=AIzaSyC4x3E86QCk1dW2iVA5GHmRH9mNKtZx-1g';
     return this.http.get(endpoint).map(response => response.json());
   }
 
