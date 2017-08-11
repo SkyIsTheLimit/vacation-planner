@@ -16,7 +16,6 @@ export class DiscoveryProvider {
   airports: Array<any>;
 
   constructor(public http: Http, public apiManager: ApiManagerProvider) {
-    console.log('Hello DiscoveryProvider Provider');
   }
 
   getTrips() {

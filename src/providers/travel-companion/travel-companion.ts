@@ -17,25 +17,24 @@ export class TravelCompanionProvider {
   resjson: Array<any> = [];
   constructor(public http: Http) {
     let that = this;
-    console.log('Hello TravelCompanionProvider Provider');
-    navigator.geolocation.getCurrentPosition(function (position) {
+    // navigator.geolocation.getCurrentPosition(function (position) {
 
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      that.location = pos.lat + "," + pos.lng;
-      //console.log("lattitude:" + location.lat);
-      //this.res = location.lat + "," + pos.lng;
-    });
-    console.log("lattitude:" + this.location);
+    //   var pos = {
+    //     lat: position.coords.latitude,
+    //     lng: position.coords.longitude
+    //   };
+    //   that.location = pos.lat + "," + pos.lng;
+    //   //console.log("lattitude:" + location.lat);
+    //   //this.res = location.lat + "," + pos.lng;
+    // });
+    // console.log("lattitude:" + this.location);
   }
   searchNearByRestaurants(criteria: CompanionCriteria) {
-    console.log("Inside add method");
-    console.log("criteria location: " + criteria.location);
-    console.log("radius: " + criteria.radius);
-    console.log("type: " + criteria.type);
-    console.log("location:" + this.location);
+    // console.log("Inside add method");
+    // console.log("criteria location: " + criteria.location);
+    // console.log("radius: " + criteria.radius);
+    // console.log("type: " + criteria.type);
+    // console.log("location:" + this.location);
     var endpoint = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
       + 'location=' + criteria.location +
       '&radius=' + criteria.radius +

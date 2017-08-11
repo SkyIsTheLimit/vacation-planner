@@ -20,7 +20,6 @@ export class ApiManagerProvider {
   static NEARBY_GOOGLE_API = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=:location&radius=:radius&types=:types&name=:name&key=AIzaSyBNTW_iSAzZ_HT-TTil-3VNAHW7IcoO76Y';
 
   constructor(public http: Http) {
-    console.log('Hello ApiManagerProvider Provider');
   }
 
   static process(url, values) {

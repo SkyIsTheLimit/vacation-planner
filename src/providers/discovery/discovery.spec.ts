@@ -9,6 +9,7 @@ import {
 import { MockBackend } from '@angular/http/testing';
 
 import { DiscoveryProvider } from './discovery';
+import { ApiManagerProvider } from '../api-manager/api-manager';
 import { TripCriteria } from '../../models/trip-criteria.model';
 
 describe('Discovery Provider', () => {
@@ -20,6 +21,7 @@ describe('Discovery Provider', () => {
             imports: [HttpModule],
             providers: [
                 DiscoveryProvider,
+                ApiManagerProvider,
                 { provide: XHRBackend, useClass: MockBackend }
             ]
         });
@@ -53,7 +55,7 @@ describe('Discovery Provider', () => {
             })));
         });
 
-        discoveryProvider.getTrips(criteria).subscribe((trips) => {
+        discoveryProvider.getTrips().subscribe((trips) => {
             expect(trips.length).toBe(2);
         });
     }));

@@ -31,7 +31,7 @@ module.exports = function(config) {
       terminal: true
     },
 
-    reporters: ['progress', 'html'],
+    reporters: ['spec', 'html'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
