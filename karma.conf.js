@@ -12,6 +12,7 @@ module.exports = function (config) {
       require('karma-jasmine-html-reporter'),
       require('karma-html-reporter'),
       require('karma-junit-reporter'),
+      require('karma-spec-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular/cli/plugins/karma')
     ],
@@ -34,12 +35,12 @@ module.exports = function (config) {
     angularCli: {
       environment: 'dev'
     },
-    reporters: config.angularCli && config.angularCli.codeCoverage ? ['progress', 'coverage-istanbul', 'html'] : ['progress', 'html', 'kjhtml'],
+    reporters: config.angularCli && config.angularCli.codeCoverage ? ['spec', 'coverage-istanbul', 'html'] : ['spec', 'html', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['ChromeNoSandbox'],
+    browsers: ['PhantomJS'],
     singleRun: true,
     junitReporter: {
       outputDir: process.env.JUNIT_REPORT_PATH,

@@ -65,7 +65,6 @@ export class TravelCompanionProvider {
     return this.http.get(endpoint).map(response => response.json())
   }
   getPlaceDetails(criteria: String) {
-    console.log("place id:" + criteria);
     var endpoint = 'https://maps.googleapis.com/maps/api/place/details/json?' +
       'placeid=' + criteria + '&key=AIzaSyC4x3E86QCk1dW2iVA5GHmRH9mNKtZx-1g';
     return this.http.get(endpoint).map(response => response.json());
