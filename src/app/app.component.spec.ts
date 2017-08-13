@@ -6,10 +6,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MyApp } from './app.component';
 import {
-    PlatformMock,
     StatusBarMock,
     SplashScreenMock
-} from '../../test-config/mocks-ionic';
+} from 'ionic-mocks';
 
 describe('MyApp Component', () => {
     let fixture;
@@ -23,8 +22,7 @@ describe('MyApp Component', () => {
             ],
             providers: [
                 { provide: StatusBar, useClass: StatusBarMock },
-                { provide: SplashScreen, useClass: SplashScreenMock },
-                { provide: Platform, useClass: PlatformMock }
+                { provide: SplashScreen, useClass: SplashScreenMock }
             ]
         });
     }));
