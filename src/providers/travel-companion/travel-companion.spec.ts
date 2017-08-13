@@ -36,4 +36,9 @@ describe('TravelCompanion Provider', () => {
         var result = travelCompanionProvider.searchNearByRestaurants(criteria);
         expect(result != null).toBe(true);
     });
+
+    it('Should be able to load user ratings of restaurants', () => {
+        var result = travelCompanionProvider.getPlaceDetails("test");
+        expect(result != null).toBe(true);
+    });
 });

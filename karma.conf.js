@@ -10,6 +10,7 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-phantomjs-launcher'),
       require('karma-jasmine-html-reporter'),
+      require('karma-html-reporter'),
       require('karma-junit-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular/cli/plugins/karma')
@@ -33,7 +34,7 @@ module.exports = function (config) {
     angularCli: {
       environment: 'dev'
     },
-    reporters: config.angularCli && config.angularCli.codeCoverage ? ['progress', 'coverage-istanbul'] : ['progress', 'kjhtml'],
+    reporters: config.angularCli && config.angularCli.codeCoverage ? ['progress', 'coverage-istanbul', 'html'] : ['progress', 'html', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
